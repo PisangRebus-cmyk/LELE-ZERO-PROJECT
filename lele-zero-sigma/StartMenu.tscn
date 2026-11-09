@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://4c1h2bgicuuj"]
+
+[ext_resource type="Script" uid="uid://ct4jbg33fjacj" path="res://start_menu.gd" id="1_d3352"]
+
+[node name="StartMenu" type="Control" unique_id=1480100945]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d3352")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1819665423]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -405.0
+offset_top = -264.0
+offset_right = -288.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_constants/separation = 10
+
+[node name="Judul" type="Label" parent="VBoxContainer" unique_id=1732070114]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45643628, 0.5586505, 1.9312416, 1)
+theme_override_font_sizes/font_size = 24
+text = "TWOFOLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spasi" type="Control" parent="VBoxContainer" unique_id=1910887528]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="NewButton" type="Button" parent="VBoxContainer" unique_id=1731455861]
+layout_mode = 2
+text = "NEW"
+
+[node name="LoadButton" type="Button" parent="VBoxContainer" unique_id=1646749873]
+layout_mode = 2
+text = "LOAD"
+
+[node name="SettingButton" type="Button" parent="VBoxContainer" unique_id=971534482]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SettingButton" unique_id=1881262345]
+layout_mode = 0
+offset_left = 185.5
+offset_top = -98.5
+offset_right = 356.5
+offset_bottom = -16.5
+scale = Vector2(0.8, 0.8)
+
+[node name="Volume Musik" type="Label" parent="VBoxContainer/SettingButton/VBoxContainer" unique_id=1155852151]
+layout_mode = 2
+text = "BGM Volume"
+
+[node name="VolumeMusikSlider" type="HSlider" parent="VBoxContainer/SettingButton/VBoxContainer" unique_id=363439153]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_transform_enabled = true
+value = 100.0
+
+[node name="Volume SFX" type="Label" parent="VBoxContainer/SettingButton/VBoxContainer" unique_id=164278913]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="VolumeSFXSlider" type="HSlider" parent="VBoxContainer/SettingButton/VBoxContainer" unique_id=1991417037]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_transform_enabled = true
+value = 100.0
+
+[node name="FullWindowButton" type="CheckBox" parent="VBoxContainer/SettingButton/VBoxContainer" unique_id=155024892]
+layout_mode = 2
+text = "Full Window Mode"
+
+[node name="redup" type="ColorRect" parent="VBoxContainer/SettingButton" unique_id=1724114682]
+z_index = -1
+layout_mode = 0
+offset_left = 173.5
+offset_top = -105.5
+offset_right = 373.5
+offset_bottom = 94.5
+mouse_filter = 2
+color = Color(0.0033547431, 0.007517425, 0.00060854293, 0.49803922)
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=248145462]
+layout_mode = 2
+text = "QUIT GAME"
