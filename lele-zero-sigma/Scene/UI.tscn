@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c6n0c6niuuyk4"]
+
+[node name="Control" type="Control" unique_id=2144059541]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bar Atas" type="MarginContainer" parent="." unique_id=864767141]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+
+[node name="HP" type="Label" parent="Bar Atas" unique_id=1700483559]
+layout_mode = 2
+text = "HP
+"
+
+[node name="HealthBar" type="TextureProgressBar" parent="Bar Atas" unique_id=1119715652]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 2
+value = 100.0
+tint_under = Color(0.80267304, 0.25282338, 0.28437108, 0.3254902)
+
+[node name="Pause Menu" type="CenterContainer" parent="." unique_id=1940860769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause Menu" unique_id=2052196544]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause Menu/VBoxContainer" unique_id=515756995]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=1759001470]
+layout_mode = 2
+text = "CONTINUE
+"
+
+[node name="ReturnTitleButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=797784597]
+layout_mode = 2
+text = "Return to Title"
+
+[node name="QuitButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=437102274]
+layout_mode = 2
+text = "Quit Game
+"
