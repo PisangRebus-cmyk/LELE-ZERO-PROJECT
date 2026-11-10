@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://chpl0isksyaxt"]
+
+[ext_resource type="Script" path="res://Script/player2.gd" id="1_mjxxk"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/FuturePrincess_3.png" id="2_eyttc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3ar4"]
+radius = 1.6957312
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwuf6"]
+
+[node name="Player2" type="CharacterBody2D" unique_id=1063273838]
+script = ExtResource("1_mjxxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=995423570]
+position = Vector2(0, 18.999998)
+scale = Vector2(-6.179325, 0.8061403)
+shape = SubResource("CapsuleShape2D_g3ar4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1798320079]
+sprite_frames = SubResource("SpriteFrames_fwuf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2141952106]
+texture = ExtResource("2_eyttc")
