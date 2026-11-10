@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LELE ZERO SIGMA"
-run/main_scene="uid://4c1h2bgicuuj"
+run/main_scene="uid://bjb5hbtxvrble"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

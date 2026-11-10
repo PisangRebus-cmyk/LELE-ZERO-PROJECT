@@ -6,7 +6,7 @@
 # sinkronisasi setting akan disesuaikan variabel sound dan art
 extends Control
 
-const SceneNewGame := ""
+const SceneNewGame := "res://scene/cobacoba.tscn"
 const SavePath := ""
 
 var _Settings := false
