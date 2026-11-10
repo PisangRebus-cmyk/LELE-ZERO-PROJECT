@@ -2,9 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="1_mcf7f"]
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_wxoss"]
+[ext_resource type="Script" uid="uid://c7q627456w4y8" path="res://Script/camera.gd" id="3_r4drh"]
+[ext_resource type="PackedScene" uid="uid://bclfk3k0hme2x" path="res://Scene/MeleeEnemy.tscn" id="4_dl7mr"]
 
 [node name="Node2D" type="Node2D" unique_id=1006963760]
 
 [node name="Control" parent="." unique_id=2144059541 instance=ExtResource("1_mcf7f")]
 
 [node name="Player" parent="." unique_id=1157810840 instance=ExtResource("1_wxoss")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1683471568]
+script = ExtResource("3_r4drh")
+
+[node name="MeleeEnemy" parent="." unique_id=997969373 instance=ExtResource("4_dl7mr")]
+position = Vector2(102, -62)

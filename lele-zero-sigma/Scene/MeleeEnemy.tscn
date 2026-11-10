@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bclfk3k0hme2x"]
+
+[ext_resource type="Script" uid="uid://d3o75l2enldr" path="res://Script/melee_enemy.gd" id="1_31tfe"]
+[ext_resource type="Texture2D" uid="uid://dmhsvspo3dmyk" path="res://icon.svg" id="2_e41n6"]
+[ext_resource type="Script" uid="uid://djhxso7g1uc3q" path="res://Script/telegraph.gd" id="2_t2fta"]
+[ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="3_t2fta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue5rh"]
+atlas = ExtResource("2_e41n6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue5rh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
+radius = 45.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h7mn"]
+size = Vector2(90, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpupq"]
+size = Vector2(110, 28)
+
+[node name="MeleeEnemy" type="CharacterBody2D" unique_id=997969373]
+script = ExtResource("1_31tfe")
+
+[node name="Telegraph" type="Node2D" parent="." unique_id=801197463]
+script = ExtResource("2_t2fta")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1561640675]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_uj04i")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1636469258]
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1488203557]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1449972078]
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="StunGauge" type="Node" parent="." unique_id=623992484]
+script = ExtResource("3_t2fta")
+metadata/_custom_type_script = "uid://561o533d5vjq"
+
+[node name="SlamHitbox" type="Area2D" parent="." unique_id=543904373]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamHitbox" unique_id=1002901997]
+shape = SubResource("CircleShape2D_p5viw")
+
+[node name="SweepHitbox" type="Area2D" parent="." unique_id=1661982380]
+
+[node name="BeamLeft" type="CollisionShape2D" parent="SweepHitbox" unique_id=1068999803]
+position = Vector2(36.9, -25.8)
+rotation = -0.61086524
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="BeamCenter" type="CollisionShape2D" parent="SweepHitbox" unique_id=2041748114]
+position = Vector2(45, 0)
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="BeamRight" type="CollisionShape2D" parent="SweepHitbox" unique_id=81849227]
+position = Vector2(36.9, 25.8)
+rotation = 0.61086524
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="DashHitbox" type="Area2D" parent="." unique_id=1974747055]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox" unique_id=1706600658]
+position = Vector2(55, 0)
+shape = SubResource("RectangleShape2D_vpupq")
+
+[connection signal="stunned" from="StunGauge" to="." method="_on_stun_gauge_stunned"]
