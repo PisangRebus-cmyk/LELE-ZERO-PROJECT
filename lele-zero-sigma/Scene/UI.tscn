@@ -1,6 +1,30 @@
 [gd_scene format=3 uid="uid://c6n0c6niuuyk4"]
 
-[node name="Control" type="Control" unique_id=2144059541]
+[ext_resource type="Script" uid="uid://bgbf6balm5kfv" path="res://Script/ui.gd" id="1_we040"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5viw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj04i"]
+bg_color = Color(0.09803922, 0.98039216, 0.078431375, 1)
+
+[node name="Control" type="CanvasLayer" unique_id=1944569366]
+script = ExtResource("1_we040")
+
+[node name="Bar Atas" type="MarginContainer" parent="." unique_id=864767141]
+offset_right = 270.0
+offset_bottom = 70.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+
+[node name="HealthBar" type="ProgressBar" parent="Bar Atas" unique_id=940627238]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_p5viw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uj04i")
+value = 100.0
+show_percentage = false
+
+[node name="Pause Menu" type="Control" parent="." unique_id=945360234]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,37 +32,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Bar Atas" type="MarginContainer" parent="." unique_id=864767141]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 40
-
-[node name="HP" type="Label" parent="Bar Atas" unique_id=1700483559]
-layout_mode = 2
-text = "HP
-"
-
-[node name="HealthBar" type="TextureProgressBar" parent="Bar Atas" unique_id=1119715652]
-custom_minimum_size = Vector2(250, 30)
-layout_mode = 2
-value = 100.0
-tint_under = Color(0.80267304, 0.25282338, 0.28437108, 0.3254902)
-
-[node name="Pause Menu" type="CenterContainer" parent="." unique_id=1940860769]
+[node name="ColorRect" type="ColorRect" parent="Pause Menu" unique_id=1625693862]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.22352941)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause Menu" unique_id=2052196544]
-layout_mode = 2
+layout_mode = 0
+offset_left = 428.0
+offset_top = 132.0
+offset_right = 547.0
+offset_bottom = 308.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Pause Menu/VBoxContainer" unique_id=515756995]
 layout_mode = 2
+text = "PAUSE"
+horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=1759001470]
 layout_mode = 2
