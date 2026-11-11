@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="1_mcf7f"]
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_wxoss"]
 [ext_resource type="Script" uid="uid://c7q627456w4y8" path="res://Script/camera.gd" id="3_r4drh"]
-[ext_resource type="PackedScene" uid="uid://bclfk3k0hme2x" path="res://Scene/MeleeEnemy.tscn" id="4_dl7mr"]
+[ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="4_dl7mr"]
 
 [node name="Node2D" type="Node2D" unique_id=1006963760]
 
@@ -14,5 +14,5 @@
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1683471568]
 script = ExtResource("3_r4drh")
 
-[node name="MeleeEnemy" parent="." unique_id=997969373 instance=ExtResource("4_dl7mr")]
-position = Vector2(102, -62)
+[node name="Player2" parent="." unique_id=1063273838 instance=ExtResource("4_dl7mr")]
+position = Vector2(-51, -34)

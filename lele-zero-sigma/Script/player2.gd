@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var acceleration := 2000
 
 var facing_direction := Vector2.DOWN
-
+var health := 100.0
 
 func _ready():
 	add_to_group("Player")

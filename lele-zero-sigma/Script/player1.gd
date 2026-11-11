@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal kidnapped
+
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
 const COMBO_RESET_TIME := 0.6
@@ -22,6 +24,8 @@ const GUARD_LOCKOUT := 0.4
 const PARRY_STUN := 12.0
 const BLOCK_STUN_FACTOR := 0.3
 const STUN_DURATION := 1.0
+
+const DARK_LIMIT := 4.0
 
 @export var SPEED := 100
 @export var acceleration := 2000
@@ -47,6 +51,11 @@ var is_dead = false
 var animation_direction: String = "down"
 var animation_state : String = ""
 var dodge_direction := Vector2.DOWN
+
+var is_active := true
+var is_kidnapped := false
+var light_sources := 0
+var dark_time := 0.0
 
 
 func _ready():
@@ -87,6 +96,14 @@ func _play_attack_animation() -> void:
 		animated_sprite_2d.play("attack_down")
 
 func _physics_process(delta: float) -> void:
+	#_update_darkness(delta) ini ntar dlu ya
+	#if is_kidnapped:
+	#	return
+	#if not is_dead:
+	#	velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
+	#	move_and_slide()
+	#	return
+		
 	state_time += delta
 	match state:
 		State.FREE:
@@ -214,7 +231,7 @@ func _state_dodge(_delta: float) -> void:
 		change_state(State.FREE)
 
 func is_invulnerable() -> bool:
-	return state == State.DODGE
+	return state == State.DODGE or is_kidnapped
 
 func direction_to_name(dir: Vector2) -> String:
 	if abs(dir.x) > abs(dir.y):
@@ -318,6 +335,51 @@ func hit_stop(duration: float) -> void:
 	Engine.time_scale = 0.05
 	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = 1.0
+	
+# Kidnap Player 1
+
+# Dipanggil oleh switcher
+func set_active(value: bool) -> void:
+	is_active = value
+	if not value:
+		change_state(State.FREE)
+		velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle_" + animation_direction)
+
+# Dipanggil oleh cahaya player2
+func enter_light() -> void:
+	light_sources += 1
+
+func exit_light() -> void:
+	light_sources = max(light_sources - 1, 0)
+
+func _update_darkness(delta: float) -> void:
+	if is_kidnapped:
+		return
+	# Hanya berlaku kalau ghost ada di scene yang sama
+	if get_tree().get_first_node_in_group("Ghost") == null:
+		light_sources = 0
+		dark_time = 0.0
+		return
+	if light_sources > 0:
+		dark_time = 0.0
+	else:
+		dark_time += delta
+		if dark_time >= DARK_LIMIT:
+			_get_kidnapped()
+
+func _get_kidnapped() -> void:
+	is_kidnapped = true
+	is_dead = true
+	change_state(State.FREE)
+	velocity = Vector2.ZERO
+	hide()
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+	kidnapped.emit()
+
+
 #Hitbox / Hurtbox
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if is_invulnerable():
