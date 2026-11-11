@@ -1,3 +1,5 @@
+class_name Golem
+
 extends CharacterBody2D
 
 signal health_changed(current: int, max_value: int)
