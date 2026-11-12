@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://chpl0isksyaxt"]
+[gd_scene format=3 uid="uid://c0kwevkjs3ew8"]
 
 [ext_resource type="Script" uid="uid://dkbetgv8qv8rw" path="res://Script/player2.gd" id="1_mjxxk"]
 [ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="2_eyttc"]
