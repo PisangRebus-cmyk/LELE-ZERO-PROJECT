@@ -30,13 +30,21 @@ theme_override_constants/separation = 10
 [node name="Judul" type="Label" parent="VBoxContainer" unique_id=1732070114]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45643628, 0.5586505, 1.9312416, 1)
-theme_override_font_sizes/font_size = 24
-text = "TWOFOLD"
+theme_override_font_sizes/font_size = 20
+text = "Twofold: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Judul2" type="Label" parent="VBoxContainer" unique_id=1569998384]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45643628, 0.5586505, 1.9312416, 1)
+theme_override_font_sizes/font_size = 16
+text = " Tower of Insurmountable "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="spasi" type="Control" parent="VBoxContainer" unique_id=1910887528]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="NewButton" type="Button" parent="VBoxContainer" unique_id=1731455861]
@@ -53,10 +61,10 @@ text = "SETTINGS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SettingButton" unique_id=1881262345]
 layout_mode = 0
-offset_left = 185.5
-offset_top = -98.5
-offset_right = 356.5
-offset_bottom = -16.5
+offset_left = 266.5
+offset_top = -117.5
+offset_right = 437.5
+offset_bottom = 7.5
 
 [node name="Volume Musik" type="Label" parent="VBoxContainer/SettingButton/VBoxContainer" unique_id=1155852151]
 layout_mode = 2
@@ -85,10 +93,10 @@ text = "Full Window Mode"
 [node name="redup" type="ColorRect" parent="VBoxContainer/SettingButton" unique_id=1724114682]
 z_index = -1
 layout_mode = 0
-offset_left = 173.5
-offset_top = -105.5
-offset_right = 373.5
-offset_bottom = 94.5
+offset_left = 255.0
+offset_top = -119.5
+offset_right = 455.0
+offset_bottom = 80.5
 mouse_filter = 2
 color = Color(0.0033547431, 0.007517425, 0.00060854293, 0.49803922)
 
