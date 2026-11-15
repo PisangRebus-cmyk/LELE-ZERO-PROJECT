@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d20efcmuc4whw"]
+
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_x7x40"]
+[ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="2_nt7id"]
+[ext_resource type="Script" uid="uid://hdlrhrryafjq" path="res://Script/arena_bounds.gd" id="3_alaio"]
+
+[node name="Node2D" type="Node2D" unique_id=1246096774]
+
+[node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_x7x40")]
+position = Vector2(3, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=2055492553]
+zoom = Vector2(3, 3)
+
+[node name="RangedEnemy" parent="." unique_id=1369281368 instance=ExtResource("2_nt7id")]
+position = Vector2(43, 34)
+
+[node name="TopLeft" type="Node2D" parent="." unique_id=330905667]
+position = Vector2(-32, -12)
+script = ExtResource("3_alaio")
+
+[node name="BottomRight" type="Node2D" parent="." unique_id=528100959]
+position = Vector2(117, 71)
+script = ExtResource("3_alaio")

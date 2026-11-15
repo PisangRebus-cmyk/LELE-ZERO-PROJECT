@@ -50,3 +50,18 @@ func _on_light_exited(node: Node) -> void:
 
 func set_active(value: bool) -> void:
 	is_active = value
+
+
+
+
+#health (iya ga bisa metong)
+func take_hit(_damage = 0, _stun_power = 0.0, _knockback = Vector2.ZERO, _attacker = null) -> void:
+	pass
+
+func take_damage(_amount = 0, _push = Vector2.ZERO) -> void:
+	pass
+
+
+# Animasi
+func _update_animation(_direction: Vector2) -> void:
+	pass

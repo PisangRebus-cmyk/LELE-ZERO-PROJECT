@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dt55vbrpx0tq"]
+
+[ext_resource type="Script" uid="uid://cbw6wels55r3j" path="res://Script/ranged_enemy.gd" id="1_ceddh"]
+[ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="1_ikyry"]
+[ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="2_ceddh"]
+[ext_resource type="PackedScene" uid="uid://p7lgi8yabugs" path="res://Scene/arrow.tscn" id="2_y8md6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8md6"]
+atlas = ExtResource("1_ikyry")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8md6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
+
+[node name="RangedEnemy" type="CharacterBody2D" unique_id=1369281368]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_ceddh")
+arrow_scene = ExtResource("2_y8md6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1737001674]
+rotation = 3.1415927
+sprite_frames = SubResource("SpriteFrames_uj04i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1144433240]
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=84327562]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1178788153]
+shape = SubResource("CircleShape2D_p5viw")
+
+[node name="StunGauge" type="Node" parent="." unique_id=1207026567]
+script = ExtResource("2_ceddh")
+metadata/_custom_type_script = "uid://561o533d5vjq"
+
+[node name="Shooting_Timer" type="Timer" parent="." unique_id=408436856]
+wait_time = 0.7
