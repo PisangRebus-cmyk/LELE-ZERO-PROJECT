@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://by5anjqcp6xw8"]
+
+[ext_resource type="Script" uid="uid://tsj0k3124uvn" path="res://Script/switch.gd" id="1_kb51h"]
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="2_fsx6n"]
+[ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="3_0opq7"]
+
+[node name="Node2D" type="Node2D" unique_id=1635039404]
+script = ExtResource("1_kb51h")
+
+[node name="player1" parent="." unique_id=1157810840 instance=ExtResource("2_fsx6n")]
+position = Vector2(341, 240)
+
+[node name="ghost" parent="." unique_id=1063273838 instance=ExtResource("3_0opq7")]
+position = Vector2(528, 251)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1582222032]

@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
-	_update_animation(direction)
+	#_update_animation(direction)
 	move_and_slide()
 
 #Cahaya Ghost

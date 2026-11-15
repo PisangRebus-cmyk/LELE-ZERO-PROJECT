@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3ar4"]
 radius = 1.6957312
 
+[sub_resource type="Gradient" id="Gradient_uqtlx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p5viw"]
 [sub_resource type="SpriteFrames" id="SpriteFrames_fwuf6"]
 
 [sub_resource type="Gradient" id="Gradient_uqtlx"]
