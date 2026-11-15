@@ -1,5 +1,6 @@
 extends CharacterBody2D
-
+signal kidnapped
+const DARK_LIMIT := 4.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
 const COMBO_RESET_TIME := 0.6
@@ -47,6 +48,10 @@ var is_dead = false
 var animation_direction: String = "down"
 var animation_state : String = ""
 var dodge_direction := Vector2.DOWN
+var is_active := true
+var is_kidnapped := false
+var light_sources := 0
+var dark_time := 0.0
 
 
 func _ready():
@@ -87,6 +92,14 @@ func _play_attack_animation() -> void:
 		animated_sprite_2d.play("attack_down")
 
 func _physics_process(delta: float) -> void:
+	_update_darkness(delta)
+	if is_kidnapped:
+		return
+	if not is_active:
+		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
+		move_and_slide()
+		return
+
 	state_time += delta
 	match state:
 		State.FREE:
@@ -214,7 +227,8 @@ func _state_dodge(_delta: float) -> void:
 		change_state(State.FREE)
 
 func is_invulnerable() -> bool:
-	return state == State.DODGE
+	return state == State.DODGE or is_kidnapped
+
 
 func direction_to_name(dir: Vector2) -> String:
 	if abs(dir.x) > abs(dir.y):
@@ -347,3 +361,44 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		target.take_hit(data.damage, data.stun, push, self)
 	elif target.has_method("take_damage"):
 		target.take_damage(data.damage, push)
+		
+# Dipanggil oleh switcher
+func set_active(value: bool) -> void:
+	is_active = value
+	if not value:
+		change_state(State.FREE)
+		velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle_" + animation_direction)
+
+# Dipanggil oleh cahaya player2
+func enter_light() -> void:
+	light_sources += 1
+
+func exit_light() -> void:
+	light_sources = max(light_sources - 1, 0)
+
+func _update_darkness(delta: float) -> void:
+	if is_kidnapped:
+		return
+	# Hanya berlaku kalau ghost ada di scene yang sama
+	if get_tree().get_first_node_in_group("Ghost") == null:
+		light_sources = 0
+		dark_time = 0.0
+		return
+	if light_sources > 0:
+		dark_time = 0.0
+	else:
+		dark_time += delta
+		if dark_time >= DARK_LIMIT:
+			_get_kidnapped()
+
+func _get_kidnapped() -> void:
+	is_kidnapped = true
+	is_active = false
+	change_state(State.FREE)
+	velocity = Vector2.ZERO
+	hide()
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+	kidnapped.emit()

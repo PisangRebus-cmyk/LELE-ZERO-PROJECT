@@ -6,7 +6,15 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3ar4"]
 radius = 1.6957312
 
+[sub_resource type="Gradient" id="Gradient_uqtlx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p5viw"]
+gradient = SubResource("Gradient_uqtlx")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
+
 [node name="Player2" type="CharacterBody2D" unique_id=1063273838]
+position = Vector2(220, 163)
 script = ExtResource("1_mjxxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=995423570]
@@ -18,3 +26,13 @@ shape = SubResource("CapsuleShape2D_g3ar4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2141952106]
 texture = ExtResource("2_eyttc")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=950428886]
+scale = Vector2(5.3199997, 4.16)
+texture = SubResource("GradientTexture2D_p5viw")
+
+[node name="LightArea" type="Area2D" parent="." unique_id=1064479423]
+scale = Vector2(14.6399975, 12.839997)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea" unique_id=1341078360]
+shape = SubResource("CircleShape2D_p5viw")
