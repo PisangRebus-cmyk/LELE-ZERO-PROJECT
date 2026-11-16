@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://d0iqwqgxauwjm"]
+
+[ext_resource type="Script" uid="uid://1rbyc6uys8ex" path="res://Script/magician.gd" id="1_2ytmb"]
+[ext_resource type="PackedScene" uid="uid://doxt4ywkswqmn" path="res://Scene/Orb.tscn" id="2_g4mf6"]
+[ext_resource type="Texture2D" uid="uid://bf2ha6lt3epf" path="res://Assets/Sprites/Idle/idle_01.png" id="2_y22fe"]
+[ext_resource type="PackedScene" uid="uid://kjrb76bk3t6a" path="res://Scene/Laser.tscn" id="3_crrml"]
+[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="3_g4mf6"]
+[ext_resource type="Texture2D" uid="uid://hgcrqoc5q610" path="res://Assets/Sprites/Idle/idle_03.png" id="4_crrml"]
+[ext_resource type="Texture2D" uid="uid://ctlo68lhleici" path="res://Assets/Sprites/Idle/idle_04.png" id="5_pp34m"]
+[ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="6_y22fe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y22fe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g4mf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_crrml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pp34m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+
+[node name="Magician" type="CharacterBody2D" unique_id=427896389]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_2ytmb")
+move_speed = 10.0
+orb_scene = ExtResource("2_g4mf6")
+laser_scene = ExtResource("3_crrml")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=64347802]
+sprite_frames = SubResource("SpriteFrames_uj04i")
+frame_progress = 0.61106956
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132242809]
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="StunGauge" type="Node" parent="." unique_id=1062459439]
+script = ExtResource("6_y22fe")
+metadata/_custom_type_script = "uid://561o533d5vjq"
