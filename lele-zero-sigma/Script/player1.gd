@@ -24,8 +24,6 @@ const PARRY_STUN := 12.0
 const BLOCK_STUN_FACTOR := 0.3
 const STUN_DURATION := 1.0
 
-const DARK_LIMIT := 4.0
-
 @export var SPEED := 100
 @export var acceleration := 2000
 @export var health := 200
@@ -50,11 +48,6 @@ var is_dead = false
 var animation_direction: String = "down"
 var animation_state : String = ""
 var dodge_direction := Vector2.DOWN
-var is_active := true
-var is_kidnapped := false
-var light_sources := 0
-var dark_time := 0.0
-
 var is_active := true
 var is_kidnapped := false
 var light_sources := 0
@@ -422,43 +415,3 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	elif target.has_method("take_damage"):
 		target.take_damage(data.damage, push)
 		
-# Dipanggil oleh switcher
-func set_active(value: bool) -> void:
-	is_active = value
-	if not value:
-		change_state(State.FREE)
-		velocity = Vector2.ZERO
-		animated_sprite_2d.play("idle_" + animation_direction)
-
-# Dipanggil oleh cahaya player2
-func enter_light() -> void:
-	light_sources += 1
-
-func exit_light() -> void:
-	light_sources = max(light_sources - 1, 0)
-
-func _update_darkness(delta: float) -> void:
-	if is_kidnapped:
-		return
-	# Hanya berlaku kalau ghost ada di scene yang sama
-	if get_tree().get_first_node_in_group("Ghost") == null:
-		light_sources = 0
-		dark_time = 0.0
-		return
-	if light_sources > 0:
-		dark_time = 0.0
-	else:
-		dark_time += delta
-		if dark_time >= DARK_LIMIT:
-			_get_kidnapped()
-
-func _get_kidnapped() -> void:
-	is_kidnapped = true
-	is_active = false
-	change_state(State.FREE)
-	velocity = Vector2.ZERO
-	hide()
-	for child in get_children():
-		if child is CollisionShape2D:
-			child.set_deferred("disabled", true)
-	kidnapped.emit()
