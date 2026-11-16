@@ -2,7 +2,6 @@ extends CharacterBody2D
 signal kidnapped
 const DARK_LIMIT := 4.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
-
 const COMBO_RESET_TIME := 0.6
 const ATTACKS := [
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -415,3 +414,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	elif target.has_method("take_damage"):
 		target.take_damage(data.damage, push)
 		
+func take_damage(amount: int) -> void:
+	health -= amount
+	if health <= 0:
+		health = 0
