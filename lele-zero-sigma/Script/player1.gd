@@ -2,7 +2,6 @@ extends CharacterBody2D
 signal kidnapped
 const DARK_LIMIT := 4.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
-
 const COMBO_RESET_TIME := 0.6
 const ATTACKS := [
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -23,8 +22,6 @@ const GUARD_LOCKOUT := 0.4
 const PARRY_STUN := 12.0
 const BLOCK_STUN_FACTOR := 0.3
 const STUN_DURATION := 1.0
-
-const  DIZZY_DURATION := 2.5
 
 @export var SPEED := 100
 @export var acceleration := 2000
@@ -52,7 +49,6 @@ var animation_state : String = ""
 var dodge_direction := Vector2.DOWN
 var is_active := true
 var is_kidnapped := false
-var is_dizzy := false
 var light_sources := 0
 var dark_time := 0.0
 
@@ -147,11 +143,8 @@ func _state_free(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		start_attack()
 		return
-	var direction : Vector2
-	if is_dizzy == false:
-		direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	if is_dizzy == true:
-		direction = Input.get_vector("walk_right", "walk_left", "walk_down", "walk_up")
+
+	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	update_sprite_direction(direction)
 	update_sprite()
 	animated_sprite_2d.play(animation_state + animation_direction)
@@ -390,15 +383,6 @@ func _get_kidnapped() -> void:
 			child.set_deferred("disabled", true)
 	kidnapped.emit()
 
-# PUSING GARA GARA UTS
-func dizzy() -> void:
-	if is_dizzy == true:
-		return
-	is_dizzy = true
-	await get_tree().create_timer(DIZZY_DURATION).timeout
-	is_dizzy = false
-	return
-
 
 #Hitbox / Hurtbox
 func _on_hurtbox_body_entered(body: Node2D) -> void:
@@ -430,3 +414,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	elif target.has_method("take_damage"):
 		target.take_damage(data.damage, push)
 		
+func take_damage(amount: int) -> void:
+	health -= amount
+	if health <= 0:
+		health = 0

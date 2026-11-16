@@ -7,9 +7,7 @@ var current: CharacterBody2D
 
 
 func _ready() -> void:
-	# Tunggu 1 frame supaya semua karakter sudah masuk group-nya
 	await get_tree().process_frame
-
 	if player1 == null:
 		player1 = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	if ghost == null:
