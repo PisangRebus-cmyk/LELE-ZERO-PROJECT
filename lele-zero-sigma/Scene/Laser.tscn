@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://kjrb76bk3t6a"]
+
+[ext_resource type="Texture2D" uid="uid://bn7uqrvbrdueo" path="res://Assets/Sprites/Screenshot 2026-11-15 230720.png" id="1_3nbuw"]
+[ext_resource type="Script" uid="uid://d4a5gxjpuywsc" path="res://Script/laser.gd" id="1_p0igm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(200, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpupq"]
+bg_color = Color(0.69411767, 0.5568628, 0.0627451, 0.5294118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5viw"]
+bg_color = Color(0.6392157, 0.1764706, 0.039215688, 0.44705883)
+
+[node name="Laser" type="Area2D" unique_id=861517069]
+script = ExtResource("1_p0igm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=231789820]
+position = Vector2(100, 0)
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=839280155]
+visible = false
+
+[node name="1" type="Sprite2D" parent="Sprites" unique_id=2081493685]
+position = Vector2(25, 0)
+scale = Vector2(0.027218292, 0.052083336)
+texture = ExtResource("1_3nbuw")
+
+[node name="2" type="Sprite2D" parent="Sprites" unique_id=735974951]
+position = Vector2(75, 0)
+scale = Vector2(0.027218292, 0.052083336)
+texture = ExtResource("1_3nbuw")
+
+[node name="3" type="Sprite2D" parent="Sprites" unique_id=171833160]
+position = Vector2(124.99999, 0)
+scale = Vector2(0.027218292, 0.052083336)
+texture = ExtResource("1_3nbuw")
+
+[node name="4" type="Sprite2D" parent="Sprites" unique_id=818544719]
+position = Vector2(175, 0)
+scale = Vector2(0.027218292, 0.052083336)
+texture = ExtResource("1_3nbuw")
+
+[node name="5" type="Sprite2D" parent="Sprites" unique_id=2111484804]
+position = Vector2(175, 0)
+scale = Vector2(0.027218292, 0.052083336)
+texture = ExtResource("1_3nbuw")
+
+[node name="Warning" type="ProgressBar" parent="." unique_id=1198029133]
+offset_top = -5.0
+offset_right = 200.0
+offset_bottom = 5.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vpupq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p5viw")
+show_percentage = false
