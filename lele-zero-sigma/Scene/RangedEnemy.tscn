@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbw6wels55r3j" path="res://Script/ranged_enemy.gd" id="1_ceddh"]
 [ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="1_ikyry"]
 [ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="2_ceddh"]
-[ext_resource type="PackedScene" uid="uid://p7lgi8yabugs" path="res://Scene/arrow.tscn" id="2_y8md6"]
+[ext_resource type="PackedScene" uid="uid://p7lgi8yabugs" path="res://Scene/Arrow.tscn" id="2_y8md6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8md6"]
 atlas = ExtResource("1_ikyry")
