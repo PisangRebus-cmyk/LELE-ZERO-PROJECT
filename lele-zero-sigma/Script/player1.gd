@@ -1,5 +1,6 @@
 extends CharacterBody2D
 signal kidnapped
+signal died
 const DARK_LIMIT := 4.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 const COMBO_RESET_TIME := 0.6
@@ -98,7 +99,10 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 		move_and_slide()
 		return
-
+	
+	if is_dead:
+		return
+	
 	#_update_darkness(delta) ini ntar dlu ya
 	#if is_kidnapped:
 	#	return
@@ -120,7 +124,7 @@ func _physics_process(delta: float) -> void:
 		State.STUN:
 			_state_stun(delta)
 	move_and_slide()
-
+	
 #States
 func change_state(new_state: State) -> void:
 	if state == State.GUARD and new_state != State.GUARD:
@@ -143,26 +147,26 @@ func _state_free(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		start_attack()
 		return
-
+		
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	update_sprite_direction(direction)
 	update_sprite()
 	animated_sprite_2d.play(animation_state + animation_direction)
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
-
+	
 #State Attack
 func start_attack() -> void:
 	combo_timer.stop()
 	attack_buffered = false
-
+	
 	aim_direction = (get_global_mouse_position() - global_position).normalized()
 	attack_hitbox.rotation = aim_direction.angle()
-
+	
 	var data: Dictionary = ATTACKS[combo_index]
 	arc_shape.disabled = data.shape != "arc"
 	slash_shape.disabled = data.shape != "slash"
-
+	
 	_play_attack_animation()
 	$SwingSound.play()
 	change_state(State.ATTACK)
@@ -178,20 +182,20 @@ func _state_attack(delta: float) -> void:
 	var active_start: float = data.windup
 	var active_end: float = data.windup + data.active
 	var total: float = active_end + data.recover
-
+	
 	if Input.is_action_just_pressed("attack"):
 		attack_buffered = true
-
+		
 	attack_hitbox.monitoring = state_time >= active_start and state_time < active_end
-
+	
 	if state_time < active_end:
 		velocity = aim_direction * data.lunge
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
-
+		
 	if state_time >= total:
 		_finish_attack()
-	
+		
 func _finish_attack() -> void:
 	combo_index = (combo_index + 1) % ATTACKS.size()
 	if attack_buffered:
@@ -199,10 +203,10 @@ func _finish_attack() -> void:
 	else:
 		combo_timer.start(COMBO_RESET_TIME)
 		change_state(State.FREE)
-
+		
 func _on_combo_timer_timeout() -> void:
 	combo_index = 0
-
+	
 #State Dodge
 func start_dodge() -> void:
 	# Direction: where you're pushing, else a backstep away from the mouse
@@ -212,27 +216,27 @@ func start_dodge() -> void:
 	else:
 		var to_mouse := (get_global_mouse_position() - global_position).normalized()
 		dodge_direction = -to_mouse
-
+		
 	# A dodge cancels the combo and any buffered click
 	combo_timer.stop()
 	combo_index = 0
 	attack_buffered = false
-
+	
 	dodge_cooldown.start(DODGE_COOLDOWN)
-
+	
 	# Placeholder visuals until you have a dodge sprite
 	animation_direction = direction_to_name(dodge_direction)
 	animated_sprite_2d.flip_h = false
 	animated_sprite_2d.play("walk_" + animation_direction)
 	animated_sprite_2d.self_modulate = Color(1, 1, 1, 0.5)
-
+	
 	change_state(State.DODGE)
-
+	
 func _state_dodge(_delta: float) -> void:
 	velocity = dodge_direction * DODGE_SPEED
 	if state_time >= DODGE_DURATION:
 		change_state(State.FREE)
-
+	
 func is_invulnerable() -> bool:
 	return state == State.DODGE or is_kidnapped
 
@@ -325,11 +329,19 @@ func _block(damage: int, stun_power: float, knockback_force: Vector2) -> void:
 
 func _apply_damage(amount: int) -> void:
 	health -= amount
-	#Savemanager.player_health = health
 	print("player hp: ", health)
 	if health <= 0:
-		is_dead = true
-		queue_free()
+		_die()
+
+func _die() -> void:
+	if is_dead:
+		return
+	health = 0
+	is_dead = true
+	died.emit()
+	change_state(State.FREE)
+	velocity = Vector2.ZERO
+	hide()
 
 func _flash(color: Color) -> void:
 	animated_sprite_2d.modulate = color
@@ -386,19 +398,14 @@ func _get_kidnapped() -> void:
 
 #Hitbox / Hurtbox
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if is_invulnerable():
+	if is_dead or is_invulnerable():
 		return
 	if body.is_in_group("NoContactDamage"):
-		return   # musuh jarak jauh tidak melukai lewat sentuhan
+		return
 	if body.is_in_group("Enemy"):
-		health -= 10
-		#Savemanager.player_health = health
-		animated_sprite_2d.modulate = Color.RED
-		await get_tree().create_timer(0.1).timeout
-		animated_sprite_2d.modulate = Color.WHITE
-	
-		if health <= 0:
-			queue_free()
+		_apply_damage(10)
+		if not is_dead:
+			_flash(Color.RED)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name != "Hurtbox":
@@ -415,6 +422,4 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		target.take_damage(data.damage, push)
 		
 func take_damage(amount: int) -> void:
-	health -= amount
-	if health <= 0:
-		health = 0
+	_apply_damage(amount)

@@ -12,7 +12,6 @@
 script = ExtResource("1_0k401")
 
 [node name="Control" parent="." unique_id=1944569366 instance=ExtResource("2_x0cnh")]
-visible = false
 
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("3_q8n75")]
 position = Vector2(634, 388)

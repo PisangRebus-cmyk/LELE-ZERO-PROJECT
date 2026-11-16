@@ -71,6 +71,7 @@ func _resume() -> void:
 
 
 func _show_game_over() -> void:
+	Engine.time_scale = 1.0
 	is_game_over = true
 	pause_menu.hide()
 	game_over.show()
