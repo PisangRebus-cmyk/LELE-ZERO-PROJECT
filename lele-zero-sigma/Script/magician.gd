@@ -75,7 +75,7 @@ func _ready() -> void:
 	add_to_group("Enemy")
 	add_to_group("NoContactDamage")   # it hurts only through its hitboxes
 	health = max_health
-	stun_gauge.stunned.connect(_on_stunned)
+	#stun_gauge.stunned.connect(_on_stunned)
 
 
 func _physics_process(delta: float) -> void:

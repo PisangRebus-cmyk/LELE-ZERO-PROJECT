@@ -16,7 +16,8 @@
 script = ExtResource("3_r4drh")
 
 [node name="Player2" parent="." unique_id=1063273838 instance=ExtResource("4_dl7mr")]
-position = Vector2(-51, -34)
+position = Vector2(-214, -36)
+light_radius = 8.0
 
 [node name="Magician" parent="." unique_id=427896389 instance=ExtResource("5_ive0s")]
 position = Vector2(187, -83)

@@ -3,13 +3,16 @@ extends CharacterBody2D
 @export var SPEED := 100
 @export var acceleration := 2000
 @export var light_radius := 120.0
+@export var energy := 100.0
 
 @onready var light: PointLight2D = $PointLight2D
 @onready var light_area: Area2D = $LightArea
 
+const MAX_ENERGY := 100
 var is_active := true
 var facing_direction := Vector2.DOWN
-
+var energy_decay := 5.0
+var energy_fill := 0.0
 
 func _ready():
 	add_to_group("Ghost")
@@ -30,6 +33,11 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
 	#_update_animation(direction)
+	
+	energy = clampf(energy, 0, MAX_ENERGY)
+	energy += (energy_fill - energy_decay) * delta
+	
+	print(energy)
 	move_and_slide()
 
 #Cahaya Ghost
@@ -50,9 +58,13 @@ func _on_light_exited(node: Node) -> void:
 
 func set_active(value: bool) -> void:
 	is_active = value
+	
+func fill_energy(mult) -> void:
+	energy_fill = energy_decay * mult
 
-
-
+func decay_energy() -> void:
+	energy_fill = 0 
+	
 
 #health (iya ga bisa metong)
 func take_hit(_damage = 0, _stun_power = 0.0, _knockback = Vector2.ZERO, _attacker = null) -> void:

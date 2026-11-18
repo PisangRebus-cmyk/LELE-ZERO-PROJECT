@@ -185,18 +185,17 @@ func _on_stunned() -> void:
 func _shoot_arrow() -> void:
 	if arrow_scene == null:
 		return
-	for i in arrow_shoot:
-		if not is_instance_valid(player):
-			return
-		var dir := (player.global_position - global_position).normalized()
+	arrow_shooted = 0
+	while arrow_shooted < arrow_shoot:	
 		var arrow = arrow_scene.instantiate()
-		get_tree().current_scene.add_child(arrow)
-		arrow.global_position = global_position
-		arrow.direction = dir
-		arrow.rotation = dir.angle()
 		arrow.target_player = player
-		await get_tree().create_timer(shooting_timer).timeout
-	
+		arrow.global_position = global_position
+		arrow.direction = (player.global_position-global_position).normalized()
+		arrow.rotation = (player.global_position-global_position).normalized().angle()
+		get_tree().current_scene.add_child(arrow)
+		
+		await get_tree().create_timer(shooting_timer).timeout		
+		arrow_shooted += 1
 	
 
 func _teleport() -> void:

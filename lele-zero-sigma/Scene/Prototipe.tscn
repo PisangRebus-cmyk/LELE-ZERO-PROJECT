@@ -18,6 +18,7 @@ position = Vector2(634, 388)
 
 [node name="ghost" parent="." unique_id=1063273838 instance=ExtResource("4_p8bpe")]
 position = Vector2(758, 342)
+light_radius = 8.0
 
 [node name="MeleeEnemy" parent="." unique_id=997969373 instance=ExtResource("5_vgjna")]
 position = Vector2(152, 234)
