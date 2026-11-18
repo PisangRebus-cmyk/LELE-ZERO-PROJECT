@@ -14,6 +14,7 @@ const ATTACKS := [
 const DODGE_SPEED := 200.0
 const DODGE_DURATION := 0.25
 const DODGE_COOLDOWN := 0.7
+const SPRINT := 0.8
 
 const PARRY_WINDOW := 0.3
 const BLOCK_DAMAGE_FACTOR := 0.2
@@ -55,7 +56,7 @@ var is_kidnapped := false
 var light_sources := 0
 var dark_time := 0.0
 var is_dizzy := false
-
+var Sprint := 0
 
 func _ready():
 	add_to_group("Player")
@@ -153,8 +154,13 @@ func _state_free(delta: float) -> void:
 		direction = Input.get_vector("walk_right", "walk_left", "walk_down", "walk_right")
 	update_sprite_direction(direction)
 	_play_move_anim()
-	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
-	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
+	if Input.is_action_pressed("sprint"):
+		Sprint = 1
+	elif Input.is_action_just_released("sprint"):
+		Sprint = 0
+	velocity.x = move_toward(velocity.x, direction.x * SPEED * (1 + Sprint * SPRINT), acceleration * delta)
+	velocity.y = move_toward(velocity.y, direction.y * SPEED * (1 + Sprint * SPRINT), acceleration * delta)
+	
 	
 #State Attack
 func start_attack() -> void:
