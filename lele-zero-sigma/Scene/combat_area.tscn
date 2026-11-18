@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bhnrmyljmvs4g"]
+
+[ext_resource type="Script" uid="uid://bq5rwf55afoor" path="res://Script/combat_area.gd" id="1_mc2pk"]
+[ext_resource type="PackedScene" uid="uid://bclfk3k0hme2x" path="res://Scene/MeleeEnemy.tscn" id="2_7tm7e"]
+[ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="3_3q244"]
+[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/Magician.tscn" id="4_6a81r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(371, 335)
+
+[node name="Combat Area" type="Area2D" unique_id=1481000154]
+script = ExtResource("1_mc2pk")
+Golem_Scene = ExtResource("2_7tm7e")
+Archer_Scene = ExtResource("3_3q244")
+Mage_Scene = ExtResource("4_6a81r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=196133069]
+shape = SubResource("RectangleShape2D_uj04i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
