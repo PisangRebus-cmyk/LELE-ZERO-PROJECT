@@ -1,18 +1,15 @@
 [gd_scene format=3 uid="uid://d20efcmuc4whw"]
 
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_x7x40"]
-[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/Magician.tscn" id="2_7187a"]
-[ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="3_x7x40"]
+[ext_resource type="PackedScene" uid="uid://bhnrmyljmvs4g" path="res://Scene/combat_area.tscn" id="2_7187a"]
 
 [node name="Node2D" type="Node2D" unique_id=1246096774]
 
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_x7x40")]
 position = Vector2(3, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=2055492553]
-zoom = Vector2(3, 3)
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=947641070]
+zoom = Vector2(1.5, 1.5)
 
-[node name="Magician" parent="." unique_id=427896389 instance=ExtResource("2_7187a")]
-position = Vector2(106, -8)
-
-[node name="Control" parent="." unique_id=1944569366 instance=ExtResource("3_x7x40")]
+[node name="Combat Area" parent="." unique_id=1481000154 instance=ExtResource("2_7187a")]
+position = Vector2(208, -5)
