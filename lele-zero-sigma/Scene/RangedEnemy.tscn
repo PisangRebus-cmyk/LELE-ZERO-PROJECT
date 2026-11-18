@@ -27,6 +27,7 @@ animations = [{
 [node name="RangedEnemy" type="CharacterBody2D" unique_id=1369281368]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_ceddh")
+move_speed = 25.0
 arrow_scene = ExtResource("2_y8md6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1737001674]

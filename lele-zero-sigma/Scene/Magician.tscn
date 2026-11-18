@@ -31,6 +31,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5viw"]
+size = Vector2(20, 33.333332)
+
 [node name="Magician" type="CharacterBody2D" unique_id=427896389]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_2ytmb")
@@ -48,3 +51,9 @@ shape = SubResource("RectangleShape2D_uj04i")
 [node name="StunGauge" type="Node" parent="." unique_id=1062459439]
 script = ExtResource("6_y22fe")
 metadata/_custom_type_script = "uid://561o533d5vjq"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1071076063]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1885059607]
+position = Vector2(0, -5.9604645e-07)
+shape = SubResource("RectangleShape2D_p5viw")
