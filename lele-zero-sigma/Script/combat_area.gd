@@ -95,12 +95,6 @@ func _state_phase_2() -> void:
 func _state_finish() -> void:
 	is_combat = false
 
-
-
-
-
-
-
 #=================================================================
 func _golem_spawn(scene: PackedScene) -> Node:
 	if scene == null:

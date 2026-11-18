@@ -1,9 +1,9 @@
 extends CharacterBody2D
 signal kidnapped
 signal died
-const DARK_LIMIT := 4.0
+
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
-const COMBO_RESET_TIME := 0.6
+
 const ATTACKS := [
 	{"damage": 10000, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -19,12 +19,13 @@ const PARRY_WINDOW := 0.3
 const BLOCK_DAMAGE_FACTOR := 0.2
 const GUARD_MOVE_FACTOR := 0.3
 const GUARD_LOCKOUT := 0.4
-
+const COMBO_RESET_TIME := 0.6
 const PARRY_STUN := 12.0
 const BLOCK_STUN_FACTOR := 0.3
 const STUN_DURATION := 1.0
 
 const DIZZY_DURATION := 1.8
+const DARK_LIMIT := 4.0
 
 @export var SPEED := 100
 @export var acceleration := 2000
@@ -106,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 		move_and_slide()
 		return
-		
+	print(dark_time)
 	state_time += delta
 	match state:
 		State.FREE:
