@@ -46,7 +46,6 @@ var attack_buffered := false
 var aim_direction := Vector2.DOWN
 var is_dead = false
 var animation_direction: String = "down"
-var animation_state : String = ""
 var dodge_direction := Vector2.DOWN
 var is_active := true
 var is_kidnapped := false
@@ -74,22 +73,16 @@ func update_sprite_direction(input:Vector2) -> void:
 			animation_direction = "left"
 		Vector2.RIGHT:
 			animation_direction = "right"
-func update_sprite() -> void:
-	if velocity.length() > 0:
-		animation_state = "walk_"
-	else:	
-		animation_state = "idle_"
+
 func _play_attack_animation() -> void:
 	if abs(aim_direction.x) > abs(aim_direction.y):
 		animation_direction = "right" if aim_direction.x > 0 else "left"
-		animated_sprite_2d.flip_h = aim_direction.x < 0
-		animated_sprite_2d.play("attack_side")
 	elif aim_direction.y < 0:
 		animation_direction = "up"
-		animated_sprite_2d.play("attack_up")
 	else:
 		animation_direction = "down"
-		animated_sprite_2d.play("attack_down")
+	animated_sprite_2d.flip_h = false
+	animated_sprite_2d.play(ANIM_ATTACK[animation_direction])
 
 func _physics_process(delta: float) -> void:
 	_update_darkness(delta)
@@ -150,8 +143,7 @@ func _state_free(delta: float) -> void:
 		
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	update_sprite_direction(direction)
-	update_sprite()
-	animated_sprite_2d.play(animation_state + animation_direction)
+	_play_move_anim()
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
 	
@@ -224,10 +216,9 @@ func start_dodge() -> void:
 	
 	dodge_cooldown.start(DODGE_COOLDOWN)
 	
-	# Placeholder visuals until you have a dodge sprite
 	animation_direction = direction_to_name(dodge_direction)
 	animated_sprite_2d.flip_h = false
-	animated_sprite_2d.play("walk_" + animation_direction)
+	animated_sprite_2d.play(ANIM_DODGE)
 	animated_sprite_2d.self_modulate = Color(1, 1, 1, 0.5)
 	
 	change_state(State.DODGE)
@@ -269,7 +260,7 @@ func _state_guard(delta: float) -> void:
 	# Placeholder visuals until you have guard sprites:
 	# cyan = parry window, blue = plain block
 	animated_sprite_2d.flip_h = false
-	animated_sprite_2d.play("idle_" + direction_to_name(aim_direction))
+	animated_sprite_2d.play(ANIM_GUARD)
 	if state_time <= PARRY_WINDOW:
 		animated_sprite_2d.self_modulate = Color(0.5, 1.0, 1.0)
 	else:
@@ -286,7 +277,7 @@ func _on_stunned() -> void:
 func _state_stun(delta: float) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 	animated_sprite_2d.flip_h = false
-	animated_sprite_2d.play("idle_" + animation_direction)
+	animated_sprite_2d.play(ANIM_STUN)
 	if state_time >= STUN_DURATION:
 		stun_gauge.release()
 		change_state(State.FREE)
@@ -360,7 +351,7 @@ func set_active(value: bool) -> void:
 	if not value:
 		change_state(State.FREE)
 		velocity = Vector2.ZERO
-		animated_sprite_2d.play("idle_" + animation_direction)
+		_play_move_anim()
 
 # Dipanggil oleh cahaya player2
 func enter_light() -> void:
@@ -423,3 +414,32 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		
 func take_damage(amount: int) -> void:
 	_apply_damage(amount)
+
+
+# ================= ANIMASI =================
+# Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
+const ANIM_WALK := {
+	"up": "player_up",
+	"down": "player_walkdown",
+	"left": "player_walkleft",
+	"right": "player_walkright",
+}
+const ANIM_ATTACK := {
+	"up": "attack_up",
+	"down": "attack_down",
+	"left": "attack_left",
+	"right": "attack_right",
+}
+const ANIM_DODGE := "player_sprint"
+const ANIM_GUARD := "player_defend"
+const ANIM_STUN := "player_stun"
+
+# Jalan kalau bergerak, berhenti di frame pertama kalau diam
+func _play_move_anim() -> void:
+	var anim: String = ANIM_WALK[animation_direction]
+	if velocity.length() > 5.0:
+		animated_sprite_2d.play(anim)
+	else:
+		animated_sprite_2d.animation = anim
+		animated_sprite_2d.frame = 0
+		animated_sprite_2d.stop()

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://2gt7ao1770lm"]
+
+[ext_resource type="Script" uid="uid://b7tecnmxvpeg5" path="res://Script/dialog_ui.gd" id="1_nsdah"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb1jv"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
+border_width_top = 4
+
+[node name="DialogUI" type="CanvasLayer" unique_id=525950802]
+layer = 20
+script = ExtResource("1_nsdah")
+
+[node name="Control" type="Control" parent="." unique_id=2085642883]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=595459235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1735266915]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer" unique_id=1447625946]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=860901851]
+layout_mode = 2
+
+[node name="PotraitPlayer" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1298387914]
+custom_minimum_size = Vector2(200, 260)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PotraitGhost" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1480499546]
+custom_minimum_size = Vector2(200, 260)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=779766655]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer" unique_id=533938789]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2040489733]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_nb1jv")
+text = "NAMA"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=252847231]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1767914894]
+layout_mode = 2
+text = "     >"
