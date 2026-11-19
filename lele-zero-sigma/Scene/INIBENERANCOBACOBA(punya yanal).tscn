@@ -26,5 +26,5 @@ light_radius = 10.0
 [node name="PlayerSafeZone" parent="." unique_id=804294406 instance=ExtResource("5_alaio")]
 position = Vector2(-4, -51)
 
-[node name="PlayerSafeZone2" parent="." unique_id=1726536742 instance=ExtResource("6_4mlcu")]
+[node name="GhostSafeZone2" parent="." unique_id=1726536742 instance=ExtResource("6_4mlcu")]
 position = Vector2(17, 103)
