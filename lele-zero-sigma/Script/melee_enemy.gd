@@ -224,6 +224,8 @@ func take_hit(damage: int, stun_power: float, knockback_force: Vector2, _attacke
 	
 	if health <= 0:
 		queue_free()
+		remove_from_group("Phase_1_Enemy")
+		remove_from_group("Phase_2_Enemy")
 		return
 	
 	if not phase2 and health <= max_health * ENRAGE_HP_FRACTION:

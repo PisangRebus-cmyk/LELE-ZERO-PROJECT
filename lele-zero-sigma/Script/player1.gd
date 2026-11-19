@@ -1,11 +1,11 @@
 extends CharacterBody2D
 signal kidnapped
 signal died
-const DARK_LIMIT := 4.0
+
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
-const COMBO_RESET_TIME := 0.6
+
 const ATTACKS := [
-	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
+	{"damage": 10000, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -14,15 +14,19 @@ const ATTACKS := [
 const DODGE_SPEED := 200.0
 const DODGE_DURATION := 0.25
 const DODGE_COOLDOWN := 0.7
+const SPRINT := 0.8
 
 const PARRY_WINDOW := 0.3
 const BLOCK_DAMAGE_FACTOR := 0.2
 const GUARD_MOVE_FACTOR := 0.3
 const GUARD_LOCKOUT := 0.4
-
+const COMBO_RESET_TIME := 0.6
 const PARRY_STUN := 12.0
 const BLOCK_STUN_FACTOR := 0.3
 const STUN_DURATION := 1.0
+
+const DIZZY_DURATION := 1.8
+const DARK_LIMIT := 4.0
 
 @export var SPEED := 100
 @export var acceleration := 2000
@@ -51,7 +55,8 @@ var is_active := true
 var is_kidnapped := false
 var light_sources := 0
 var dark_time := 0.0
-
+var is_dizzy := false
+var Sprint := 0
 
 func _ready():
 	add_to_group("Player")
@@ -96,14 +101,14 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
-	#_update_darkness(delta) ini ntar dlu ya
-	#if is_kidnapped:
-	#	return
-	#if not is_dead:
-	#	velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
-	#	move_and_slide()
-	#	return
-		
+	_update_darkness(delta)
+	if is_kidnapped:
+		return
+	if is_dead:
+		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
+		move_and_slide()
+		return
+	print(dark_time)
 	state_time += delta
 	match state:
 		State.FREE:
@@ -140,12 +145,22 @@ func _state_free(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		start_attack()
 		return
-		
-	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	var direction : Vector2
+	
+	
+	if is_dizzy == false:
+		direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	elif  is_dizzy == true:
+		direction = Input.get_vector("walk_right", "walk_left", "walk_down", "walk_right")
 	update_sprite_direction(direction)
 	_play_move_anim()
-	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
-	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
+	if Input.is_action_pressed("sprint"):
+		Sprint = 1
+	elif Input.is_action_just_released("sprint"):
+		Sprint = 0
+	velocity.x = move_toward(velocity.x, direction.x * SPEED * (1 + Sprint * SPRINT), acceleration * delta)
+	velocity.y = move_toward(velocity.y, direction.y * SPEED * (1 + Sprint * SPRINT), acceleration * delta)
+	
 	
 #State Attack
 func start_attack() -> void:
@@ -386,6 +401,11 @@ func _get_kidnapped() -> void:
 			child.set_deferred("disabled", true)
 	kidnapped.emit()
 
+func dizzy() -> void:
+	print("pusing")
+	is_dizzy = true
+	await get_tree().create_timer(DIZZY_DURATION).timeout
+	is_dizzy = false
 
 #Hitbox / Hurtbox
 func _on_hurtbox_body_entered(body: Node2D) -> void:
