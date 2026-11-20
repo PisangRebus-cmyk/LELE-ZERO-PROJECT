@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dq4n85jdo1b3w"]
 
-[ext_resource type="Script" uid="uid://jjv10qvc2rd" path="res://Script/ghost_safe_zone.gd" id="1_w788d"]
+[ext_resource type="Script" uid="uid://jjv10qvc2rd" path="res://Script/GhostEnergyZone.gd" id="1_c3whv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 
-[node name="PlayerSafeZone" type="Area2D" unique_id=804294406]
-script = ExtResource("1_w788d")
+[node name="GhostEnergyZone" type="Area2D" unique_id=804294406]
+script = ExtResource("1_c3whv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588676038]
 scale = Vector2(2, 2)
