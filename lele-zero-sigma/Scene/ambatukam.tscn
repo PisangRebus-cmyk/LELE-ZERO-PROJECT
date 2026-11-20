@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c2fr0qothwnpd"]
+
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_df3r1"]
+[ext_resource type="PackedScene" uid="uid://cb1yhaj5qtxc7" path="res://Scene/PuzzleBallEmitter.tscn" id="2_yis4x"]
+[ext_resource type="PackedScene" uid="uid://6oe4uc55xi61" path="res://Scene/PuzzleBall.tscn" id="3_2kfsy"]
+[ext_resource type="PackedScene" uid="uid://bndcia8tor5kq" path="res://Scene/GravityBallArea.tscn" id="3_6sbnj"]
+[ext_resource type="Script" uid="uid://civhl8xm02nio" path="res://Script/lever.gd" id="5_2kfsy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[node name="Node2D" type="Node2D" unique_id=1187130209]
+
+[node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_df3r1")]
+position = Vector2(6, -2)
+
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1827211166]
+zoom = Vector2(0.8, 0.8)
+
+[node name="Emitter" parent="." unique_id=1235527297 instance=ExtResource("2_yis4x")]
+position = Vector2(-3, -64)
+rotation = -0.5235988
+ball_scene = ExtResource("3_2kfsy")
+direction = Vector2(1, -0.5)
+
+[node name="GravityBallArea" parent="." unique_id=1083164558 instance=ExtResource("3_6sbnj")]
+position = Vector2(235, -75.00001)
+scale = Vector2(2.305, 2.305)
+
+[node name="Lever" type="Area2D" parent="." unique_id=545232291 node_paths=PackedStringArray("targets")]
+position = Vector2(-92, -29)
+script = ExtResource("5_2kfsy")
+targets = [NodePath("../GravityBallArea")]
+metadata/_custom_type_script = "uid://civhl8xm02nio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever" unique_id=469050287]
+shape = SubResource("CircleShape2D_uj04i")

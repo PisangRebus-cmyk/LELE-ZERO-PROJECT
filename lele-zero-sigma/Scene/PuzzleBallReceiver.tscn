@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c0iahjn2mmxgr"]
+
+[ext_resource type="Script" uid="uid://d4hi53g0wmeoh" path="res://Script/puzzle_ball_receiver.gd" id="1_5wjup"]
+[ext_resource type="Texture2D" uid="uid://c41gouoq5s1r0" path="res://Assets/Sprites/character/defend/sprite 1-55.png.png" id="2_qqnox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+
+[node name="PuzzleBallReceiver" type="Area2D" unique_id=77664532]
+script = ExtResource("1_5wjup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=438942492]
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1677706810]
+texture = ExtResource("2_qqnox")
+hframes = 2
+
+[node name="HoldTimer" type="Timer" parent="." unique_id=1309470724]
