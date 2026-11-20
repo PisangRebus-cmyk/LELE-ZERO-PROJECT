@@ -4,7 +4,7 @@ extends TileMapLayer
 @export var solid_when_powered := true
 @export var required := 1
 
-var power := 1
+var power := 0
 
 func ready() -> void:
 	_apply(false)

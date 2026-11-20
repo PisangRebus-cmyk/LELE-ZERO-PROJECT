@@ -1,18 +1,18 @@
-class_name PressurePlate
+class_name GhostPressurePlate
 extends PuzzleTrigger
 
-@export var accepted_group := "Player"
+@export var accepted_group := "Ghost"
 ## Seconds the targets stay on after stepping off. 0 = only while standing on it.
-@export var hold_time := 0.0
-
+@export var hold_time := 1.0
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var timer: Timer = $HoldTimer
+
+
 
 var pressing := 0   # a counter, like light_sources
 
 
 func _ready() -> void:
-	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
@@ -22,6 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group(accepted_group):
 		return
 	pressing += 1
+	print(pressing)
 	timer.stop()
 	_set_on(true)
 
@@ -29,12 +30,11 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if not body.is_in_group(accepted_group):
 		return
-	pressing = maxi(pressing - 1, 0)
+	pressing -= 1
 	if pressing > 0:
 		return
-	if hold_time > 0.0:
-		timer.start(hold_time)
 	else:
+		print("MAXWIN")
 		_set_on(false)
 
 

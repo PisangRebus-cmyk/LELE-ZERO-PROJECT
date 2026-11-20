@@ -15,11 +15,9 @@ func _ready() -> void:
 	body_exited.connect(_on_exited)
 	_sync(false)
 
-
 func set_powered(on: bool) -> void:
 	power = maxi(power + (1 if on else -1), 0)
 	_sync(power >= required)
-
 
 func _on_entered(body: Node2D) -> void:
 	print("enter")
@@ -27,12 +25,10 @@ func _on_entered(body: Node2D) -> void:
 		inside.append(body)
 		_sync(power >= required)
 
-
 func _on_exited(body: Node2D) -> void:
 	print("exit")
 	inside.erase(body)
 	_sync(power >= required)
-
 
 func _sync(on: bool) -> void:
 	if energy:
