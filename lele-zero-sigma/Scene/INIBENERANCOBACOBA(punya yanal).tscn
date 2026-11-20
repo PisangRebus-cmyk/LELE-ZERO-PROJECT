@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3afxa14uy6lc" path="res://Scene/PuzzleBallRelayTower.tscn" id="5_n8cn6"]
 [ext_resource type="PackedScene" uid="uid://c0iahjn2mmxgr" path="res://Scene/PuzzleBallReceiver.tscn" id="6_g1lbi"]
 [ext_resource type="PackedScene" uid="uid://6oe4uc55xi61" path="res://Scene/PuzzleBall.tscn" id="6_n8cn6"]
+[ext_resource type="PackedScene" uid="uid://cressg77hyojp" path="res://Scene/lever.tscn" id="7_n8cn6"]
 
 [node name="Node2D" type="Node2D" unique_id=1246096774]
 script = ExtResource("1_nt7id")
@@ -19,6 +20,7 @@ zoom = Vector2(1.5, 1.5)
 [node name="Emitter" parent="." unique_id=1235527297 instance=ExtResource("5_4mlcu")]
 position = Vector2(2, -49)
 ball_scene = ExtResource("6_n8cn6")
+required = 2
 
 [node name="PuzzleBallRelayTower" parent="." unique_id=1982652605 instance=ExtResource("5_n8cn6")]
 position = Vector2(227, -44)
@@ -28,3 +30,11 @@ position = Vector2(228, 87)
 
 [node name="PuzzleBallReceiver" parent="." unique_id=77664532 instance=ExtResource("6_g1lbi")]
 position = Vector2(419, 92)
+
+[node name="Lever" parent="." unique_id=2086188507 node_paths=PackedStringArray("targets") instance=ExtResource("7_n8cn6")]
+position = Vector2(45, 54)
+targets = [NodePath("../Emitter")]
+
+[node name="Lever2" parent="." unique_id=247734734 node_paths=PackedStringArray("targets") instance=ExtResource("7_n8cn6")]
+position = Vector2(-44, 58)
+targets = [NodePath("../Emitter")]

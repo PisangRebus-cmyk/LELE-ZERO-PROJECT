@@ -444,7 +444,7 @@ func _try_interact() -> void:
 	for area in interact_area.get_overlapping_areas():
 		if area.has_method("interact"):
 			area.interact(self)
-			return
+			return	
 # ================= ANIMASI =================
 # Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
 const ANIM_WALK := {
