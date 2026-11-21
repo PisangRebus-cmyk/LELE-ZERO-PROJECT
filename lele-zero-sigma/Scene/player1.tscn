@@ -387,7 +387,7 @@ metadata/_custom_type_script = "uid://561o533d5vjq"
 scale = Vector2(1.9247153, 1.9137496)
 sprite_frames = SubResource("SpriteFrames_s45db")
 animation = &"player_stun"
-frame_progress = 0.8298408
+frame_progress = 0.4440159
 
 [node name="InteractArea" type="Area2D" parent="." unique_id=1874488845]
 monitorable = false

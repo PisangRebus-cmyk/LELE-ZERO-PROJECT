@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 @onready var light: PointLight2D = $PointLight2D
 @onready var light_area: Area2D = $LightArea
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 const MAX_ENERGY := 100
 const RELIGHT_ENERGY := 15.0
@@ -16,8 +17,7 @@ const RELIGHT_ENERGY := 15.0
 var is_active := true
 var exhausted := false
 var facing_direction := Vector2.DOWN
-var energy_decay := 5.0
-var energy_fill := 0.0
+
 
 var bodies_inside: Array = []
 var lit_bodies: Array = []
@@ -29,6 +29,7 @@ func _ready():
 	light_area.body_exited.connect(_on_light_exited)
 	light_area.area_entered.connect(_on_light_entered)
 	light_area.area_exited.connect(_on_light_exited)
+	_update_animation(Vector2.ZERO)
 
 #Jalan
 func _physics_process(delta: float) -> void:
@@ -83,13 +84,9 @@ func _sync_light() -> void:
 
 func set_active(value: bool) -> void:
 	is_active = value
-	
-func fill_energy(mult) -> void:
-	energy_fill = energy_decay * mult
 
-func decay_energy() -> void:
-	energy_fill = 0 
-	
+
+
 
 #health (iya ga bisa metong)
 func take_hit(_damage = 0, _stun_power = 0.0, _knockback = Vector2.ZERO, _attacker = null) -> void:
@@ -99,6 +96,26 @@ func take_damage(_amount = 0, _push = Vector2.ZERO) -> void:
 	pass
 
 
-# Animasi
-func _update_animation(_direction: Vector2) -> void:
-	pass
+# ================= ANIMASI =================
+# Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
+const ANIM_WALK := {
+	"up": "player_up",
+	"down": "player_walkdown",
+	"left": "player_walkleft",
+	"right": "player_walkright",
+}
+
+# Jalan kalau ada input, berhenti di frame pertama kalau diam
+func _update_animation(direction: Vector2) -> void:
+	var anim: String = ANIM_WALK[_direction_name(facing_direction)]
+	if direction != Vector2.ZERO:
+		sprite.play(anim)
+	else:
+		sprite.animation = anim
+		sprite.frame = 0
+		sprite.stop()
+
+func _direction_name(dir: Vector2) -> String:
+	if abs(dir.x) > abs(dir.y):
+		return "right" if dir.x > 0 else "left"
+	return "up" if dir.y < 0 else "down"
