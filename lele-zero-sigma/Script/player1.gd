@@ -40,6 +40,8 @@ const STUN_DURATION := 1.0
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var interact_area: Area2D = $InteractArea
 
+@onready var interact_area: Area2D = $InteractArea
+
 var state := State.FREE
 var state_time := 0.0
 var combo_index := 0
@@ -425,8 +427,12 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		
 func take_damage(amount: int) -> void:
 	_apply_damage(amount)
-
-
+#========= talk with girl, touch the grass, nigga
+func _try_interact() -> void:
+	for area in interact_area.get_overlapping_areas():
+		if area.has_method("interact"):
+			area.interact(self)
+			return	
 # ================= ANIMASI =================
 # Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
 const ANIM_WALK := {

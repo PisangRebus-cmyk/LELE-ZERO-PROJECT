@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c4xcjn0hhjji2"]
 
-[ext_resource type="Script" uid="uid://kn164khcj0if" path="res://Script/player_safe_zone.gd" id="1_e45si"]
+[ext_resource type="Script" uid="uid://kn164khcj0if" path="res://Script/PlayerLightZone.gd" id="1_a5gq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 
-[node name="GhostSafeZone" type="Area2D" unique_id=804294406]
-script = ExtResource("1_e45si")
+[node name="PlayerLightZone" type="Area2D" unique_id=804294406]
+script = ExtResource("1_a5gq1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588676038]
 scale = Vector2(2, 2)

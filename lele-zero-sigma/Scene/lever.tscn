@@ -1,15 +1,17 @@
-[gd_scene format=3 uid="uid://doi3hfj7wrxjv"]
+[gd_scene format=3 uid="uid://cressg77hyojp"]
 
-[ext_resource type="Script" uid="uid://b5jhityi3o7j1" path="res://Scene/lever.gd" id="1_o5sqf"]
+[ext_resource type="Script" uid="uid://civhl8xm02nio" path="res://Script/lever.gd" id="1_o5sqf"]
+[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_dp7mf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lever"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
 radius = 24.0
 
-[node name="Lever" type="Area2D" unique_id=1602702885]
+[node name="Lever" type="Area2D" unique_id=2086188507]
 script = ExtResource("1_o5sqf")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2055411664]
-hframes = 2
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215763402]
+shape = SubResource("CircleShape2D_uj04i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1092322317]
-shape = SubResource("CircleShape2D_lever")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=717694978]
+texture = ExtResource("2_dp7mf")
+hframes = 2

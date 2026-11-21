@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://6oe4uc55xi61"]
+
+[ext_resource type="Script" uid="uid://cfxvsun6plt5c" path="res://Script/puzzle_ball.gd" id="1_7aqks"]
+[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_mqrig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7aqks"]
+radius = 8.0
+
+[node name="PuzzleBall" type="Area2D" unique_id=1630651216]
+script = ExtResource("1_7aqks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1378339638]
+shape = SubResource("CircleShape2D_7aqks")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=265345185]
+scale = Vector2(-0.21, -0.21)
+texture = ExtResource("2_mqrig")
