@@ -385,7 +385,7 @@ position = Vector2(-1, -1)
 scale = Vector2(1.9247153, 1.9137496)
 sprite_frames = SubResource("SpriteFrames_s45db")
 animation = &"player_stun"
-frame_progress = 0.8298408
+frame_progress = 0.4440159
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
