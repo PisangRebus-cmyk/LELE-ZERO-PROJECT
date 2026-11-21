@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://doi3hfj7wrxjv"]
+
+[ext_resource type="Script" uid="uid://b5jhityi3o7j1" path="res://Scene/lever.gd" id="1_o5sqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lever"]
+radius = 24.0
+
+[node name="Lever" type="Area2D" unique_id=1602702885]
+script = ExtResource("1_o5sqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2055411664]
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1092322317]
+shape = SubResource("CircleShape2D_lever")
