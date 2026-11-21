@@ -342,6 +342,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+radius = 24.0
+
 [node name="Player1" type="CharacterBody2D" unique_id=1157810840]
 script = ExtResource("1_db1un")
 
@@ -381,11 +384,16 @@ script = ExtResource("4_58ae2")
 metadata/_custom_type_script = "uid://561o533d5vjq"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=883817351]
-position = Vector2(-1, -1)
 scale = Vector2(1.9247153, 1.9137496)
 sprite_frames = SubResource("SpriteFrames_s45db")
 animation = &"player_stun"
 frame_progress = 0.4440159
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1874488845]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1049866093]
+shape = SubResource("CircleShape2D_uj04i")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

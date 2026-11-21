@@ -160,7 +160,7 @@ func _state_recover() -> void:
 func on_parried(parrier: Node2D, stun_power: float) -> void:
 	knockback = (global_position - parrier.global_position).normalized() * 250.0
 	change_state(State.RECOVER)    
-	stun_gauge.add(stun_power)  
+	stun_gauge.add(stun_power)
 
 
 

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cressg77hyojp"]
+
+[ext_resource type="Script" uid="uid://civhl8xm02nio" path="res://Script/lever.gd" id="1_o5sqf"]
+[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_dp7mf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+radius = 24.0
+
+[node name="Lever" type="Area2D" unique_id=2086188507]
+script = ExtResource("1_o5sqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215763402]
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=717694978]
+texture = ExtResource("2_dp7mf")
+hframes = 2

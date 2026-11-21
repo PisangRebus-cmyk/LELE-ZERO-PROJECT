@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bndcia8tor5kq"]
+
+[ext_resource type="Script" uid="uid://0gpnuabxbak3" path="res://Script/gravity_ball_area.gd" id="1_v6pvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(170, 137)
+
+[node name="GravityBallArea" type="Area2D" unique_id=1083164558]
+script = ExtResource("1_v6pvy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1509126669]
+shape = SubResource("RectangleShape2D_uj04i")

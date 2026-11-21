@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c2fr0qothwnpd"]
+
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_df3r1"]
+[ext_resource type="Script" uid="uid://tsj0k3124uvn" path="res://Script/switch.gd" id="1_gspkx"]
+[ext_resource type="PackedScene" uid="uid://cb1yhaj5qtxc7" path="res://Scene/PuzzleBallEmitter.tscn" id="2_yis4x"]
+[ext_resource type="PackedScene" uid="uid://6oe4uc55xi61" path="res://Scene/PuzzleBall.tscn" id="3_2kfsy"]
+[ext_resource type="PackedScene" uid="uid://bndcia8tor5kq" path="res://Scene/GravityBallArea.tscn" id="3_6sbnj"]
+[ext_resource type="Script" uid="uid://civhl8xm02nio" path="res://Script/lever.gd" id="5_2kfsy"]
+[ext_resource type="PackedScene" uid="uid://bb33uavioa33e" path="res://Scene/GhostPressurePlate.tscn" id="6_kxrla"]
+[ext_resource type="PackedScene" uid="uid://dq4n85jdo1b3w" path="res://Scene/GhostEnergyZone.tscn" id="7_ud1lv"]
+[ext_resource type="PackedScene" uid="uid://cvbekpkeonefm" path="res://Scene/PlayerPressurePlate.tscn" id="8_x80x1"]
+[ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="9_guhn4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[node name="Node2D" type="Node2D" unique_id=1187130209]
+script = ExtResource("1_gspkx")
+
+[node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_df3r1")]
+position = Vector2(6, -2)
+
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1827211166]
+
+[node name="ghost" parent="." unique_id=1063273838 instance=ExtResource("9_guhn4")]
+position = Vector2(-108, 3)
+light_radius = 6.0
+energy = 100.0
+
+[node name="Emitter" parent="." unique_id=1235527297 instance=ExtResource("2_yis4x")]
+position = Vector2(-3, -64)
+rotation = -0.5235988
+ball_scene = ExtResource("3_2kfsy")
+direction = Vector2(1, -0.5)
+required = 2
+
+[node name="GravityBallArea" parent="." unique_id=1083164558 instance=ExtResource("3_6sbnj")]
+position = Vector2(235, -75.00001)
+scale = Vector2(2.305, 2.305)
+
+[node name="Lever" type="Area2D" parent="." unique_id=545232291 node_paths=PackedStringArray("targets")]
+position = Vector2(-92, -29)
+script = ExtResource("5_2kfsy")
+targets = [NodePath("../GravityBallArea")]
+metadata/_custom_type_script = "uid://civhl8xm02nio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever" unique_id=469050287]
+position = Vector2(101, 99)
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="GhostPressurePlate" parent="." unique_id=101309013 node_paths=PackedStringArray("targets") instance=ExtResource("6_kxrla")]
+position = Vector2(-91, -73)
+targets = [NodePath("../GhostEnergyZone"), NodePath("../Emitter")]
+
+[node name="GhostEnergyZone" parent="." unique_id=804294406 instance=ExtResource("7_ud1lv")]
+position = Vector2(-91, -75)
+
+[node name="PlayerPressurePlate" parent="." unique_id=160413816 node_paths=PackedStringArray("targets") instance=ExtResource("8_x80x1")]
+position = Vector2(-61, 28)
+targets = [NodePath("../Emitter")]
