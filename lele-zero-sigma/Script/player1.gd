@@ -5,7 +5,7 @@ signal died
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
 const ATTACKS := [
-	{"damage": 10000, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
+	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
