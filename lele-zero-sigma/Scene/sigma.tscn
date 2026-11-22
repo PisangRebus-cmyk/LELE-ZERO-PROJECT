@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cmecofixmj0cq"]
+
+[ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="1_dci6l"]
+[ext_resource type="PackedScene" uid="uid://dq4n85jdo1b3w" path="res://Scene/GhostEnergyZone.tscn" id="2_8yr5q"]
+[ext_resource type="PackedScene" uid="uid://bb33uavioa33e" path="res://Scene/GhostPressurePlate.tscn" id="3_7aca8"]
+
+[node name="Node2D" type="Node2D" unique_id=482251422]
+
+[node name="ghost" parent="." unique_id=1063273838 instance=ExtResource("1_dci6l")]
+position = Vector2(120, 159)
+
+[node name="Camera2D" type="Camera2D" parent="ghost" unique_id=1118151359]
+zoom = Vector2(3, 3)
+
+[node name="GhostEnergyZone" parent="." unique_id=804294406 instance=ExtResource("2_8yr5q")]
+position = Vector2(220, 170)
+lifetime = 50.0
+free_on_expire = true
+
+[node name="GhostPressurePlate" parent="." unique_id=101309013 node_paths=PackedStringArray("targets") instance=ExtResource("3_7aca8")]
+position = Vector2(219, 167)
+targets = [NodePath("../GhostEnergyZone")]
