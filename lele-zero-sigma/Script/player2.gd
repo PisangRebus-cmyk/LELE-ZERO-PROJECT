@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 
-@export var SPEED := 300
+@export var SPEED := 100
 @export var acceleration := 2000
 @export var light_radius := 120.0
 @export var energy := 10.0
@@ -96,6 +96,14 @@ func take_damage(_amount = 0, _push = Vector2.ZERO) -> void:
 	pass
 
 
+func ascend(buff, value) -> void:
+	if buff == 0:
+		light_radius *= 1.2
+	elif buff == 1:
+		SPEED += value
+		print(SPEED)
+
+
 # ================= ANIMASI =================
 # Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
 const ANIM_WALK := {
@@ -119,3 +127,4 @@ func _direction_name(dir: Vector2) -> String:
 	if abs(dir.x) > abs(dir.y):
 		return "right" if dir.x > 0 else "left"
 	return "up" if dir.y < 0 else "down"
+

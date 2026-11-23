@@ -3,6 +3,7 @@ signal kidnapped
 signal died
 const DARK_LIMIT := 4.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
+
 const COMBO_RESET_TIME := 0.6
 const ATTACKS := [
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -26,7 +27,7 @@ const STUN_DURATION := 1.0
 
 @export var SPEED := 100
 @export var acceleration := 2000
-@export var health := 200
+@export var health := 200.0
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_hitbox : Area2D = $Hitbox
@@ -40,6 +41,7 @@ const STUN_DURATION := 1.0
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var interact_area: Area2D = $InteractArea
 
+var max_health := 200.0
 var state := State.FREE
 var state_time := 0.0
 var combo_index := 0
@@ -54,7 +56,9 @@ var light_sources := 0
 var dark_time := 0.0
 
 
+
 func _ready():
+	health = clampf(health, -1.0, max_health)
 	add_to_group("Player")
 	attack_hitbox.monitoring = false
 	combo_timer.timeout.connect(_on_combo_timer_timeout)
@@ -96,15 +100,18 @@ func _physics_process(delta: float) -> void:
 	
 	if is_dead:
 		return
+
+
+	_update_darkness(delta)
+	if is_kidnapped:
+		return
+	if is_dead:
+		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
+		move_and_slide()
+		return
 	
-	#_update_darkness(delta) ini ntar dlu ya
-	#if is_kidnapped:
-	#	return
-	#if not is_dead:
-	#	velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
-	#	move_and_slide()
-	#	return
 		
+
 	state_time += delta
 	match state:
 		State.FREE:
@@ -426,6 +433,34 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		
 func take_damage(amount: int) -> void:
 	_apply_damage(amount)
+
+#========= talk with girl, touch the grass, nigga
+func _try_interact() -> void:
+	for area in interact_area.get_overlapping_areas():
+		if area.has_method("interact"):
+			area.interact(self)
+			return	
+			
+#================================================
+#Buffer (ts shi is the only one which isn't 100% vibe coded, i'm cooked ~lead prog)
+func ascend(buff, value) -> void:
+	if buff == 0:
+		max_health += value
+		health += value
+		print(health)
+	elif buff == 1:
+		for i in ATTACKS.size():
+			ATTACKS[i].damage *= value
+			print(ATTACKS[i].damage)
+	elif buff == 2:
+		SPEED += value
+		print(SPEED)
+	
+func boost(mult) -> void:
+	SPEED = mult * SPEED
+	await get_tree().create_timer(3.0).timeout
+	SPEED = SPEED / mult
+
 
 # ================= ANIMASI =================
 # Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.

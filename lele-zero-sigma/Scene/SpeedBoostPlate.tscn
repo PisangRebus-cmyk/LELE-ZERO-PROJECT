@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b8jppxr38o0im"]
+
+[ext_resource type="Script" uid="uid://coyuoi5u17btd" path="res://Script/speed_boost_plate.gd" id="1_f7glv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[node name="SpeedUpPlate" type="Area2D" unique_id=1868619474]
+script = ExtResource("1_f7glv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1461079563]
+shape = SubResource("CircleShape2D_uj04i")

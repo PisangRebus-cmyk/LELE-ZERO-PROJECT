@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://w7p43hoi4i6w"]
+
+[ext_resource type="Script" uid="uid://c28f1tsxd6al0" path="res://Script/ghost_buff_altar.gd" id="1_6ygf4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+radius = 13.038404
+
+[node name="GhostBuffAltar" type="Area2D" unique_id=917244200]
+script = ExtResource("1_6ygf4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940542972]
+shape = SubResource("CircleShape2D_uj04i")
