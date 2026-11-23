@@ -1,13 +1,12 @@
 #NOTES
-# butuh scene utama untuk new game
 # butuh path untuk load game
 # sprite untuk masing masing button dan bg
 # full window baru bekerja kalau game udh diexport
 # sinkronisasi setting akan disesuaikan variabel sound dan art
 extends Control
 
-const SceneNewGame := "res://Scene/Prototipe.tscn"
-const SavePath := ""
+const SceneNewGame := "res://Scene/Level_1.tscn"
+const SavePath := "user://save.json"
 
 var _Settings := false
 
@@ -30,7 +29,6 @@ func _ready() -> void:
 
 	# Sinkronisasi settings
 	_Setting_visibility(false)
-	New_Button.grab_focus()
 	
 	var BusMusik := AudioServer.get_bus_index("Musik")
 	VolumeMusik_Slide.value = db_to_linear(AudioServer.get_bus_volume_db(BusMusik)) * 100.0

@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://bjb5hbtxvrble"]
 
 [ext_resource type="Script" uid="uid://ct4jbg33fjacj" path="res://Script/start_menu.gd" id="1_y846o"]
+[ext_resource type="Texture2D" uid="uid://dxb58vxlvjuqi" path="res://Assets/Sprites/UI_UX/UX-8.png.png" id="2_7dlpr"]
+[ext_resource type="Texture2D" uid="uid://siwn6sobx85o" path="res://Assets/Sprites/UI_UX/UX-11.png.png" id="3_load"]
+[ext_resource type="Texture2D" uid="uid://4ehpg0cydc8m" path="res://Assets/Sprites/UI_UX/UX-10.png.png" id="4_setting"]
+[ext_resource type="Texture2D" uid="uid://i2rnl6ao6g05" path="res://Assets/Sprites/UI_UX/UX-9.png.png" id="5_quit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new"]
+atlas = ExtResource("2_7dlpr")
+region = Rect2(9, 16, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_load"]
+atlas = ExtResource("3_load")
+region = Rect2(9, 16, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_setting"]
+atlas = ExtResource("4_setting")
+region = Rect2(0, 16, 49, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quit"]
+atlas = ExtResource("5_quit")
+region = Rect2(9, 16, 32, 13)
 
 [node name="StartMenu" type="Control" unique_id=1480100945]
 layout_mode = 3
@@ -48,16 +68,31 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="NewButton" type="Button" parent="VBoxContainer" unique_id=1731455861]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "NEW"
+icon = SubResource("AtlasTexture_new")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="LoadButton" type="Button" parent="VBoxContainer" unique_id=1646749873]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "LOAD"
+icon = SubResource("AtlasTexture_load")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="SettingButton" type="Button" parent="VBoxContainer" unique_id=971534482]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "SETTINGS"
+icon = SubResource("AtlasTexture_setting")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SettingButton" unique_id=1881262345]
 layout_mode = 0
@@ -101,5 +136,10 @@ mouse_filter = 2
 color = Color(0.0033547431, 0.007517425, 0.00060854293, 0.49803922)
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=248145462]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "QUIT GAME"
+icon = SubResource("AtlasTexture_quit")
+flat = true
+icon_alignment = 1
+expand_icon = true

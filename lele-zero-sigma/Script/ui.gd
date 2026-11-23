@@ -14,7 +14,11 @@ const TITLE_SCENE := "res://Scene/StartMenu.tscn"
 @onready var quit_button: Button = $"Pause Menu/VBoxContainer/QuitButton"
 @onready var retry_button: Button = $GameOver/VBoxContainer/RetryButton
 @onready var go_title_button: Button = $GameOver/VBoxContainer/ReturnTitleButton
-
+@export var portrait_player1: Texture2D
+@export var portrait_player2: Texture2D
+@onready var portrait: TextureRect = $"Bar Atas/HBoxContainer/Potrait frame/gambar/potrait"
+func set_portrait(character_id: int) -> void:
+	portrait.texture = portrait_player1 if character_id == 1 else portrait_player2
 var player: Node = null
 var max_hp: float = 1.0
 var is_game_over := false
@@ -23,7 +27,8 @@ var _last_enemy_count := -1
 
 
 func _ready() -> void:
-	add_to_group("UI")   # supaya level bisa memanggil UI lewat group, tanpa path
+	add_to_group("UI") 
+	set_portrait(1)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	pause_menu.hide()
 	game_over.hide()

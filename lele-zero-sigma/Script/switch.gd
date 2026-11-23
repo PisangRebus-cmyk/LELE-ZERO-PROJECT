@@ -38,3 +38,4 @@ func _set_current(target: CharacterBody2D) -> void:
 	var cam := target.get_node_or_null("Camera2D") as Camera2D
 	if cam:
 		cam.make_current()
+	get_tree().call_group("UI", "set_portrait", 1 if target == player1 else 2)

@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://c6n0c6niuuyk4"]
 
 [ext_resource type="Script" uid="uid://bgbf6balm5kfv" path="res://Script/ui.gd" id="1_we040"]
-[ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="2_ycrtq"]
+[ext_resource type="Texture2D" uid="uid://duwo02yujla7j" path="res://Assets/Sprites/character/attack down/sprite 1-41.png.png" id="2_i3p7b"]
+[ext_resource type="Script" uid="uid://vdfd5y538562" path="res://Script/Enemy_phase.gd" id="2_ycrtq"]
+[ext_resource type="Texture2D" uid="uid://c4vbor04g4c4w" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-2.png.png" id="3_fau5c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc63w"]
+border_width_left = 5
+border_color = Color(0.64845544, 0.81857574, 0.994834, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+corner_detail = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5viw"]
 
@@ -12,16 +23,44 @@ bg_color = Color(0.09803922, 0.98039216, 0.078431375, 1)
 
 [node name="UI" type="CanvasLayer" unique_id=1944569366]
 script = ExtResource("1_we040")
+portrait_player1 = ExtResource("2_i3p7b")
+portrait_player2 = ExtResource("3_fau5c")
 
 [node name="Bar Atas" type="MarginContainer" parent="." unique_id=864767141]
-offset_right = 270.0
-offset_bottom = 70.0
+offset_right = 350.0
+offset_bottom = 128.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
+script = ExtResource("2_ycrtq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bar Atas" unique_id=435764828]
 layout_mode = 2
 theme_override_constants/separation = 20
+
+[node name="Potrait frame" type="Control" parent="Bar Atas/HBoxContainer" unique_id=2001865548]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="gambar" type="Panel" parent="Bar Atas/HBoxContainer/Potrait frame" unique_id=1879398024]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jc63w")
+
+[node name="potrait" type="TextureRect" parent="Bar Atas/HBoxContainer/Potrait frame/gambar" unique_id=146674783]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
 
 [node name="VBox" type="VBoxContainer" parent="Bar Atas/HBoxContainer" unique_id=1357924680]
 layout_mode = 2
@@ -42,10 +81,6 @@ text = "Enemy left: 0"
 [node name="PhaseLabel" type="Label" parent="Bar Atas/HBoxContainer/VBox" unique_id=1593574862]
 layout_mode = 2
 text = "Phase 1"
-
-[node name="Sprite2D" type="Sprite2D" parent="Bar Atas/HBoxContainer" unique_id=1762178612]
-scale = Vector2(1, 0.72)
-texture = ExtResource("2_ycrtq")
 
 [node name="Pause Menu" type="Control" parent="." unique_id=945360234]
 layout_mode = 3
