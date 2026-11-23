@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6n0c6niuuyk4"]
 
 [ext_resource type="Script" uid="uid://bgbf6balm5kfv" path="res://Script/ui.gd" id="1_we040"]
+[ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="2_ycrtq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5viw"]
 
@@ -18,13 +19,33 @@ offset_bottom = 70.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
 
-[node name="HealthBar" type="ProgressBar" parent="Bar Atas" unique_id=940627238]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bar Atas" unique_id=435764828]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBox" type="VBoxContainer" parent="Bar Atas/HBoxContainer" unique_id=1357924680]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HealthBar" type="ProgressBar" parent="Bar Atas/HBoxContainer/VBox" unique_id=940627238]
 custom_minimum_size = Vector2(250, 30)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_p5viw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_uj04i")
 value = 100.0
 show_percentage = false
+
+[node name="EnemyLabel" type="Label" parent="Bar Atas/HBoxContainer/VBox" unique_id=1472583690]
+layout_mode = 2
+text = "Enemy left: 0"
+
+[node name="PhaseLabel" type="Label" parent="Bar Atas/HBoxContainer/VBox" unique_id=1593574862]
+layout_mode = 2
+text = "Phase 1"
+
+[node name="Sprite2D" type="Sprite2D" parent="Bar Atas/HBoxContainer" unique_id=1762178612]
+scale = Vector2(1, 0.72)
+texture = ExtResource("2_ycrtq")
 
 [node name="Pause Menu" type="Control" parent="." unique_id=945360234]
 layout_mode = 3
@@ -61,8 +82,7 @@ horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=1759001470]
 layout_mode = 2
-text = "CONTINUE
-"
+text = "CONTINUE"
 
 [node name="ReturnTitleButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=797784597]
 layout_mode = 2
@@ -70,8 +90,7 @@ text = "Return to Title"
 
 [node name="QuitButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=437102274]
 layout_mode = 2
-text = "Quit Game
-"
+text = "Quit Game"
 
 [node name="GameOver" type="Control" parent="." unique_id=1965465515]
 layout_mode = 3
