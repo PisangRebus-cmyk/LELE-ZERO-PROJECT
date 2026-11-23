@@ -2,7 +2,11 @@ class_name EnergyCharger
 extends Area2D
 
 @export var required := 1
+@export var lifetime := 9999.0           # seconds it stays active; 0 = never expires
+@export var free_on_expire := false     # false = switch off only (it can be activated again)
 
+var active := false
+var time_left := 0.0
 var power := 0
 var inside: Array = []
 var lit: Array = []
@@ -11,11 +15,24 @@ var lit: Array = []
 
 
 func _ready() -> void:
+	time_left = lifetime
 	body_entered.connect(_on_entered)
 	body_exited.connect(_on_exited)
 	_sync(false)
 
+func _physics_process(delta: float) -> void:
+	if not active or lifetime <= 0.0:
+		return
+	time_left -= delta
+	if time_left < 5.0:                                  # optional: blink during the last 5 s
+		modulate.a = 0.6 + 0.4 * sin(time_left * 12.0)
+	if time_left <= 0.0:
+		queue_free()
+		
 func set_powered(on: bool) -> void:
+	#if on and not active:
+	#	time_left = lifetime       # the 50 s start when it turns on
+	active = on
 	power = maxi(power + (1 if on else -1), 0)
 	_sync(power >= required)
 

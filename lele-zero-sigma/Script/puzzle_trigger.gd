@@ -8,16 +8,11 @@ signal toggled(on: bool)
 var is_on := false
 
 func _set_on(value: bool) -> void:
-	print("EAKKKHHH")
 	if value == is_on:
 		return
 	is_on = value
 	for t in targets:
 		if is_instance_valid(t) and t.has_method("set_powered"):
-			if value:
-				print("NYALA")
-			elif not value:
-				print("MATI")
 			t.set_powered(value)
 	toggled.emit(value)
 	_refresh()

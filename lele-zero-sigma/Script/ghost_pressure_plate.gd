@@ -8,15 +8,12 @@ extends PuzzleTrigger
 @onready var timer: Timer = $HoldTimer
 
 
-
 var pressing := 0   # a counter, like light_sources
-
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group(accepted_group):
@@ -34,7 +31,6 @@ func _on_body_exited(body: Node2D) -> void:
 	if pressing > 0:
 		return
 	else:
-		print("MAXWIN")
 		_set_on(false)
 
 
