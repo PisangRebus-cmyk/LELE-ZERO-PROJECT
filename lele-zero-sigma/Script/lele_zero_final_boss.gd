@@ -27,7 +27,7 @@ const ATTACKS := {
 const SEQUENCES := {
 	1: ["shockwave", "watersonic", "waterlaser"],
 	2: ["shockwave", "watersonic", "waterlaser"],
-	3: ["watersonic", "waterlaser", "warzone"],
+	3: ["shockwave", "watersonic", "warzone"],
 }
 const DAMAGE_TAKEN := {1: 1.0, 2: 0.85, 3: 0.85}
 const DAMAGE_DEALT := {1: 1.0, 2: 1.15, 3: 1.15}
