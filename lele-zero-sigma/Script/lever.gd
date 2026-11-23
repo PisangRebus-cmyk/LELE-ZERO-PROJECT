@@ -1,7 +1,7 @@
 class_name Lever
 extends PuzzleTrigger
 
-@export var one_shot := false   # true = cannot be flipped back
+@export var one_shot := false   # true = tidak bisa dibalik lagi
 
 @onready var sprite: Sprite2D = $Sprite2D
 

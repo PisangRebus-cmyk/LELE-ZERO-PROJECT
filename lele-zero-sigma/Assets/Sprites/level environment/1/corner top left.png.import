@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djajlo4085xls"
-valid=false
+uid="uid://d2tk4tepuhusj"
+path="res://.godot/imported/corner top left.png-4e0bf80f39eeec53d4f5cf181122a0e9.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/level environment/1-20261121T145326Z-1-001/1/middle.PNG"
+source_file="res://Assets/Sprites/level environment/1/corner top left.png"
+dest_files=["res://.godot/imported/corner top left.png-4e0bf80f39eeec53d4f5cf181122a0e9.ctex"]
 
 [params]
 

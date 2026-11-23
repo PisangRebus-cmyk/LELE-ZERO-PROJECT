@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
 	#_update_animation(direction)
 	energy = clampf(energy, 0, MAX_ENERGY)
-	energy += (energy_fill - energy_decay) * delta
+	#energy += (energy_fill - energy_decay) * delta
 	energy = clampf(energy, 0, MAX_ENERGY)
 	_sync_light()
 	print(energy)
