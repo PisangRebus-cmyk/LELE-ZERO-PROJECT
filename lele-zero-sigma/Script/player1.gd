@@ -4,7 +4,7 @@ signal died
 
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
-const ATTACKS := [
+var ATTACKS := [
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -30,7 +30,7 @@ const DARK_LIMIT := 4.0
 
 @export var SPEED := 100
 @export var acceleration := 2000
-@export var health := 200
+@export var health := 200.0
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_hitbox : Area2D = $Hitbox
@@ -45,6 +45,7 @@ const DARK_LIMIT := 4.0
 
 @onready var interact_area: Area2D = $InteractArea
 
+var max_health := 200.0
 var state := State.FREE
 var state_time := 0.0
 var combo_index := 0
@@ -60,7 +61,9 @@ var dark_time := 0.0
 var is_dizzy := false
 var Sprint := 0
 
+
 func _ready():
+	health = clampf(health, -1.0, max_health)
 	add_to_group("Player")
 	attack_hitbox.monitoring = false
 	combo_timer.timeout.connect(_on_combo_timer_timeout)
@@ -102,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_dead:
 		return
-	
+	print(SPEED)
 	_update_darkness(delta)
 	if is_kidnapped:
 		return
@@ -445,6 +448,27 @@ func _try_interact() -> void:
 		if area.has_method("interact"):
 			area.interact(self)
 			return	
+			
+#================================================
+#Buffer (ts shi is the only one which isn't 100% vibe coded, i'm cooked ~lead prog)
+func ascend(buff, value) -> void:
+	if buff == 0:
+		max_health += value
+		health += value
+		print(health)
+	elif buff == 1:
+		for i in ATTACKS.size():
+			ATTACKS[i].damage *= value
+			print(ATTACKS[i].damage)
+	elif buff == 2:
+		SPEED += value
+		print(SPEED)
+	
+func boost(mult) -> void:
+	SPEED = mult * SPEED
+	await get_tree().create_timer(3.0).timeout
+	SPEED = SPEED / mult
+		
 # ================= ANIMASI =================
 # Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
 const ANIM_WALK := {

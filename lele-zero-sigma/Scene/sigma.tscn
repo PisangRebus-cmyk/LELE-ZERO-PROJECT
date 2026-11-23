@@ -1,22 +1,24 @@
 [gd_scene format=3 uid="uid://cmecofixmj0cq"]
 
-[ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="1_dci6l"]
-[ext_resource type="PackedScene" uid="uid://dq4n85jdo1b3w" path="res://Scene/GhostEnergyZone.tscn" id="2_8yr5q"]
-[ext_resource type="PackedScene" uid="uid://bb33uavioa33e" path="res://Scene/GhostPressurePlate.tscn" id="3_7aca8"]
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_ysfec"]
+[ext_resource type="PackedScene" uid="uid://bogmrxvja1g8r" path="res://Scene/PlayerBuffAltar.tscn" id="2_dci6l"]
+[ext_resource type="PackedScene" uid="uid://kjrb76bk3t6a" path="res://Scene/Laser.tscn" id="3_8yr5q"]
+[ext_resource type="PackedScene" uid="uid://b8jppxr38o0im" path="res://Scene/SpeedBoostPlate.tscn" id="4_7aca8"]
 
 [node name="Node2D" type="Node2D" unique_id=482251422]
 
-[node name="ghost" parent="." unique_id=1063273838 instance=ExtResource("1_dci6l")]
-position = Vector2(120, 159)
+[node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_ysfec")]
+position = Vector2(5, 13)
 
-[node name="Camera2D" type="Camera2D" parent="ghost" unique_id=1118151359]
-zoom = Vector2(3, 3)
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=607545498]
+zoom = Vector2(4, 4)
 
-[node name="GhostEnergyZone" parent="." unique_id=804294406 instance=ExtResource("2_8yr5q")]
-position = Vector2(220, 170)
-lifetime = 50.0
-free_on_expire = true
+[node name="PlayerBuffAltar" parent="." unique_id=917244200 instance=ExtResource("2_dci6l")]
+position = Vector2(60, 5)
+upgrade_HP = 20.0
 
-[node name="GhostPressurePlate" parent="." unique_id=101309013 node_paths=PackedStringArray("targets") instance=ExtResource("3_7aca8")]
-position = Vector2(219, 167)
-targets = [NodePath("../GhostEnergyZone")]
+[node name="Laser" parent="." unique_id=861517069 instance=ExtResource("3_8yr5q")]
+position = Vector2(-18, -43)
+
+[node name="SpeedUpPlate" parent="." unique_id=1868619474 instance=ExtResource("4_7aca8")]
+position = Vector2(-59, 5)

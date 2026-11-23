@@ -6,7 +6,7 @@ signal Victory
 
 enum State { IDLE, GAP, ATTACK, COOLDOWN, RECOVER, STUN, PHASE_CHANGE }
 
-# Drag each .tscn from the FileSystem dock into the script to get the right path
+
 const ATTACK_SCENES := {
 	"shockwave":  preload("res://Scene/Attack1ShockWave.tscn"),
 	"watersonic": preload("res://Scene/Attack2WaveArea.tscn"),
@@ -14,13 +14,12 @@ const ATTACK_SCENES := {
 	"warzone":    preload("res://Scene/Attack4WarZone.tscn"),
 }
 
-# The spawned attacks only need damage / stun / knockback (they time themselves).
-# The dash is a body attack, so it also needs its timings.
+
 const ATTACKS := {
 	"shockwave":  {"damage": 20, "stun": 40, "knockback": 615},
 	"watersonic": {"damage": 15, "stun": 20, "knockback": 300},
-	"waterlaser": {"damage": 10, "stun": 5,  "knockback": 80},    # ticks every 0.5 s
-	"warzone":    {"damage": 25, "stun": 20, "knockback": 150},   # ticks every 0.5 s
+	"waterlaser": {"damage": 10, "stun": 5,  "knockback": 80},    
+	"warzone":    {"damage": 25, "stun": 20, "knockback": 150},  
 	"dash":       {"damage": 20, "stun": 25, "knockback": 450, "lunge": 840, "windup": 0.6, "active": 0.25, "recovery": 0.25},
 }
 
@@ -37,8 +36,8 @@ const PHASE3_HP := 0.25
 const PHASE_INTRO := 0.8
 const PHASE_CHANGE_DASHES := 8
 
-const GAP_TIME := 0.8          # pause between attacks of one sequence
-const COOLDOWN_TIME := 10.0    # the player's window to attack
+const GAP_TIME := 0.8          
+const COOLDOWN_TIME := 10.0    
 const RECOVER_TIME := 1.0
 const STUN_TIME := 10.0
 const STUN_DAMAGE_BONUS := 1.5
@@ -117,7 +116,7 @@ func change_state(new_state: State) -> void:
 	if new_state != State.ATTACK:
 		telegraph.hide_telegraph()
 		if is_instance_valid(active_attack):
-			active_attack.cancel()     # stun, parry or phase change removes a running attack
+			active_attack.cancel()    
 		active_attack = null
 	match new_state:
 		State.STUN:

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 
-@export var SPEED := 300
+@export var SPEED := 100
 @export var acceleration := 2000
 @export var light_radius := 120.0
 @export var energy := 10.0
@@ -98,7 +98,12 @@ func take_hit(_damage = 0, _stun_power = 0.0, _knockback = Vector2.ZERO, _attack
 func take_damage(_amount = 0, _push = Vector2.ZERO) -> void:
 	pass
 
-
+func ascend(buff, value) -> void:
+	if buff == 0:
+		light_radius *= 1.2
+	elif buff == 1:
+		SPEED += value
+		print(SPEED)
 # Animasi
 func _update_animation(_direction: Vector2) -> void:
 	pass
