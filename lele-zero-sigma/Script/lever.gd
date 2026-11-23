@@ -1,9 +1,10 @@
 class_name Lever
 extends PuzzleTrigger
 
-@export var one_shot := false   # true = cannot be flipped back
+@export var one_shot := false   # true = tidak bisa dibalik lagi
 
-#@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Sprite2D
+
 
 func interact(_user: Node2D) -> void:
 	if one_shot and is_on:
@@ -11,5 +12,5 @@ func interact(_user: Node2D) -> void:
 	_set_on(not is_on)
 
 
-#func _refresh() -> void:
-#	sprite.frame = 1 if is_on else 0
+func _refresh() -> void:
+	sprite.frame = 1 if is_on else 0

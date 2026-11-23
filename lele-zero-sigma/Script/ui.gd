@@ -5,9 +5,9 @@ extends CanvasLayer
 const TITLE_SCENE := "res://Scene/StartMenu.tscn"
 
 @onready var game_over: Control = $GameOver
-@onready var health_bar: ProgressBar = $"Bar Atas/VBox/HealthBar"
-@onready var enemy_label: Label = $"Bar Atas/VBox/EnemyLabel"
-@onready var phase_label: Label = $"Bar Atas/VBox/PhaseLabel"
+@onready var health_bar: ProgressBar = $"Bar Atas/HBoxContainer/VBox/HealthBar"
+@onready var enemy_label: Label = $"Bar Atas/HBoxContainer/VBox/EnemyLabel"
+@onready var phase_label: Label = $"Bar Atas/HBoxContainer/VBox/PhaseLabel"
 @onready var pause_menu: Control = $"Pause Menu"
 @onready var continue_button: Button = $"Pause Menu/VBoxContainer/ContinueButton"
 @onready var return_button: Button = $"Pause Menu/VBoxContainer/ReturnTitleButton"

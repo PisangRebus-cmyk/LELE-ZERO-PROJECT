@@ -71,8 +71,8 @@
 [ext_resource type="Texture2D" uid="uid://qwb7jok1ujhy" path="res://Assets/Sprites/character/idle and walk/sprite 1-8.png.png" id="69_henkx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
-radius = 3.0
-height = 10.0
+radius = 2.647191
+height = 84.71011
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 3.0
@@ -350,6 +350,7 @@ script = ExtResource("1_db1un")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2036948996]
 position = Vector2(-1, 1)
+scale = Vector2(4.7214303, 0.3777589)
 shape = SubResource("CapsuleShape2D_i3pqv")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1038921594]
