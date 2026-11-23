@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://5h8gwks5yo0t"]
+
+[ext_resource type="Script" uid="uid://cbs6itinyteoi" path="res://Script/lele_zero_final_boss.gd" id="1_f05sr"]
+[ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="2_vpy1a"]
+[ext_resource type="Script" uid="uid://djhxso7g1uc3q" path="res://Script/telegraph.gd" id="3_vpy1a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jc63w"]
+radius = 19.0
+
+[node name="LeleZero" type="CharacterBody2D" unique_id=1217196406]
+script = ExtResource("1_f05sr")
+max_health = null
+trigger_range = null
+knockback_taken = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=961786206]
+sprite_frames = SubResource("SpriteFrames_uj04i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=449377104]
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=993638269]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1609106048]
+shape = SubResource("CircleShape2D_p5viw")
+
+[node name="DashHitbox" type="Area2D" parent="." unique_id=1996748105]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox" unique_id=950230091]
+shape = SubResource("CircleShape2D_jc63w")
+
+[node name="StunGauge" type="Node" parent="." unique_id=1822670818]
+script = ExtResource("2_vpy1a")
+max_value = 200.0
+metadata/_custom_type_script = "uid://561o533d5vjq"
+
+[node name="Telegraph" type="Node2D" parent="." unique_id=1108544019]
+script = ExtResource("3_vpy1a")
+metadata/_custom_type_script = "uid://djhxso7g1uc3q"
