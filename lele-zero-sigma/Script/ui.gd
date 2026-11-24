@@ -17,8 +17,12 @@ const TITLE_SCENE := "res://Scene/StartMenu.tscn"
 @export var portrait_player1: Texture2D
 @export var portrait_player2: Texture2D
 @onready var portrait: TextureRect = $"Bar Atas/HBoxContainer/Potrait frame/gambar/potrait"
+@onready var clicked_sound: AudioStreamPlayer2D = $ClickedSound
+@onready var hover_sound: AudioStreamPlayer2D = $HoverSound
+
 func set_portrait(character_id: int) -> void:
 	portrait.texture = portrait_player1 if character_id == 1 else portrait_player2
+
 var player: Node = null
 var max_hp: float = 1.0
 var is_game_over := false
@@ -32,6 +36,15 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	pause_menu.hide()
 	game_over.hide()
+
+	_setup_button_sounds([
+		continue_button,
+		return_button,
+		quit_button,
+		retry_button,
+		go_title_button,
+	])
+
 	continue_button.pressed.connect(_resume)
 	return_button.pressed.connect(_return_to_title)
 	quit_button.pressed.connect(get_tree().quit)
@@ -47,6 +60,26 @@ func _ready() -> void:
 	if player:
 		max_hp = player.health
 		set_health(player.health, max_hp)
+
+
+func _setup_button_sounds(buttons: Array[Button]) -> void:
+	for btn: Button in buttons:
+		if not btn:
+			continue
+		btn.mouse_entered.connect(_play_hover_sound)
+		btn.focus_entered.connect(_play_hover_sound)
+		btn.pressed.connect(_play_clicked_sound)
+
+
+func _play_hover_sound() -> void:
+	if hover_sound and hover_sound.stream:
+		hover_sound.play()
+
+
+func _play_clicked_sound() -> void:
+	if clicked_sound and clicked_sound.stream:
+		clicked_sound.play()
+
 
 func _process(_delta: float) -> void:
 	if is_game_over:
@@ -91,33 +124,22 @@ func _show_game_over() -> void:
 	game_over.show()
 	get_tree().paused = true
 	retry_button.grab_focus()
-
-
+	
 func _on_retry() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-
-
 func _return_to_title() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file(TITLE_SCENE)
-
-
 # HPBar player1
 func set_health(current: float, maximum: float) -> void:
 	health_bar.max_value = maximum
 	health_bar.value = current
-
-
-# Enemy left: dihitung otomatis dari jumlah node di group "Enemy"
 func _update_enemy_count() -> void:
 	var count := get_tree().get_nodes_in_group("Enemy").size()
 	if count != _last_enemy_count:
 		_last_enemy_count = count
 		enemy_label.text = "Enemy left: %d" % count
-
-
-# Phase: dipanggil dari script level atau script yang mengatur fase
 func set_phase(value: int) -> void:
 	phase = value
 	phase_label.text = "Phase %d" % phase
