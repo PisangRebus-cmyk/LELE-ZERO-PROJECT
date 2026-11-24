@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="3_0vrfu"]
 [ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="4_0thlt"]
 [ext_resource type="Texture2D" uid="uid://bhpdfa314hsh3" path="res://Assets/Sprites/level environment/2/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="5_hdjm8"]
+[ext_resource type="AudioStream" uid="uid://cxu6hj3c7b7kx" path="res://Assets/Audio/JRPG Battle BGM Pack 1 ogg&m4a/ogg&m4a/Normal Battle/rpg_bt005/rpg_bt005.ogg" id="6_0vrfu"]
+[ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="90_dlgui"]
+[ext_resource type="Script" uid="uid://ctam2xtfvip83" path="res://Script/Dialog_level2_1.gd" id="91_dlg21"]
+[ext_resource type="Script" uid="uid://b1cotmotko5vp" path="res://Script/Dialog_level2_2.gd" id="92_dlg22"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0vrfu"]
 texture = ExtResource("5_hdjm8")
@@ -179,6 +183,9 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_0vrfu")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlg"]
+size = Vector2(200, 200)
+
 [node name="Node2D" type="Node2D" unique_id=664405337]
 script = ExtResource("1_qkqlu")
 
@@ -207,3 +214,22 @@ tile_set = SubResource("TileSet_uj04i")
 
 [node name="prop" type="TileMapLayer" parent="Node2D" unique_id=1412279541]
 scale = Vector2(1.5, 1.5)
+
+[node name="Lagu" type="AudioStreamPlayer2D" parent="." unique_id=709403195]
+stream = ExtResource("6_0vrfu")
+
+[node name="Dialog" type="Node2D" parent="." unique_id=943135093]
+
+[node name="DialogUI" parent="Dialog" unique_id=1746788196 instance=ExtResource("90_dlgui")]
+
+[node name="Dialog_level2_1" type="Area2D" parent="Dialog" unique_id=729868659 node_paths=PackedStringArray("dialog_ui")]
+script = ExtResource("91_dlg21")
+dialog_ui = NodePath("../DialogUI")
+
+[node name="Dialog_level2_2" type="Area2D" parent="Dialog" unique_id=1715370065 node_paths=PackedStringArray("dialog_ui")]
+position = Vector2(-3, -1484)
+script = ExtResource("92_dlg22")
+dialog_ui = NodePath("../DialogUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Dialog_level2_2" unique_id=289997758]
+shape = SubResource("RectangleShape2D_dlg")
