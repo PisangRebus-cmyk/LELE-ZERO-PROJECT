@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btxhk3ayw4vjq"
+path="res://.godot/imported/rpg_bt001.ogg-fc2cb45349bac9acedcaada77a92a9d7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/JRPG Battle BGM Pack 1 ogg&m4a/ogg&m4a/Normal Battle/rpg_bt001/rpg_bt001.ogg"
+dest_files=["res://.godot/imported/rpg_bt001.ogg-fc2cb45349bac9acedcaada77a92a9d7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

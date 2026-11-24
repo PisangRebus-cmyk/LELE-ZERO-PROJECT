@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dlgn8j0nk8lva" path="res://Assets/Sprites/UI_UX/ghost potrait.png" id="3_fau5c"]
 [ext_resource type="AudioStream" uid="uid://cg358pjsmhloj" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/013_Confirm_03.wav" id="5_nq5m3"]
 [ext_resource type="AudioStream" uid="uid://rq8layyegm8c" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/001_Hover_01.wav" id="6_hskja"]
+[ext_resource type="AudioStream" uid="uid://l3o4bkmdav6p" path="res://Assets/Audio/audley_fergine-game-over-classic-206486.mp3" id="7_hskja"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc63w"]
 border_width_left = 5
@@ -183,3 +184,6 @@ stream = ExtResource("5_nq5m3")
 
 [node name="HoverSound" type="AudioStreamPlayer2D" parent="." unique_id=403958026]
 stream = ExtResource("6_hskja")
+
+[node name="GameOver2" type="AudioStreamPlayer2D" parent="." unique_id=1310341630]
+stream = ExtResource("7_hskja")

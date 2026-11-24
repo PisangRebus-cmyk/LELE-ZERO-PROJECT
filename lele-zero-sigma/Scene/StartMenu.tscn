@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://siwn6sobx85o" path="res://Assets/Sprites/UI_UX/UX-11.png.png" id="3_load"]
 [ext_resource type="Texture2D" uid="uid://4ehpg0cydc8m" path="res://Assets/Sprites/UI_UX/UX-10.png.png" id="4_setting"]
 [ext_resource type="Texture2D" uid="uid://i2rnl6ao6g05" path="res://Assets/Sprites/UI_UX/UX-9.png.png" id="5_quit"]
+[ext_resource type="AudioStream" uid="uid://cg358pjsmhloj" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/013_Confirm_03.wav" id="6_sv3nq"]
+[ext_resource type="AudioStream" uid="uid://rq8layyegm8c" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/001_Hover_01.wav" id="7_y2cph"]
+[ext_resource type="AudioStream" uid="uid://b2u7nnfio6vkk" path="res://Assets/Audio/soundreality-wrong-place-129242.mp3" id="8_aqcgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_new"]
 atlas = ExtResource("2_7dlpr")
@@ -143,3 +146,12 @@ icon = SubResource("AtlasTexture_quit")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="ClickedButton" type="AudioStreamPlayer2D" parent="." unique_id=1891947808]
+stream = ExtResource("6_sv3nq")
+
+[node name="HoverButton" type="AudioStreamPlayer2D" parent="." unique_id=865780223]
+stream = ExtResource("7_y2cph")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1146983741]
+stream = ExtResource("8_aqcgr")

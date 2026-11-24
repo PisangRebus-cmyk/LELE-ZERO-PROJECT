@@ -19,6 +19,7 @@ const TITLE_SCENE := "res://Scene/StartMenu.tscn"
 @onready var portrait: TextureRect = $"Bar Atas/HBoxContainer/Potrait frame/gambar/potrait"
 @onready var clicked_sound: AudioStreamPlayer2D = $ClickedSound
 @onready var hover_sound: AudioStreamPlayer2D = $HoverSound
+@onready var gameover_sound: AudioStreamPlayer2D = $GameOver2
 
 func set_portrait(character_id: int) -> void:
 	portrait.texture = portrait_player1 if character_id == 1 else portrait_player2
@@ -122,8 +123,9 @@ func _show_game_over() -> void:
 	is_game_over = true
 	pause_menu.hide()
 	game_over.show()
+	if gameover_sound and gameover_sound.stream:
+		gameover_sound.play()
 	get_tree().paused = true
-	retry_button.grab_focus()
 	
 func _on_retry() -> void:
 	get_tree().paused = false
