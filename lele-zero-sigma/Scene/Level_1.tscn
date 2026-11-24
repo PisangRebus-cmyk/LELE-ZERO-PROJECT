@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://bb33uavioa33e" path="res://Scene/GhostPressurePlate.tscn" id="25_kvnbw"]
 [ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="26_fhtmt"]
 [ext_resource type="PackedScene" uid="uid://dlqrgah0tq0sm" path="res://Scene/OpenDoor.tscn" id="28_k5pi6"]
+[ext_resource type="Script" uid="uid://d04vkuvyea16x" path="res://Script/Dialog_level1_1.gd" id="32_dlg11"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vykx8"]
 texture = ExtResource("6_segys")
@@ -517,6 +518,7 @@ tile_set = SubResource("TileSet_gkm55")
 
 [node name="CombatWall" type="TileMapLayer" parent="Walls" unique_id=156267789]
 unique_name_in_owner = true
+visible = false
 scale = Vector2(1.5, 1.5)
 tile_map_data = PackedByteArray("AADn/8D/AAABAAMAAADo/8D/AAABAAMAAADp/8D/AAABAAMAAADq/8D/AAABAAMAAADr/8D/AAABAAMAAADs/8D/AAABAAMAAADt/8D/AAABAAMAAADu/8D/AAABAAMAAADv/8D/AAABAAMAAADw/8D/AAABAAMAAADn/9//AAABAAMAAADo/9//AAABAAMAAADp/9//AAABAAMAAADq/9//AAABAAMAAADr/9//AAABAAMAAADs/9//AAABAAMAAADt/9//AAABAAMAAADu/9//AAABAAMAAADn/7P/AAABAAMAAADo/7P/AAABAAMAAADp/7P/AAABAAMAAADq/7P/AAABAAMAAADr/7P/AAABAAMAAADs/7P/AAABAAMAAADt/7P/AAABAAMAAADu/7P/AAABAAMAAADv/7P/AAABAAMAAADw/7P/AAABAAMAAADx/7P/AAACAAUAAADm/7P/AAAAAAUAAADC/6j/AAAAAAQAAADC/6f/AAAAAAQAAADC/6b/AAAAAAQAAADC/6X/AAAAAAQAAADC/6T/AAAAAAQAAADC/6P/AAAAAAQAAACH/6z/AAABAAUAAACI/6z/AAABAAUAAACJ/6z/AAABAAUAAACK/6z/AAABAAUAAACL/6z/AAABAAUAAACM/6z/AAABAAUAAACH/8j/AAABAAMAAACI/8j/AAABAAMAAACJ/8j/AAABAAMAAACK/8j/AAABAAMAAACL/8j/AAABAAMAAACM/8j/AAABAAMAAABr/9n/AAAAAAQAAABr/9r/AAAAAAQAAABr/9v/AAAAAAQAAABr/9z/AAAAAAQAAABr/93/AAAAAAQAAABr/97/AAAAAAQAAABr/9//AAAAAAQAAABr/+D/AAAAAAQAAABr/+H/AAAAAAQAAAAZ/63/AAABAAMAAAAa/63/AAABAAMAAAAb/63/AAABAAMAAAAc/63/AAABAAMAAAAd/63/AAABAAMAAAAe/63/AAABAAMAAAAf/63/AAABAAMAAAAg/63/AAABAAMAAAAf/8r/AAABAAUAAAAg/8r/AAABAAUAAAAh/8r/AAABAAUAAAAi/8r/AAABAAUAAAAj/8r/AAABAAUAAAAk/8r/AAABAAUAAAAl/8r/AAABAAUAAAAm/8r/AAABAAUAAADm/9//AAABAAMAAAA=")
 tile_set = ExtResource("18_kpwvu")
@@ -724,3 +726,11 @@ up_type = 1
 [node name="PlayerBuffAltar3" parent="." unique_id=1123550820 instance=ExtResource("24_i27wa")]
 position = Vector2(-5389, -3764)
 up_type = 2
+
+[node name="Dialog" type="Node2D" parent="." unique_id=1511458570]
+position = Vector2(-176, 115)
+
+[node name="Dialog_level1_1" type="Area2D" parent="Dialog" unique_id=81864498 node_paths=PackedStringArray("dialog_ui")]
+position = Vector2(-506, 27)
+script = ExtResource("32_dlg11")
+dialog_ui = NodePath("")
