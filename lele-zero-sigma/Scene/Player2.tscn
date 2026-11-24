@@ -105,6 +105,6 @@ texture = SubResource("GradientTexture2D_uj04i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea" unique_id=1703128383]
 position = Vector2(0, 9)
-scale = Vector2(27.776005, 24.561274)
+scale = Vector2(20, 20)
 shape = SubResource("CircleShape2D_p5viw")
 debug_color = Color(0, 0.6, 0.69803923, 0.0627451)

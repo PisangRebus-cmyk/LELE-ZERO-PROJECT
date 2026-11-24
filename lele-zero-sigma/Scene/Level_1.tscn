@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dlqrgah0tq0sm" path="res://Scene/OpenDoor.tscn" id="28_k5pi6"]
 [ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="30_i27wa"]
 [ext_resource type="Script" uid="uid://d04vkuvyea16x" path="res://Script/Dialog_level1_1.gd" id="32_dlg11"]
+[ext_resource type="AudioStream" uid="uid://bswwks7xib8oo" path="res://Assets/Audio/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="32_kvnbw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vykx8"]
 texture = ExtResource("6_segys")
@@ -449,11 +450,13 @@ texture = ExtResource("16_gkm55")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_kxr4g")
 
-[node name="Node2D2" type="Node2D" unique_id=1721188911]
+[node name="Node2D2" type="Node2D" unique_id=1721188911 node_paths=PackedStringArray("player1", "ghost")]
 script = ExtResource("1_rvdac")
+player1 = NodePath("Player1")
+ghost = NodePath("ghost2")
 
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_aw1ak")]
-position = Vector2(-632, 94)
+position = Vector2(-514, -896)
 SPEED = 500
 health = 9999.0
 max_health = 9999.0
@@ -737,3 +740,7 @@ position = Vector2(-176, 115)
 position = Vector2(-506, 27)
 script = ExtResource("32_dlg11")
 dialog_ui = NodePath("../DialogUI")
+
+[node name="Lagu" type="AudioStreamPlayer2D" parent="." unique_id=1605696313]
+stream = ExtResource("32_kvnbw")
+bus = &"Musik"

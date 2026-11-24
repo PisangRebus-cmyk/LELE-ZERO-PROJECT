@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6n0c6niuuyk4"]
 
 [ext_resource type="Script" uid="uid://bgbf6balm5kfv" path="res://Script/ui.gd" id="1_we040"]
-[ext_resource type="Texture2D" uid="uid://dak2dt3400hhk" path="res://Assets/Sprites/UI_UX/character potrait.png" id="2_i3p7b"]
+[ext_resource type="Texture2D" uid="uid://drq3d0bbp0do1" path="res://Assets/Sprites/character/idle and walk/sprite 1-3.png.png" id="2_hskja"]
 [ext_resource type="Script" uid="uid://vdfd5y538562" path="res://Script/Enemy_phase.gd" id="2_ycrtq"]
 [ext_resource type="Texture2D" uid="uid://dlgn8j0nk8lva" path="res://Assets/Sprites/UI_UX/ghost potrait.png" id="3_fau5c"]
 [ext_resource type="AudioStream" uid="uid://cg358pjsmhloj" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/013_Confirm_03.wav" id="5_nq5m3"]
@@ -26,7 +26,7 @@ bg_color = Color(0.09803922, 0.98039216, 0.078431375, 1)
 
 [node name="UI" type="CanvasLayer" unique_id=1944569366]
 script = ExtResource("1_we040")
-portrait_player1 = ExtResource("2_i3p7b")
+portrait_player1 = ExtResource("2_hskja")
 portrait_player2 = ExtResource("3_fau5c")
 
 [node name="Bar Atas" type="MarginContainer" parent="." unique_id=864767141]
@@ -179,7 +179,7 @@ text = "Retry"
 layout_mode = 2
 text = "Return to Title"
 
-[node name="ClickedSound" type="AudioStreamPlayer2D" parent="." unique_id=805498670]
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="." unique_id=805498670]
 stream = ExtResource("5_nq5m3")
 
 [node name="HoverSound" type="AudioStreamPlayer2D" parent="." unique_id=403958026]

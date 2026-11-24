@@ -40,7 +40,6 @@ const STUN_DURATION := 1.0
 @onready var walk_sound: AudioStreamPlayer2D = $WalkSound
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var interact_area: Area2D = $InteractArea
-
 @export var max_health := 200.0
 
 

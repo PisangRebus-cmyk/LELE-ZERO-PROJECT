@@ -2,7 +2,6 @@ extends CanvasLayer
 
 signal dialog_started
 signal dialog_finished
-const OFF_SCREEN_X := 1000.0
 
 @export_group("Karakter")
 @export var name_a := "Zeke"
@@ -24,6 +23,10 @@ const OFF_SCREEN_X := 1000.0
 @export var name_font_size := 22
 @export var tutorial_width := 720.0
 @export var tutorial_height := 110.0
+@export var talk_interval := 2
+@export var talk_pitch_variation := 0.1
+@export var hidden_offset_y := 2000.0
+@export var slide_time := 0.25
 
 var _root: Control
 var _box: PanelContainer
@@ -38,21 +41,33 @@ var _portrait_b: TextureRect
 var _lines: Array = []
 var _index := -1
 var _active := false
-var _finishing := false
 var _typing := false
 var _tutorial := false
 var _was_paused := false
 var _tween: Tween
+var _slide_tween: Tween
+var _talk_sound: AudioStreamPlayer2D
+var _last_count := 0
 var _seen: Dictionary = {}
+
 
 func _ready() -> void:
 	layer = 20
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	add_to_group("dialog_ui")
+	_talk_sound = get_node_or_null("TalkSound")
+	for child in get_children():
+		if child != _talk_sound:
+			child.queue_free()
+	if _talk_sound:
+		_talk_sound.attenuation = 0.0
+		_talk_sound.max_distance = 1000000.0
 	_build_ui()
-	_root.hide()
+	offset = Vector2(0, hidden_offset_y)
+
 
 func start(lines: Array, id: String = "", tutorial: bool = false) -> void:
-	if _active or _finishing:
+	if _active:
 		return
 	if id != "":
 		if skip_if_seen and _seen.has(id):
@@ -69,22 +84,29 @@ func start(lines: Array, id: String = "", tutorial: bool = false) -> void:
 	_tutorial = tutorial
 	_apply_mode()
 	_refresh_portraits()
+
 	_was_paused = get_tree().paused
 	get_tree().paused = true
-	_root.show()
+	_slide_to(Vector2.ZERO)
 	dialog_started.emit()
 	_next_line()
+
 
 func start_tutorial(lines: Array, id: String = "") -> void:
 	start(lines, id, true)
 
+
 func skip_all() -> void:
 	if not _active:
 		return
+	if _tween:
+		_tween.kill()
 	_finish()
+
 
 func is_active() -> bool:
 	return _active
+
 
 func _input(event: InputEvent) -> void:
 	if not _active:
@@ -93,15 +115,29 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		if allow_skip_with_esc:
 			skip_all()
-	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("attack"):
+	elif _is_advance_event(event):
 		get_viewport().set_input_as_handled()
 		_advance()
 
+
+func _is_advance_event(event: InputEvent) -> bool:
+	if event.is_action_pressed("ui_accept"):
+		return true
+	if InputMap.has_action("attack") and event.is_action_pressed("attack"):
+		return true
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		return true
+	return false
+
+
 func _advance() -> void:
 	if _typing:
+		if _tween:
+			_tween.kill()
 		_finish_typing()
 	else:
 		_next_line()
+
 
 func _next_line() -> void:
 	_index += 1
@@ -119,40 +155,70 @@ func _next_line() -> void:
 	_next_icon.hide()
 	_set_speaker(speaker)
 
-	_kill_text_tween()
 	var total := _text_label.get_total_character_count()
+	if _tween:
+		_tween.kill()
 	if text_speed <= 0.0 or total <= 0:
 		_finish_typing()
 		return
 
+	_last_count = 0
+	_text_label.visible_characters = 0
 	_typing = true
 	_tween = create_tween()
-	_tween.tween_property(_text_label, "visible_ratio", 1.0, total / text_speed)
-	_tween.finished.connect(_finish_typing, CONNECT_ONE_SHOT)
+	_tween.tween_method(_on_typing, 0, total, total / text_speed)
+	_tween.finished.connect(_finish_typing)
+
 
 func _finish_typing() -> void:
-	_kill_text_tween()
 	_typing = false
+	_text_label.visible_characters = -1
 	_text_label.visible_ratio = 1.0
 	_next_icon.show()
+	if _talk_sound:
+		_talk_sound.stop()
+
+
+func _on_typing(count: int) -> void:
+	_text_label.visible_characters = count
+	if count == _last_count:
+		return
+	_last_count = count
+	if count % maxi(talk_interval, 1) != 0:
+		return
+	var parsed := _text_label.get_parsed_text()
+	if count <= parsed.length() and parsed[count - 1] == " ":
+		return
+	_play_talk()
+
+
+func _play_talk() -> void:
+	if _talk_sound == null or _talk_sound.stream == null:
+		return
+	_talk_sound.pitch_scale = 1.0 + randf_range(-talk_pitch_variation, talk_pitch_variation)
+	_talk_sound.play()
+
+
+func _slide_to(target: Vector2) -> void:
+	if _slide_tween:
+		_slide_tween.kill()
+	if slide_time <= 0.0:
+		offset = target
+		return
+	_slide_tween = create_tween()
+	_slide_tween.tween_property(self, "offset", target, slide_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
 
 func _finish() -> void:
-	if _finishing:
-		return
-	_finishing = true
 	_active = false
 	_typing = false
-	_kill_text_tween()
-	_lines.clear()
-	_root.hide()
+	if _talk_sound:
+		_talk_sound.stop()
+	_slide_to(Vector2(0, hidden_offset_y))
+	await get_tree().create_timer(slide_time, true, false, true).timeout
 	get_tree().paused = _was_paused
-	_finishing = false
 	dialog_finished.emit()
 
-func _kill_text_tween() -> void:
-	if _tween and _tween.is_valid():
-		_tween.kill()
-	_tween = null
 
 func _apply_mode() -> void:
 	_portrait_row.visible = not _tutorial
@@ -168,19 +234,24 @@ func _apply_mode() -> void:
 		_box_style.border_width_top = 4
 		_box_style.set_corner_radius_all(0)
 
+
 func _refresh_portraits() -> void:
 	_portrait_a.texture = portrait_a
 	_portrait_b.texture = portrait_b
 	_portrait_a.visible = portrait_a != null
 	_portrait_b.visible = portrait_b != null
 
+
 func _set_speaker(speaker: String) -> void:
 	_focus_portrait(_portrait_a, speaker == name_a)
 	_focus_portrait(_portrait_b, speaker == name_b)
 
+
 func _focus_portrait(p: TextureRect, focused: bool) -> void:
-	p.modulate = Color.WHITE if focused else dim_color
-	p.scale = Vector2.ONE if focused else Vector2(0.9, 0.9)
+	var t := create_tween().set_parallel(true)
+	t.tween_property(p, "modulate", Color.WHITE if focused else dim_color, 0.15)
+	t.tween_property(p, "scale", Vector2.ONE if focused else Vector2(0.9, 0.9), 0.15)
+
 
 func _make_portrait() -> TextureRect:
 	var r := TextureRect.new()
@@ -190,6 +261,7 @@ func _make_portrait() -> TextureRect:
 	r.pivot_offset = Vector2(portrait_size.x * 0.5, portrait_size.y)
 	r.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return r
+
 
 func _build_ui() -> void:
 	_root = Control.new()
@@ -261,3 +333,7 @@ func _build_ui() -> void:
 	_next_icon.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_next_icon.add_theme_color_override("font_color", accent_color)
 	inner.add_child(_next_icon)
+
+	var blink := create_tween().set_loops()
+	blink.tween_property(_next_icon, "modulate:a", 0.2, 0.5)
+	blink.tween_property(_next_icon, "modulate:a", 1.0, 0.5)

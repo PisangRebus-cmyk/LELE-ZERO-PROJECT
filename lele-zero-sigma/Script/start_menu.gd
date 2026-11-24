@@ -1,16 +1,9 @@
-#NOTES
-# butuh path untuk load game
-# sprite untuk masing masing button dan bg
-# full window baru bekerja kalau game udh diexport
-# sinkronisasi setting akan disesuaikan variabel sound dan art
 extends Control
 
 const SceneNewGame := "res://Scene/Level_1.tscn"
-const SavePath := "user://save.json"
 
 var _Settings := false
 
-#Ini Variabel Button
 @onready var New_Button : Button = $VBoxContainer/NewButton
 @onready var Load_Button : Button = $VBoxContainer/LoadButton
 @onready var Settings_Button : Button = $VBoxContainer/SettingButton
@@ -18,30 +11,34 @@ var _Settings := false
 @onready var VolumeMusik_Slide : HSlider = $VBoxContainer/SettingButton/VBoxContainer/VolumeMusikSlider
 @onready var Window_Check : CheckBox = $VBoxContainer/SettingButton/VBoxContainer/FullWindowButton
 @onready var VolumeSFX_Slide : HSlider = $VBoxContainer/SettingButton/VBoxContainer/VolumeSFXSlider
+@onready var BGM_Player : AudioStreamPlayer2D = $BGM
+@onready var SFXClick_Player : AudioStreamPlayer2D = $ClickedSound
+@onready var SFXHover_Player : AudioStreamPlayer2D = $HoverSound
 
-#Ini Variabel Audio
-@onready var BGM_Player : AudioStreamPlayer = $BGM
-@onready var SFXClick_Player : AudioStreamPlayer = $SFXClick
 
 func _ready() -> void:
+	SaveManager.stop_autosave()
+
+	BGM_Player.bus = "Musik"
+	SFXClick_Player.bus = "SFX"
+	SFXHover_Player.bus = "SFX"
+
 	New_Button.pressed.connect(_New_pressed)
 	Load_Button.pressed.connect(_Load_pressed)
 	Settings_Button.pressed.connect(_Setting_pressed)
 	Quit_Button.pressed.connect(_Quit_pressed)
 
-	# Suara klik untuk semua tombol
 	for btn in [New_Button, Load_Button, Settings_Button, Quit_Button]:
 		btn.pressed.connect(_PlayClick)
+		btn.mouse_entered.connect(_PlayHover)
 
-	# BGM
 	if BGM_Player.stream != null and not BGM_Player.playing:
 		BGM_Player.play()
 
-	Load_Button.disabled = not FileAccess.file_exists(SavePath)
+	Load_Button.disabled = not SaveManager.has_save()
 
-	# Sinkronisasi settings
 	_Setting_visibility(false)
-	
+
 	var BusMusik := AudioServer.get_bus_index("Musik")
 	VolumeMusik_Slide.value = db_to_linear(AudioServer.get_bus_volume_db(BusMusik)) * 100.0
 	VolumeMusik_Slide.value_changed.connect(_VolumeMusik_changed)
@@ -49,54 +46,41 @@ func _ready() -> void:
 	var BusSFX := AudioServer.get_bus_index("SFX")
 	VolumeSFX_Slide.value = db_to_linear(AudioServer.get_bus_volume_db(BusSFX)) * 100.0
 	VolumeSFX_Slide.value_changed.connect(_VolumeSFX_changed)
-	VolumeSFX_Slide.drag_ended.connect(func(_changed): _PlayClick()) # preview volume SFX
 
 	Window_Check.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	Window_Check.toggled.connect(_Fullscreen_toggled)
 
 
-	
-
-
 func _New_pressed() -> void:
-	if SceneNewGame == "":
-		push_warning("SceneNewGame belum diisi.")
-		return
-	await _WaitClick()
+	await get_tree().create_timer(0.2).timeout
+	SaveManager.start_autosave()
 	get_tree().change_scene_to_file(SceneNewGame)
 
 
 func _Load_pressed() -> void:
-	var fileLoad := FileAccess.open(SavePath, FileAccess.READ)
-	if fileLoad == null:
+	var data := SaveManager.load_game()
+	if data.is_empty():
 		return
-	var data = JSON.parse_string(fileLoad.get_as_text())
-	if typeof(data) != TYPE_DICTIONARY or not data.has("scene"):
-		push_warning("Save file rusak atau tidak valid.")
-		return
-	await _WaitClick()
+	await get_tree().create_timer(0.2).timeout
+	SaveManager.start_autosave()
 	get_tree().change_scene_to_file(data["scene"])
 
 
 func _Quit_pressed() -> void:
-	await _WaitClick()
+	await get_tree().create_timer(0.2).timeout
 	get_tree().quit()
 
 
-#kode-kode untuk audio
 func _PlayClick() -> void:
 	if SFXClick_Player.stream != null:
 		SFXClick_Player.play()
 
 
-# Tunggu suara klik selesai (maks 0.5 detik) supaya tidak terpotong saat pindah scene
-func _WaitClick() -> void:
-	if SFXClick_Player.stream == null:
-		return
-	await get_tree().create_timer(minf(SFXClick_Player.stream.get_length(), 0.5)).timeout
+func _PlayHover() -> void:
+	if SFXHover_Player.stream != null:
+		SFXHover_Player.play()
 
 
-#kode-kode untuk setting
 func _Setting_pressed() -> void:
 	_Setting_visibility(not _Settings)
 
@@ -114,10 +98,12 @@ func _VolumeMusik_changed(value: float) -> void:
 	AudioServer.set_bus_mute(bus, value <= 0.0)
 	AudioServer.set_bus_volume_db(bus, linear_to_db(maxf(value / 100.0, 0.0001)))
 
+
 func _VolumeSFX_changed(value: float) -> void:
 	var bus := AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_mute(bus, value <= 0.0)
 	AudioServer.set_bus_volume_db(bus, linear_to_db(maxf(value / 100.0, 0.0001)))
+
 
 func _Fullscreen_toggled(on: bool) -> void:
 	if on:
