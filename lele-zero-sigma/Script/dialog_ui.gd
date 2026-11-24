@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal dialog_started
 signal dialog_finished
+const OFF_SCREEN_X := 1000.0
 
 @export_group("Karakter")
 @export var name_a := "Zeke"

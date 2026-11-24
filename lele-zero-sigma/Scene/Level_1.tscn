@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://bb33uavioa33e" path="res://Scene/GhostPressurePlate.tscn" id="25_kvnbw"]
 [ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="26_fhtmt"]
 [ext_resource type="PackedScene" uid="uid://dlqrgah0tq0sm" path="res://Scene/OpenDoor.tscn" id="28_k5pi6"]
+[ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="30_i27wa"]
 [ext_resource type="Script" uid="uid://d04vkuvyea16x" path="res://Script/Dialog_level1_1.gd" id="32_dlg11"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vykx8"]
@@ -730,7 +731,9 @@ up_type = 2
 [node name="Dialog" type="Node2D" parent="." unique_id=1511458570]
 position = Vector2(-176, 115)
 
+[node name="DialogUI" parent="Dialog" unique_id=525950802 instance=ExtResource("30_i27wa")]
+
 [node name="Dialog_level1_1" type="Area2D" parent="Dialog" unique_id=81864498 node_paths=PackedStringArray("dialog_ui")]
 position = Vector2(-506, 27)
 script = ExtResource("32_dlg11")
-dialog_ui = NodePath("")
+dialog_ui = NodePath("../DialogUI")
