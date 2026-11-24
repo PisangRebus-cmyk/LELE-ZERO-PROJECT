@@ -17,6 +17,7 @@ func _on_area_entered(area: Area2D) -> void:
 		_set_on(true)
 		if hold_time > 0.0:
 			timer.start(hold_time)
+	print("2. receiver touched by ", area)
 
 func _refresh() -> void:
 	sprite.frame = 1 if is_on else 0

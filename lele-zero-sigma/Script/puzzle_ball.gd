@@ -2,7 +2,7 @@ class_name PuzzleBall
 extends Area2D
 
 @export var speed := 140.0
-@export var lifetime := 8.0
+@export var lifetime := 99.0
 
 var direction := Vector2.RIGHT
 var age := 0.0

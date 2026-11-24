@@ -16,6 +16,7 @@ func _set_on(value: bool) -> void:
 			t.set_powered(value)
 	toggled.emit(value)
 	_refresh()
+	print("3. trigger ", name, " -> ", value, "  targets: ", targets)
 
 func _refresh() -> void:
 	pass	

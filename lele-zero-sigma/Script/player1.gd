@@ -6,7 +6,7 @@ enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
 const COMBO_RESET_TIME := 0.6
 const ATTACKS := [
-	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
+	{"damage": 999, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -41,7 +41,9 @@ const STUN_DURATION := 1.0
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var interact_area: Area2D = $InteractArea
 
-var max_health := 200.0
+@export var max_health := 200.0
+
+
 var state := State.FREE
 var state_time := 0.0
 var combo_index := 0
@@ -54,7 +56,7 @@ var is_active := true
 var is_kidnapped := false
 var light_sources := 0
 var dark_time := 0.0
-
+var key := 0
 
 
 func _ready():
@@ -159,12 +161,6 @@ func _state_free(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
 
-# Tanya "ada yang bisa di-interact di dekatku?" (tuas, dll.)
-func _try_interact() -> void:
-	for area in interact_area.get_overlapping_areas():
-		if area.has_method("interact"):
-			area.interact(self)
-			return
 	
 #State Attack
 func start_attack() -> void:

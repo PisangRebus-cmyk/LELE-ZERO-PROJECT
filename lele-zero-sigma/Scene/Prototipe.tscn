@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="4_p8bpe"]
 [ext_resource type="PackedScene" uid="uid://bclfk3k0hme2x" path="res://Scene/MeleeEnemy.tscn" id="5_vgjna"]
 [ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="6_gh1c5"]
-[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/Magician.tscn" id="7_x0cnh"]
+[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="7_x0cnh"]
+
 
 [node name="Node2D" type="Node2D" unique_id=1271902190]
 script = ExtResource("1_0k401")
