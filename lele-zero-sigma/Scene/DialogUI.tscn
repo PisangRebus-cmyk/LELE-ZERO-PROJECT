@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://2gt7ao1770lm"]
 
 [ext_resource type="Script" uid="uid://b7tecnmxvpeg5" path="res://Script/dialog_ui.gd" id="1_nsdah"]
+[ext_resource type="Texture2D" uid="uid://dak2dt3400hhk" path="res://Assets/Sprites/UI_UX/character potrait.png" id="2_irpbm"]
+[ext_resource type="Texture2D" uid="uid://dlgn8j0nk8lva" path="res://Assets/Sprites/UI_UX/ghost potrait.png" id="3_8vfbh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb1jv"]
 content_margin_left = 15.0
@@ -47,12 +49,14 @@ layout_mode = 2
 [node name="PotraitPlayer" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1298387914]
 custom_minimum_size = Vector2(200, 260)
 layout_mode = 2
+texture = ExtResource("2_irpbm")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="PotraitGhost" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1480499546]
 custom_minimum_size = Vector2(200, 260)
 layout_mode = 2
+texture = ExtResource("3_8vfbh")
 expand_mode = 1
 stretch_mode = 5
 
