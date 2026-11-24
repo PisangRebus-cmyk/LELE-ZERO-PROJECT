@@ -13,6 +13,9 @@ var pos = global_position
 var current_enemies : Node = null
 var is_enemy := false
 var phase := 1
+
+@export var barrier: ToggleableLayer
+
 #===================================================
 @export_group("Enemies")
 @export var Golem_Scene : PackedScene
@@ -94,6 +97,7 @@ func _state_phase_2() -> void:
 
 func _state_finish() -> void:
 	is_combat = false
+	barrier.enabled = false
 
 #=================================================================
 func _golem_spawn(scene: PackedScene) -> Node:
@@ -142,3 +146,4 @@ func _on_body_entered(body: Node2D) -> void:
 	is_combat = true
 	print("enter")
 	_change_state(State.COMBAT)
+	barrier.enabled = true

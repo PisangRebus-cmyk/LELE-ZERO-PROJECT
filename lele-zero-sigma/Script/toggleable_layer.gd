@@ -13,6 +13,7 @@ func set_powered(on: bool) -> void:
 	print("setPowerTarget")
 	power = maxi(power + (1 if on else -1), 0)
 	_apply(power >= required)
+	print("4. layer ", name, " powered=", on, "  required=", required)
 
 func _apply(powered: bool) -> void:
 	print("applytarg")

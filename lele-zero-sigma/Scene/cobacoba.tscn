@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_wxoss"]
 [ext_resource type="Script" uid="uid://c7q627456w4y8" path="res://Script/camera.gd" id="3_r4drh"]
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="4_dl7mr"]
-[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/Magician.tscn" id="5_ive0s"]
+[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="5_ive0s"]
+
 
 [node name="Node2D" type="Node2D" unique_id=1006963760]
 

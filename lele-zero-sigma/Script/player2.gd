@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	#energy += (energy_fill - energy_decay) * delta
 	energy = clampf(energy, 0, MAX_ENERGY)
 	_sync_light()
-	print(energy)
+
 	move_and_slide()
 
 #Cahaya Ghost
@@ -101,7 +101,7 @@ func ascend(buff, value) -> void:
 		light_radius *= 1.2
 	elif buff == 1:
 		SPEED += value
-		print(SPEED)
+		
 
 
 # ================= ANIMASI =================
@@ -127,4 +127,3 @@ func _direction_name(dir: Vector2) -> String:
 	if abs(dir.x) > abs(dir.y):
 		return "right" if dir.x > 0 else "left"
 	return "up" if dir.y < 0 else "down"
-

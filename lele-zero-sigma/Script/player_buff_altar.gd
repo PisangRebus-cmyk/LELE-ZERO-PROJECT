@@ -12,6 +12,7 @@ var ascend: Array = []
 var value := 0.0
 #======================================================================
 func _ready() -> void:
+	
 	if up_type == 0:
 		value = upgrade_HP
 	elif up_type == 1:

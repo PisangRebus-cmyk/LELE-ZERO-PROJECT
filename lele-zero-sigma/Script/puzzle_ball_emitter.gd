@@ -9,6 +9,10 @@ extends Node2D
 var is_active := false
 var power := 0
 
+func _ready() -> void:
+	if required == 0:
+		is_active = true
+	
 func _process(delta: float) -> void:
 	timer.timeout.connect(_shoot)
 	print(timer.wait_time)
@@ -17,7 +21,7 @@ func _process(delta: float) -> void:
 func _shoot() -> void:
 	if not is_active:
 		return
-	print("shh")
+
 	var ball := ball_scene.instantiate() as PuzzleBall
 	ball.direction = direction.normalized()
 	get_tree().current_scene.add_child(ball)

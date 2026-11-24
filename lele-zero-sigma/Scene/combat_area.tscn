@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://bq5rwf55afoor" path="res://Script/combat_area.gd" id="1_mc2pk"]
 [ext_resource type="PackedScene" uid="uid://bclfk3k0hme2x" path="res://Scene/MeleeEnemy.tscn" id="2_7tm7e"]
 [ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="3_3q244"]
-[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/Magician.tscn" id="4_6a81r"]
+[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="4_6a81r"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 size = Vector2(371, 335)
