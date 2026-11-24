@@ -1,6 +1,4 @@
 extends Control
-## Menampilkan sisa musuh dan fase dari Combat area yang sedang aktif.
-## Hanya MEMBACA variabel Combat, jadi combat_area.gd tidak perlu diubah.
 
 @export var enemy_label: Label
 @export var phase_label: Label
