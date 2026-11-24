@@ -308,6 +308,8 @@ script = ExtResource("1_rvdac")
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_aw1ak")]
 position = Vector2(-391, 482)
 
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1407440767]
+
 [node name="UI" parent="." unique_id=1944569366 instance=ExtResource("2_i237r")]
 
 [node name="Combat Area" parent="." unique_id=1481000154 instance=ExtResource("4_i237r")]
