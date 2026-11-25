@@ -8,6 +8,7 @@ extends Area2D
 @export var radius := 8.0
 
 var direction := Vector2.RIGHT
+@onready var Orb_animation: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 	add_child(shape)
 	body_entered.connect(_on_body_entered)
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -31,6 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.take_hit(damage, stun_power, direction * knockback_strength, self)
 		if body.has_method("dizzy"):
 			body.dizzy()
+		Orb_animation.play("Hit")
 	queue_free()  # hancur saat kena player atau tembok
 
 

@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dq4n85jdo1b3w" path="res://Scene/GhostEnergyZone.tscn" id="7_ud1lv"]
 [ext_resource type="PackedScene" uid="uid://cvbekpkeonefm" path="res://Scene/PlayerPressurePlate.tscn" id="8_x80x1"]
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="9_guhn4"]
-[ext_resource type="PackedScene" uid="uid://cressg77hyojp" path="res://Scene/lever.tscn" id="11_njsqx"]
+[ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="11_njsqx"]
+[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="12_5tjbk"]
 
 [node name="Node2D" type="Node2D" unique_id=1187130209]
 script = ExtResource("1_gspkx")
@@ -19,10 +20,11 @@ script = ExtResource("1_gspkx")
 position = Vector2(6, -2)
 
 [node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1827211166]
+zoom = Vector2(2, 2)
 
 [node name="PuzzleBallReceiver" parent="." unique_id=77664532 node_paths=PackedStringArray("targets") instance=ExtResource("3_njsqx")]
 position = Vector2(332.72, 34)
-targets = [NodePath("")]
+targets = [null]
 
 [node name="ghost" parent="." unique_id=1063273838 instance=ExtResource("9_guhn4")]
 position = Vector2(-108, 3)
@@ -54,3 +56,6 @@ targets = [NodePath("../Emitter")]
 [node name="Lever" parent="." unique_id=2086188507 node_paths=PackedStringArray("targets") instance=ExtResource("11_njsqx")]
 position = Vector2(-1, 58)
 targets = [NodePath("../GravityBallArea")]
+
+[node name="Magician" parent="." unique_id=427896389 instance=ExtResource("12_5tjbk")]
+position = Vector2(-170, 71)
