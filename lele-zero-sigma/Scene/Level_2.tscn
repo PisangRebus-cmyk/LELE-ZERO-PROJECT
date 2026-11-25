@@ -510,15 +510,15 @@ wall = NodePath("../../Walls/KeyDoor")
 
 [node name="BuffUI" parent="Buffs" unique_id=179494632 instance=ExtResource("5_qjvvb")]
 
-[node name="BuffArea" parent="Buffs/BuffUI" unique_id=290755707 node_paths=PackedStringArray("ui") instance=ExtResource("11_l0v5f")]
+[node name="BuffArea" parent="Buffs/BuffUI" unique_id=290755707 instance=ExtResource("11_l0v5f")]
 position = Vector2(2043, -126)
-ui = NodePath("..")
 
 [node name="BuffUI2" parent="Buffs" unique_id=430295271 instance=ExtResource("5_qjvvb")]
 
-[node name="BuffArea" parent="Buffs/BuffUI2" unique_id=1908832814 node_paths=PackedStringArray("ui") instance=ExtResource("11_l0v5f")]
+[node name="BuffArea" parent="Buffs/BuffUI2" unique_id=1908832814 instance=ExtResource("11_l0v5f")]
 position = Vector2(20, -1529)
-ui = NodePath("..")
 
-[node name="Lever" parent="Buffs/BuffUI2" unique_id=1625154863 instance=ExtResource("11_vutmm")]
-position = Vector2(-782, -2284)
+[node name="BuffUI3" parent="Buffs" unique_id=1787592696 instance=ExtResource("5_qjvvb")]
+
+[node name="BuffArea" parent="Buffs/BuffUI3" unique_id=1215772091 instance=ExtResource("11_l0v5f")]
+position = Vector2(-767, -2277)
