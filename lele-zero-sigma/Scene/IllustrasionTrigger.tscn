@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 
-[node name="Area2D" type="Area2D" unique_id=1585568641]
+[node name="IllusTrigger" type="Area2D" unique_id=1585568641]
 script = ExtResource("1_k45d8")
 illustrations = Array[Texture2D]([ExtResource("2_k5duo")])
 

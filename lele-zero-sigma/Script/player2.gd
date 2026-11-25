@@ -4,8 +4,8 @@ extends CharacterBody2D
 
 @export var SPEED := 100
 @export var acceleration := 2000
-@export var light_radius := 120.0
-@export var energy := 10.0
+@export var light_radius := 16.0
+@export var energy := 100.0
 
 @onready var light: PointLight2D = $PointLight2D
 @onready var light_area: Area2D = $LightArea
@@ -17,7 +17,8 @@ const RELIGHT_ENERGY := 15.0
 var is_active := true
 var exhausted := false
 var facing_direction := Vector2.DOWN
-
+var energy_decay := 5.0
+var energy_fill := 0.0
 
 var bodies_inside: Array = []
 var lit_bodies: Array = []
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
 	_update_animation(direction)
 	energy = clampf(energy, 0, MAX_ENERGY)
-	#energy += (energy_fill - energy_decay) * delta
+	energy += (energy_fill - energy_decay) * delta
 	energy = clampf(energy, 0, MAX_ENERGY)
 	_sync_light()
 
@@ -85,7 +86,11 @@ func _sync_light() -> void:
 func set_active(value: bool) -> void:
 	is_active = value
 
+func fill_energy(mult) -> void:
+	energy_fill = energy_decay * mult
 
+func decay_energy() -> void:
+	energy_fill = 0
 
 
 #health (iya ga bisa metong)
