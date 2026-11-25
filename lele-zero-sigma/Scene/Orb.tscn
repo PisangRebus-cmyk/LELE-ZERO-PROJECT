@@ -1,6 +1,53 @@
 [gd_scene format=3 uid="uid://doxt4ywkswqmn"]
 
 [ext_resource type="Script" uid="uid://6ih1g344phn5" path="res://Script/orb.gd" id="1_j223k"]
+[ext_resource type="Texture2D" uid="uid://bavoj083s8rw2" path="res://Assets/Sprites/Magician/biji.png" id="2_olks1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiupw"]
+atlas = ExtResource("2_olks1")
+region = Rect2(32, 3, 32, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri2pm"]
+atlas = ExtResource("2_olks1")
+region = Rect2(64, 3, 32, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wevnr"]
+atlas = ExtResource("2_olks1")
+region = Rect2(96, 3, 32, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n6h0"]
+atlas = ExtResource("2_olks1")
+region = Rect2(0, 3, 32, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5viw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiupw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri2pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wevnr")
+}],
+"loop": 0,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n6h0")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [node name="Orb" type="Area2D" unique_id=354496836]
 script = ExtResource("1_j223k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1770197126]
+sprite_frames = SubResource("SpriteFrames_p5viw")
+animation = &"Hit"
+autoplay = "Idle"

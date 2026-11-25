@@ -53,23 +53,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 30
 
-[node name="CardSpeed" type="Button" parent="Root/Cards" unique_id=724486895]
+[node name="CardHealth" type="Button" parent="Root/Cards" unique_id=724486895]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "SPEED
-+10"
+text = "HEALTH
++35"
 
 [node name="CardAttack" type="Button" parent="Root/Cards" unique_id=1990899408]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "ATTACK
-+10"
+x1.2"
 
-[node name="CardDefense" type="Button" parent="Root/Cards" unique_id=965370590]
+[node name="CardSpeed" type="Button" parent="Root/Cards" unique_id=965370590]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "DEFENSE
-+10"
+text = "SPEED
++25"

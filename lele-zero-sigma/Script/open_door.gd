@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 func interact(_user: CharacterBody2D) -> void:
 	print(_user.health)
 	
-	if _user.is_in_group("Player") and _user.key == 1:
+	if _user.is_in_group("Player") and _user.key >= wall.required:
 		wall.set_deferred("enabled", false)
 		queue_free()
 	
