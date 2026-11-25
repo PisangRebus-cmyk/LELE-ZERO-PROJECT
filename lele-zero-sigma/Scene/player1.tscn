@@ -69,7 +69,8 @@
 [ext_resource type="Texture2D" uid="uid://cob8rffah0wlo" path="res://Assets/Sprites/character/idle and walk/sprite 1-6.png.png" id="67_mb4ki"]
 [ext_resource type="Texture2D" uid="uid://cm3c6xfjdngw2" path="res://Assets/Sprites/character/idle and walk/sprite 1-7.png.png" id="68_dpuyy"]
 [ext_resource type="Texture2D" uid="uid://qwb7jok1ujhy" path="res://Assets/Sprites/character/idle and walk/sprite 1-8.png.png" id="69_henkx"]
-[ext_resource type="AudioStream" uid="uid://cvvb1xgkxvheb" path="res://Assets/Audio/creatorshome-running-video-game-330951.mp3" id="70_hqux3"]
+[ext_resource type="AudioStream" uid="uid://cvn2pr2hl3neo" path="res://Assets/Audio/Toolbox_SFX_Free_v1/WAV/footsteps/footstep_stone_01.wav" id="70_s2hvj"]
+[ext_resource type="AudioStream" uid="uid://dkns53bbijqao" path="res://Assets/Audio/dash-whoosh.wav" id="71_s2hvj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 2.647191
@@ -398,7 +399,12 @@ monitorable = false
 shape = SubResource("CircleShape2D_uj04i")
 
 [node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=2136465343]
-stream = ExtResource("70_hqux3")
+stream = ExtResource("70_s2hvj")
+volume_db = -15.475
+bus = &"SFX"
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=28290471]
+stream = ExtResource("71_s2hvj")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

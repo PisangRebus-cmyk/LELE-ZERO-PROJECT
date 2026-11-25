@@ -1,0 +1,967 @@
+{
+ "pack": "Toolbox SFX (Free)",
+ "version": 1,
+ "count": 137,
+ "sample_rate": 44100,
+ "sounds": [
+  {
+   "name": "ui_click_01",
+   "category": "ui",
+   "length_sec": 0.059,
+   "wav": "WAV/ui/ui_click_01.wav",
+   "ogg": "OGG/ui/ui_click_01.ogg"
+  },
+  {
+   "name": "ui_click_02",
+   "category": "ui",
+   "length_sec": 0.059,
+   "wav": "WAV/ui/ui_click_02.wav",
+   "ogg": "OGG/ui/ui_click_02.ogg"
+  },
+  {
+   "name": "ui_click_03",
+   "category": "ui",
+   "length_sec": 0.058,
+   "wav": "WAV/ui/ui_click_03.wav",
+   "ogg": "OGG/ui/ui_click_03.ogg"
+  },
+  {
+   "name": "ui_click_04",
+   "category": "ui",
+   "length_sec": 0.058,
+   "wav": "WAV/ui/ui_click_04.wav",
+   "ogg": "OGG/ui/ui_click_04.ogg"
+  },
+  {
+   "name": "ui_hover_01",
+   "category": "ui",
+   "length_sec": 0.06,
+   "wav": "WAV/ui/ui_hover_01.wav",
+   "ogg": "OGG/ui/ui_hover_01.ogg"
+  },
+  {
+   "name": "ui_hover_02",
+   "category": "ui",
+   "length_sec": 0.06,
+   "wav": "WAV/ui/ui_hover_02.wav",
+   "ogg": "OGG/ui/ui_hover_02.ogg"
+  },
+  {
+   "name": "ui_confirm_01",
+   "category": "ui",
+   "length_sec": 0.247,
+   "wav": "WAV/ui/ui_confirm_01.wav",
+   "ogg": "OGG/ui/ui_confirm_01.ogg"
+  },
+  {
+   "name": "ui_confirm_02",
+   "category": "ui",
+   "length_sec": 0.24,
+   "wav": "WAV/ui/ui_confirm_02.wav",
+   "ogg": "OGG/ui/ui_confirm_02.ogg"
+  },
+  {
+   "name": "ui_cancel_01",
+   "category": "ui",
+   "length_sec": 0.244,
+   "wav": "WAV/ui/ui_cancel_01.wav",
+   "ogg": "OGG/ui/ui_cancel_01.ogg"
+  },
+  {
+   "name": "ui_cancel_02",
+   "category": "ui",
+   "length_sec": 0.246,
+   "wav": "WAV/ui/ui_cancel_02.wav",
+   "ogg": "OGG/ui/ui_cancel_02.ogg"
+  },
+  {
+   "name": "ui_error_01",
+   "category": "ui",
+   "length_sec": 0.31,
+   "wav": "WAV/ui/ui_error_01.wav",
+   "ogg": "OGG/ui/ui_error_01.ogg"
+  },
+  {
+   "name": "ui_error_02",
+   "category": "ui",
+   "length_sec": 0.31,
+   "wav": "WAV/ui/ui_error_02.wav",
+   "ogg": "OGG/ui/ui_error_02.ogg"
+  },
+  {
+   "name": "ui_toggle_on",
+   "category": "ui",
+   "length_sec": 0.094,
+   "wav": "WAV/ui/ui_toggle_on.wav",
+   "ogg": "OGG/ui/ui_toggle_on.ogg"
+  },
+  {
+   "name": "ui_toggle_off",
+   "category": "ui",
+   "length_sec": 0.098,
+   "wav": "WAV/ui/ui_toggle_off.wav",
+   "ogg": "OGG/ui/ui_toggle_off.ogg"
+  },
+  {
+   "name": "ui_slider_tick",
+   "category": "ui",
+   "length_sec": 0.035,
+   "wav": "WAV/ui/ui_slider_tick.wav",
+   "ogg": "OGG/ui/ui_slider_tick.ogg"
+  },
+  {
+   "name": "ui_notification_01",
+   "category": "ui",
+   "length_sec": 0.925,
+   "wav": "WAV/ui/ui_notification_01.wav",
+   "ogg": "OGG/ui/ui_notification_01.ogg"
+  },
+  {
+   "name": "ui_notification_02",
+   "category": "ui",
+   "length_sec": 0.979,
+   "wav": "WAV/ui/ui_notification_02.wav",
+   "ogg": "OGG/ui/ui_notification_02.ogg"
+  },
+  {
+   "name": "ui_popup_open",
+   "category": "ui",
+   "length_sec": 0.19,
+   "wav": "WAV/ui/ui_popup_open.wav",
+   "ogg": "OGG/ui/ui_popup_open.ogg"
+  },
+  {
+   "name": "ui_popup_close",
+   "category": "ui",
+   "length_sec": 0.19,
+   "wav": "WAV/ui/ui_popup_close.wav",
+   "ogg": "OGG/ui/ui_popup_close.ogg"
+  },
+  {
+   "name": "ui_purchase",
+   "category": "ui",
+   "length_sec": 0.577,
+   "wav": "WAV/ui/ui_purchase.wav",
+   "ogg": "OGG/ui/ui_purchase.ogg"
+  },
+  {
+   "name": "ui_type_01",
+   "category": "ui",
+   "length_sec": 0.055,
+   "wav": "WAV/ui/ui_type_01.wav",
+   "ogg": "OGG/ui/ui_type_01.ogg"
+  },
+  {
+   "name": "ui_type_02",
+   "category": "ui",
+   "length_sec": 0.055,
+   "wav": "WAV/ui/ui_type_02.wav",
+   "ogg": "OGG/ui/ui_type_02.ogg"
+  },
+  {
+   "name": "footstep_grass_01",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_grass_01.wav",
+   "ogg": "OGG/footsteps/footstep_grass_01.ogg"
+  },
+  {
+   "name": "footstep_grass_02",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_grass_02.wav",
+   "ogg": "OGG/footsteps/footstep_grass_02.ogg"
+  },
+  {
+   "name": "footstep_grass_03",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_grass_03.wav",
+   "ogg": "OGG/footsteps/footstep_grass_03.ogg"
+  },
+  {
+   "name": "footstep_grass_04",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_grass_04.wav",
+   "ogg": "OGG/footsteps/footstep_grass_04.ogg"
+  },
+  {
+   "name": "footstep_gravel_01",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_gravel_01.wav",
+   "ogg": "OGG/footsteps/footstep_gravel_01.ogg"
+  },
+  {
+   "name": "footstep_gravel_02",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_gravel_02.wav",
+   "ogg": "OGG/footsteps/footstep_gravel_02.ogg"
+  },
+  {
+   "name": "footstep_gravel_03",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_gravel_03.wav",
+   "ogg": "OGG/footsteps/footstep_gravel_03.ogg"
+  },
+  {
+   "name": "footstep_gravel_04",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_gravel_04.wav",
+   "ogg": "OGG/footsteps/footstep_gravel_04.ogg"
+  },
+  {
+   "name": "footstep_stone_01",
+   "category": "footsteps",
+   "length_sec": 0.228,
+   "wav": "WAV/footsteps/footstep_stone_01.wav",
+   "ogg": "OGG/footsteps/footstep_stone_01.ogg"
+  },
+  {
+   "name": "footstep_stone_02",
+   "category": "footsteps",
+   "length_sec": 0.24,
+   "wav": "WAV/footsteps/footstep_stone_02.wav",
+   "ogg": "OGG/footsteps/footstep_stone_02.ogg"
+  },
+  {
+   "name": "footstep_stone_03",
+   "category": "footsteps",
+   "length_sec": 0.242,
+   "wav": "WAV/footsteps/footstep_stone_03.wav",
+   "ogg": "OGG/footsteps/footstep_stone_03.ogg"
+  },
+  {
+   "name": "footstep_stone_04",
+   "category": "footsteps",
+   "length_sec": 0.219,
+   "wav": "WAV/footsteps/footstep_stone_04.wav",
+   "ogg": "OGG/footsteps/footstep_stone_04.ogg"
+  },
+  {
+   "name": "footstep_wood_01",
+   "category": "footsteps",
+   "length_sec": 0.301,
+   "wav": "WAV/footsteps/footstep_wood_01.wav",
+   "ogg": "OGG/footsteps/footstep_wood_01.ogg"
+  },
+  {
+   "name": "footstep_wood_02",
+   "category": "footsteps",
+   "length_sec": 0.303,
+   "wav": "WAV/footsteps/footstep_wood_02.wav",
+   "ogg": "OGG/footsteps/footstep_wood_02.ogg"
+  },
+  {
+   "name": "footstep_wood_03",
+   "category": "footsteps",
+   "length_sec": 0.3,
+   "wav": "WAV/footsteps/footstep_wood_03.wav",
+   "ogg": "OGG/footsteps/footstep_wood_03.ogg"
+  },
+  {
+   "name": "footstep_wood_04",
+   "category": "footsteps",
+   "length_sec": 0.301,
+   "wav": "WAV/footsteps/footstep_wood_04.wav",
+   "ogg": "OGG/footsteps/footstep_wood_04.ogg"
+  },
+  {
+   "name": "footstep_metal_01",
+   "category": "footsteps",
+   "length_sec": 0.295,
+   "wav": "WAV/footsteps/footstep_metal_01.wav",
+   "ogg": "OGG/footsteps/footstep_metal_01.ogg"
+  },
+  {
+   "name": "footstep_metal_02",
+   "category": "footsteps",
+   "length_sec": 0.295,
+   "wav": "WAV/footsteps/footstep_metal_02.wav",
+   "ogg": "OGG/footsteps/footstep_metal_02.ogg"
+  },
+  {
+   "name": "footstep_metal_03",
+   "category": "footsteps",
+   "length_sec": 0.291,
+   "wav": "WAV/footsteps/footstep_metal_03.wav",
+   "ogg": "OGG/footsteps/footstep_metal_03.ogg"
+  },
+  {
+   "name": "footstep_metal_04",
+   "category": "footsteps",
+   "length_sec": 0.296,
+   "wav": "WAV/footsteps/footstep_metal_04.wav",
+   "ogg": "OGG/footsteps/footstep_metal_04.ogg"
+  },
+  {
+   "name": "footstep_snow_01",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_snow_01.wav",
+   "ogg": "OGG/footsteps/footstep_snow_01.ogg"
+  },
+  {
+   "name": "footstep_snow_02",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_snow_02.wav",
+   "ogg": "OGG/footsteps/footstep_snow_02.ogg"
+  },
+  {
+   "name": "footstep_snow_03",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_snow_03.wav",
+   "ogg": "OGG/footsteps/footstep_snow_03.ogg"
+  },
+  {
+   "name": "footstep_snow_04",
+   "category": "footsteps",
+   "length_sec": 0.33,
+   "wav": "WAV/footsteps/footstep_snow_04.wav",
+   "ogg": "OGG/footsteps/footstep_snow_04.ogg"
+  },
+  {
+   "name": "move_jump_01",
+   "category": "movement",
+   "length_sec": 0.224,
+   "wav": "WAV/movement/move_jump_01.wav",
+   "ogg": "OGG/movement/move_jump_01.ogg"
+  },
+  {
+   "name": "move_jump_02",
+   "category": "movement",
+   "length_sec": 0.225,
+   "wav": "WAV/movement/move_jump_02.wav",
+   "ogg": "OGG/movement/move_jump_02.ogg"
+  },
+  {
+   "name": "move_land_01",
+   "category": "movement",
+   "length_sec": 0.36,
+   "wav": "WAV/movement/move_land_01.wav",
+   "ogg": "OGG/movement/move_land_01.ogg"
+  },
+  {
+   "name": "move_land_02",
+   "category": "movement",
+   "length_sec": 0.36,
+   "wav": "WAV/movement/move_land_02.wav",
+   "ogg": "OGG/movement/move_land_02.ogg"
+  },
+  {
+   "name": "move_slide",
+   "category": "movement",
+   "length_sec": 0.608,
+   "wav": "WAV/movement/move_slide.wav",
+   "ogg": "OGG/movement/move_slide.ogg"
+  },
+  {
+   "name": "move_dash",
+   "category": "movement",
+   "length_sec": 0.309,
+   "wav": "WAV/movement/move_dash.wav",
+   "ogg": "OGG/movement/move_dash.ogg"
+  },
+  {
+   "name": "move_ladder_01",
+   "category": "movement",
+   "length_sec": 0.199,
+   "wav": "WAV/movement/move_ladder_01.wav",
+   "ogg": "OGG/movement/move_ladder_01.ogg"
+  },
+  {
+   "name": "move_ladder_02",
+   "category": "movement",
+   "length_sec": 0.198,
+   "wav": "WAV/movement/move_ladder_02.wav",
+   "ogg": "OGG/movement/move_ladder_02.ogg"
+  },
+  {
+   "name": "combat_swing_light_01",
+   "category": "combat",
+   "length_sec": 0.26,
+   "wav": "WAV/combat/combat_swing_light_01.wav",
+   "ogg": "OGG/combat/combat_swing_light_01.ogg"
+  },
+  {
+   "name": "combat_swing_light_02",
+   "category": "combat",
+   "length_sec": 0.26,
+   "wav": "WAV/combat/combat_swing_light_02.wav",
+   "ogg": "OGG/combat/combat_swing_light_02.ogg"
+  },
+  {
+   "name": "combat_swing_light_03",
+   "category": "combat",
+   "length_sec": 0.26,
+   "wav": "WAV/combat/combat_swing_light_03.wav",
+   "ogg": "OGG/combat/combat_swing_light_03.ogg"
+  },
+  {
+   "name": "combat_swing_heavy_01",
+   "category": "combat",
+   "length_sec": 0.409,
+   "wav": "WAV/combat/combat_swing_heavy_01.wav",
+   "ogg": "OGG/combat/combat_swing_heavy_01.ogg"
+  },
+  {
+   "name": "combat_swing_heavy_02",
+   "category": "combat",
+   "length_sec": 0.41,
+   "wav": "WAV/combat/combat_swing_heavy_02.wav",
+   "ogg": "OGG/combat/combat_swing_heavy_02.ogg"
+  },
+  {
+   "name": "combat_sword_clash_01",
+   "category": "combat",
+   "length_sec": 1.032,
+   "wav": "WAV/combat/combat_sword_clash_01.wav",
+   "ogg": "OGG/combat/combat_sword_clash_01.ogg"
+  },
+  {
+   "name": "combat_sword_clash_02",
+   "category": "combat",
+   "length_sec": 1.15,
+   "wav": "WAV/combat/combat_sword_clash_02.wav",
+   "ogg": "OGG/combat/combat_sword_clash_02.ogg"
+  },
+  {
+   "name": "combat_sword_clash_03",
+   "category": "combat",
+   "length_sec": 1.124,
+   "wav": "WAV/combat/combat_sword_clash_03.wav",
+   "ogg": "OGG/combat/combat_sword_clash_03.ogg"
+  },
+  {
+   "name": "combat_sword_hit_01",
+   "category": "combat",
+   "length_sec": 0.445,
+   "wav": "WAV/combat/combat_sword_hit_01.wav",
+   "ogg": "OGG/combat/combat_sword_hit_01.ogg"
+  },
+  {
+   "name": "combat_sword_hit_02",
+   "category": "combat",
+   "length_sec": 0.454,
+   "wav": "WAV/combat/combat_sword_hit_02.wav",
+   "ogg": "OGG/combat/combat_sword_hit_02.ogg"
+  },
+  {
+   "name": "combat_punch_01",
+   "category": "combat",
+   "length_sec": 0.306,
+   "wav": "WAV/combat/combat_punch_01.wav",
+   "ogg": "OGG/combat/combat_punch_01.ogg"
+  },
+  {
+   "name": "combat_punch_02",
+   "category": "combat",
+   "length_sec": 0.306,
+   "wav": "WAV/combat/combat_punch_02.wav",
+   "ogg": "OGG/combat/combat_punch_02.ogg"
+  },
+  {
+   "name": "combat_punch_03",
+   "category": "combat",
+   "length_sec": 0.31,
+   "wav": "WAV/combat/combat_punch_03.wav",
+   "ogg": "OGG/combat/combat_punch_03.ogg"
+  },
+  {
+   "name": "combat_punch_04",
+   "category": "combat",
+   "length_sec": 0.306,
+   "wav": "WAV/combat/combat_punch_04.wav",
+   "ogg": "OGG/combat/combat_punch_04.ogg"
+  },
+  {
+   "name": "combat_shield_block_01",
+   "category": "combat",
+   "length_sec": 0.441,
+   "wav": "WAV/combat/combat_shield_block_01.wav",
+   "ogg": "OGG/combat/combat_shield_block_01.ogg"
+  },
+  {
+   "name": "combat_shield_block_02",
+   "category": "combat",
+   "length_sec": 0.488,
+   "wav": "WAV/combat/combat_shield_block_02.wav",
+   "ogg": "OGG/combat/combat_shield_block_02.ogg"
+  },
+  {
+   "name": "combat_bow_draw_01",
+   "category": "combat",
+   "length_sec": 0.558,
+   "wav": "WAV/combat/combat_bow_draw_01.wav",
+   "ogg": "OGG/combat/combat_bow_draw_01.ogg"
+  },
+  {
+   "name": "combat_bow_draw_02",
+   "category": "combat",
+   "length_sec": 0.559,
+   "wav": "WAV/combat/combat_bow_draw_02.wav",
+   "ogg": "OGG/combat/combat_bow_draw_02.ogg"
+  },
+  {
+   "name": "combat_arrow_shoot_01",
+   "category": "combat",
+   "length_sec": 0.41,
+   "wav": "WAV/combat/combat_arrow_shoot_01.wav",
+   "ogg": "OGG/combat/combat_arrow_shoot_01.ogg"
+  },
+  {
+   "name": "combat_arrow_shoot_02",
+   "category": "combat",
+   "length_sec": 0.412,
+   "wav": "WAV/combat/combat_arrow_shoot_02.wav",
+   "ogg": "OGG/combat/combat_arrow_shoot_02.ogg"
+  },
+  {
+   "name": "combat_arrow_impact_01",
+   "category": "combat",
+   "length_sec": 0.36,
+   "wav": "WAV/combat/combat_arrow_impact_01.wav",
+   "ogg": "OGG/combat/combat_arrow_impact_01.ogg"
+  },
+  {
+   "name": "combat_arrow_impact_02",
+   "category": "combat",
+   "length_sec": 0.36,
+   "wav": "WAV/combat/combat_arrow_impact_02.wav",
+   "ogg": "OGG/combat/combat_arrow_impact_02.ogg"
+  },
+  {
+   "name": "weapon_pistol_01",
+   "category": "weapons",
+   "length_sec": 0.967,
+   "wav": "WAV/weapons/weapon_pistol_01.wav",
+   "ogg": "OGG/weapons/weapon_pistol_01.ogg"
+  },
+  {
+   "name": "weapon_pistol_02",
+   "category": "weapons",
+   "length_sec": 0.931,
+   "wav": "WAV/weapons/weapon_pistol_02.wav",
+   "ogg": "OGG/weapons/weapon_pistol_02.ogg"
+  },
+  {
+   "name": "weapon_shotgun_01",
+   "category": "weapons",
+   "length_sec": 1.185,
+   "wav": "WAV/weapons/weapon_shotgun_01.wav",
+   "ogg": "OGG/weapons/weapon_shotgun_01.ogg"
+  },
+  {
+   "name": "weapon_shotgun_02",
+   "category": "weapons",
+   "length_sec": 1.161,
+   "wav": "WAV/weapons/weapon_shotgun_02.wav",
+   "ogg": "OGG/weapons/weapon_shotgun_02.ogg"
+  },
+  {
+   "name": "weapon_rifle_single",
+   "category": "weapons",
+   "length_sec": 1.006,
+   "wav": "WAV/weapons/weapon_rifle_single.wav",
+   "ogg": "OGG/weapons/weapon_rifle_single.ogg"
+  },
+  {
+   "name": "weapon_rifle_burst",
+   "category": "weapons",
+   "length_sec": 1.127,
+   "wav": "WAV/weapons/weapon_rifle_burst.wav",
+   "ogg": "OGG/weapons/weapon_rifle_burst.ogg"
+  },
+  {
+   "name": "weapon_smg_burst",
+   "category": "weapons",
+   "length_sec": 1.245,
+   "wav": "WAV/weapons/weapon_smg_burst.wav",
+   "ogg": "OGG/weapons/weapon_smg_burst.ogg"
+  },
+  {
+   "name": "weapon_reload_01",
+   "category": "weapons",
+   "length_sec": 0.672,
+   "wav": "WAV/weapons/weapon_reload_01.wav",
+   "ogg": "OGG/weapons/weapon_reload_01.ogg"
+  },
+  {
+   "name": "weapon_reload_02",
+   "category": "weapons",
+   "length_sec": 0.922,
+   "wav": "WAV/weapons/weapon_reload_02.wav",
+   "ogg": "OGG/weapons/weapon_reload_02.ogg"
+  },
+  {
+   "name": "weapon_shotgun_pump",
+   "category": "weapons",
+   "length_sec": 0.422,
+   "wav": "WAV/weapons/weapon_shotgun_pump.wav",
+   "ogg": "OGG/weapons/weapon_shotgun_pump.ogg"
+  },
+  {
+   "name": "weapon_empty_click",
+   "category": "weapons",
+   "length_sec": 0.087,
+   "wav": "WAV/weapons/weapon_empty_click.wav",
+   "ogg": "OGG/weapons/weapon_empty_click.ogg"
+  },
+  {
+   "name": "weapon_shell_drop_01",
+   "category": "weapons",
+   "length_sec": 0.301,
+   "wav": "WAV/weapons/weapon_shell_drop_01.wav",
+   "ogg": "OGG/weapons/weapon_shell_drop_01.ogg"
+  },
+  {
+   "name": "weapon_shell_drop_02",
+   "category": "weapons",
+   "length_sec": 0.302,
+   "wav": "WAV/weapons/weapon_shell_drop_02.wav",
+   "ogg": "OGG/weapons/weapon_shell_drop_02.ogg"
+  },
+  {
+   "name": "weapon_laser_01",
+   "category": "weapons",
+   "length_sec": 0.31,
+   "wav": "WAV/weapons/weapon_laser_01.wav",
+   "ogg": "OGG/weapons/weapon_laser_01.ogg"
+  },
+  {
+   "name": "weapon_laser_02",
+   "category": "weapons",
+   "length_sec": 0.32,
+   "wav": "WAV/weapons/weapon_laser_02.wav",
+   "ogg": "OGG/weapons/weapon_laser_02.ogg"
+  },
+  {
+   "name": "explosion_small_01",
+   "category": "explosions",
+   "length_sec": 1.634,
+   "wav": "WAV/explosions/explosion_small_01.wav",
+   "ogg": "OGG/explosions/explosion_small_01.ogg"
+  },
+  {
+   "name": "explosion_small_02",
+   "category": "explosions",
+   "length_sec": 1.616,
+   "wav": "WAV/explosions/explosion_small_02.wav",
+   "ogg": "OGG/explosions/explosion_small_02.ogg"
+  },
+  {
+   "name": "explosion_medium_01",
+   "category": "explosions",
+   "length_sec": 2.276,
+   "wav": "WAV/explosions/explosion_medium_01.wav",
+   "ogg": "OGG/explosions/explosion_medium_01.ogg"
+  },
+  {
+   "name": "explosion_medium_02",
+   "category": "explosions",
+   "length_sec": 2.276,
+   "wav": "WAV/explosions/explosion_medium_02.wav",
+   "ogg": "OGG/explosions/explosion_medium_02.ogg"
+  },
+  {
+   "name": "explosion_large_01",
+   "category": "explosions",
+   "length_sec": 3.421,
+   "wav": "WAV/explosions/explosion_large_01.wav",
+   "ogg": "OGG/explosions/explosion_large_01.ogg"
+  },
+  {
+   "name": "explosion_large_02",
+   "category": "explosions",
+   "length_sec": 3.446,
+   "wav": "WAV/explosions/explosion_large_02.wav",
+   "ogg": "OGG/explosions/explosion_large_02.ogg"
+  },
+  {
+   "name": "explosion_distant",
+   "category": "explosions",
+   "length_sec": 3.037,
+   "wav": "WAV/explosions/explosion_distant.wav",
+   "ogg": "OGG/explosions/explosion_distant.ogg"
+  },
+  {
+   "name": "explosion_debris",
+   "category": "explosions",
+   "length_sec": 1.229,
+   "wav": "WAV/explosions/explosion_debris.wav",
+   "ogg": "OGG/explosions/explosion_debris.ogg"
+  },
+  {
+   "name": "door_wood_open",
+   "category": "world",
+   "length_sec": 0.901,
+   "wav": "WAV/world/door_wood_open.wav",
+   "ogg": "OGG/world/door_wood_open.ogg"
+  },
+  {
+   "name": "door_wood_close",
+   "category": "world",
+   "length_sec": 0.811,
+   "wav": "WAV/world/door_wood_close.wav",
+   "ogg": "OGG/world/door_wood_close.ogg"
+  },
+  {
+   "name": "door_metal_open",
+   "category": "world",
+   "length_sec": 1.126,
+   "wav": "WAV/world/door_metal_open.wav",
+   "ogg": "OGG/world/door_metal_open.ogg"
+  },
+  {
+   "name": "door_metal_close",
+   "category": "world",
+   "length_sec": 1.756,
+   "wav": "WAV/world/door_metal_close.wav",
+   "ogg": "OGG/world/door_metal_close.ogg"
+  },
+  {
+   "name": "door_locked",
+   "category": "world",
+   "length_sec": 0.347,
+   "wav": "WAV/world/door_locked.wav",
+   "ogg": "OGG/world/door_locked.ogg"
+  },
+  {
+   "name": "chest_open",
+   "category": "world",
+   "length_sec": 1.285,
+   "wav": "WAV/world/chest_open.wav",
+   "ogg": "OGG/world/chest_open.ogg"
+  },
+  {
+   "name": "glass_break_01",
+   "category": "world",
+   "length_sec": 0.703,
+   "wav": "WAV/world/glass_break_01.wav",
+   "ogg": "OGG/world/glass_break_01.ogg"
+  },
+  {
+   "name": "glass_break_02",
+   "category": "world",
+   "length_sec": 0.723,
+   "wav": "WAV/world/glass_break_02.wav",
+   "ogg": "OGG/world/glass_break_02.ogg"
+  },
+  {
+   "name": "wood_break_01",
+   "category": "world",
+   "length_sec": 0.452,
+   "wav": "WAV/world/wood_break_01.wav",
+   "ogg": "OGG/world/wood_break_01.ogg"
+  },
+  {
+   "name": "wood_break_02",
+   "category": "world",
+   "length_sec": 0.465,
+   "wav": "WAV/world/wood_break_02.wav",
+   "ogg": "OGG/world/wood_break_02.ogg"
+  },
+  {
+   "name": "metal_clang_01",
+   "category": "world",
+   "length_sec": 1.471,
+   "wav": "WAV/world/metal_clang_01.wav",
+   "ogg": "OGG/world/metal_clang_01.ogg"
+  },
+  {
+   "name": "metal_clang_02",
+   "category": "world",
+   "length_sec": 1.494,
+   "wav": "WAV/world/metal_clang_02.wav",
+   "ogg": "OGG/world/metal_clang_02.ogg"
+  },
+  {
+   "name": "water_splash_01",
+   "category": "world",
+   "length_sec": 0.649,
+   "wav": "WAV/world/water_splash_01.wav",
+   "ogg": "OGG/world/water_splash_01.ogg"
+  },
+  {
+   "name": "water_splash_02",
+   "category": "world",
+   "length_sec": 0.63,
+   "wav": "WAV/world/water_splash_02.wav",
+   "ogg": "OGG/world/water_splash_02.ogg"
+  },
+  {
+   "name": "water_bubbles",
+   "category": "world",
+   "length_sec": 0.636,
+   "wav": "WAV/world/water_bubbles.wav",
+   "ogg": "OGG/world/water_bubbles.ogg"
+  },
+  {
+   "name": "fire_whoosh",
+   "category": "world",
+   "length_sec": 1.207,
+   "wav": "WAV/world/fire_whoosh.wav",
+   "ogg": "OGG/world/fire_whoosh.ogg"
+  },
+  {
+   "name": "lever_pull",
+   "category": "world",
+   "length_sec": 0.408,
+   "wav": "WAV/world/lever_pull.wav",
+   "ogg": "OGG/world/lever_pull.ogg"
+  },
+  {
+   "name": "switch_flip",
+   "category": "world",
+   "length_sec": 0.087,
+   "wav": "WAV/world/switch_flip.wav",
+   "ogg": "OGG/world/switch_flip.ogg"
+  },
+  {
+   "name": "pickup_coin_01",
+   "category": "pickups",
+   "length_sec": 0.52,
+   "wav": "WAV/pickups/pickup_coin_01.wav",
+   "ogg": "OGG/pickups/pickup_coin_01.ogg"
+  },
+  {
+   "name": "pickup_coin_02",
+   "category": "pickups",
+   "length_sec": 0.52,
+   "wav": "WAV/pickups/pickup_coin_02.wav",
+   "ogg": "OGG/pickups/pickup_coin_02.ogg"
+  },
+  {
+   "name": "pickup_coin_03",
+   "category": "pickups",
+   "length_sec": 0.52,
+   "wav": "WAV/pickups/pickup_coin_03.wav",
+   "ogg": "OGG/pickups/pickup_coin_03.ogg"
+  },
+  {
+   "name": "pickup_gem_01",
+   "category": "pickups",
+   "length_sec": 0.862,
+   "wav": "WAV/pickups/pickup_gem_01.wav",
+   "ogg": "OGG/pickups/pickup_gem_01.ogg"
+  },
+  {
+   "name": "pickup_gem_02",
+   "category": "pickups",
+   "length_sec": 0.908,
+   "wav": "WAV/pickups/pickup_gem_02.wav",
+   "ogg": "OGG/pickups/pickup_gem_02.ogg"
+  },
+  {
+   "name": "pickup_health",
+   "category": "pickups",
+   "length_sec": 1.132,
+   "wav": "WAV/pickups/pickup_health.wav",
+   "ogg": "OGG/pickups/pickup_health.ogg"
+  },
+  {
+   "name": "pickup_powerup",
+   "category": "pickups",
+   "length_sec": 1.179,
+   "wav": "WAV/pickups/pickup_powerup.wav",
+   "ogg": "OGG/pickups/pickup_powerup.ogg"
+  },
+  {
+   "name": "pickup_key",
+   "category": "pickups",
+   "length_sec": 0.442,
+   "wav": "WAV/pickups/pickup_key.wav",
+   "ogg": "OGG/pickups/pickup_key.ogg"
+  },
+  {
+   "name": "pickup_item",
+   "category": "pickups",
+   "length_sec": 0.338,
+   "wav": "WAV/pickups/pickup_item.wav",
+   "ogg": "OGG/pickups/pickup_item.ogg"
+  },
+  {
+   "name": "pickup_ammo",
+   "category": "pickups",
+   "length_sec": 0.246,
+   "wav": "WAV/pickups/pickup_ammo.wav",
+   "ogg": "OGG/pickups/pickup_ammo.ogg"
+  },
+  {
+   "name": "level_up",
+   "category": "pickups",
+   "length_sec": 1.457,
+   "wav": "WAV/pickups/level_up.wav",
+   "ogg": "OGG/pickups/level_up.ogg"
+  },
+  {
+   "name": "unlock",
+   "category": "pickups",
+   "length_sec": 0.566,
+   "wav": "WAV/pickups/unlock.wav",
+   "ogg": "OGG/pickups/unlock.ogg"
+  },
+  {
+   "name": "magic_cast",
+   "category": "magic",
+   "length_sec": 1.359,
+   "wav": "WAV/magic/magic_cast.wav",
+   "ogg": "OGG/magic/magic_cast.ogg"
+  },
+  {
+   "name": "magic_heal",
+   "category": "magic",
+   "length_sec": 1.615,
+   "wav": "WAV/magic/magic_heal.wav",
+   "ogg": "OGG/magic/magic_heal.ogg"
+  },
+  {
+   "name": "magic_fireball",
+   "category": "magic",
+   "length_sec": 1.013,
+   "wav": "WAV/magic/magic_fireball.wav",
+   "ogg": "OGG/magic/magic_fireball.ogg"
+  },
+  {
+   "name": "magic_ice",
+   "category": "magic",
+   "length_sec": 1.409,
+   "wav": "WAV/magic/magic_ice.wav",
+   "ogg": "OGG/magic/magic_ice.ogg"
+  },
+  {
+   "name": "magic_lightning",
+   "category": "magic",
+   "length_sec": 1.852,
+   "wav": "WAV/magic/magic_lightning.wav",
+   "ogg": "OGG/magic/magic_lightning.ogg"
+  },
+  {
+   "name": "magic_buff",
+   "category": "magic",
+   "length_sec": 1.37,
+   "wav": "WAV/magic/magic_buff.wav",
+   "ogg": "OGG/magic/magic_buff.ogg"
+  },
+  {
+   "name": "magic_teleport",
+   "category": "magic",
+   "length_sec": 1.313,
+   "wav": "WAV/magic/magic_teleport.wav",
+   "ogg": "OGG/magic/magic_teleport.ogg"
+  },
+  {
+   "name": "magic_shield",
+   "category": "magic",
+   "length_sec": 1.63,
+   "wav": "WAV/magic/magic_shield.wav",
+   "ogg": "OGG/magic/magic_shield.ogg"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://capv5a46ulgek"]
+
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_ri57v"]
+[ext_resource type="PackedScene" uid="uid://hwxen7ou0pyp" path="res://Scene/IllustrasionTrigger.tscn" id="2_fc0yj"]
+[ext_resource type="Texture2D" uid="uid://c14wvd4tup0gt" path="res://Assets/Sprites/Scene_2.png" id="3_tjqwu"]
+[ext_resource type="PackedScene" uid="uid://biyner0fn7im" path="res://Scene/IllustrasiUI.tscn" id="4_q3wqm"]
+
+[node name="Node2D" type="Node2D" unique_id=1334807766]
+
+[node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_ri57v")]
+position = Vector2(1287, -248)
+
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=41475566]
+
+[node name="IllusTrigger" parent="." unique_id=1585568641 instance=ExtResource("2_fc0yj")]
+position = Vector2(1426, -242)
+scale = Vector2(6, 3)
+illustrations = Array[Texture2D]([ExtResource("3_tjqwu")])
+
+[node name="IllustrationUI" parent="." unique_id=809379055 instance=ExtResource("4_q3wqm")]

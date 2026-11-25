@@ -41,7 +41,7 @@ const STUN_DURATION := 1.0
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var interact_area: Area2D = $InteractArea
 @export var max_health := 200.0
-
+@onready var dash_sound : AudioStreamPlayer2D = $DashSound
 
 var state := State.FREE
 var state_time := 0.0
@@ -231,6 +231,7 @@ func start_dodge() -> void:
 	attack_buffered = false
 	
 	dodge_cooldown.start(DODGE_COOLDOWN)
+	dash_sound.play()
 	
 	animation_direction = direction_to_name(dodge_direction)
 	animated_sprite_2d.flip_h = false
