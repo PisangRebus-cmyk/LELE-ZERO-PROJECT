@@ -1,4 +1,4 @@
-class_name LightZone
+class_name SpeedBoost
 extends Area2D
 
 @export var boost := 2

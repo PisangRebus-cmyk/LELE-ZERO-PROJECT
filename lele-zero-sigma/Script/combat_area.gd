@@ -21,10 +21,14 @@ var phase := 1
 @export var Golem_Scene : PackedScene
 @export var Archer_Scene : PackedScene
 @export var Mage_Scene : PackedScene
-@export var Golem_num := 1
-@export var Archer_num := 1
-@export var Mage_num := 1
-
+@export_group("Phase_1")
+@export var Golem_num_1 := 1
+@export var Archer_num_1 := 1
+@export var Mage_num_1 := 1
+@export_group("Phase_2")
+@export var Golem_num_2 := 1
+@export var Archer_num_2 := 1
+@export var Mage_num_2 := 1
 #===================================================
 const SPAWN_DELAY := 1.0
 
@@ -57,30 +61,29 @@ func _change_state(new_state: State) -> void:
 	state_time = 0.0
 	match new_state:
 		State.PHASE1:
-			for i in range(Golem_num):
+			for i in range(Golem_num_1):
 				current_enemies = _golem_spawn(Golem_Scene)
 			await get_tree().create_timer(SPAWN_DELAY).timeout
-			for i in range(Archer_num):
+			for i in range(Archer_num_1):
 				current_enemies = _archer_spawn(Archer_Scene)
 			await get_tree().create_timer(SPAWN_DELAY).timeout
-			for i in range(Mage_num):
+			for i in range(Mage_num_1):
 				current_enemies = _mage_spawn(Mage_Scene)
 			await get_tree().create_timer(SPAWN_DELAY).timeout
 		State.PHASE2:
-			for i in range(randf_range(Golem_num,Golem_num + 1)):
+			for i in range(Golem_num_2):
 				current_enemies = _golem_spawn(Golem_Scene)
 			await get_tree().create_timer(SPAWN_DELAY).timeout
-			for i in range(randf_range(Archer_num,Archer_num + 1)):
+			for i in range(Archer_num_2):
 				current_enemies = _archer_spawn(Archer_Scene)
 			await get_tree().create_timer(SPAWN_DELAY).timeout
-			for i in range(randf_range(Mage_num,Mage_num + 1)):
+			for i in range(Mage_num_2):
 				current_enemies = _mage_spawn(Mage_Scene)
 			await get_tree().create_timer(SPAWN_DELAY).timeout
 func _state_idle() -> void:
 	pass
 	
 func _state_combat() -> void:
-	print("combat")
 	_change_state(State.PHASE1)
 	
 func _state_phase_1() -> void:
@@ -90,14 +93,15 @@ func _state_phase_1() -> void:
 		_change_state(State.PHASE2)
 
 func _state_phase_2() -> void:
+	await get_tree().create_timer(3).timeout #engineering
 	var can_finish: bool = get_tree().get_nodes_in_group("Phase_2_Enemy").is_empty()
 	if can_finish:
-		
+		barrier.enabled = false
 		_change_state(State.FINISHED)
 
 func _state_finish() -> void:
 	is_combat = false
-	barrier.enabled = false
+	
 
 #=================================================================
 func _golem_spawn(scene: PackedScene) -> Node:
@@ -141,9 +145,7 @@ func _mage_spawn(scene: PackedScene) -> Node:
 	
 func _on_body_entered(body: Node2D) -> void:
 	if is_combat or not body.is_in_group("Player"):
-		print("p")
 		return
 	is_combat = true
-	print("enter")
 	_change_state(State.COMBAT)
 	barrier.enabled = true
