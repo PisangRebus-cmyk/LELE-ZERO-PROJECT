@@ -1,10 +1,45 @@
 [gd_scene format=3 uid="uid://5h8gwks5yo0t"]
 
 [ext_resource type="Script" uid="uid://cbs6itinyteoi" path="res://Script/lele_zero_final_boss.gd" id="1_f05sr"]
+[ext_resource type="Texture2D" uid="uid://dmhsvspo3dmyk" path="res://icon.svg" id="2_2dxke"]
 [ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="2_vpy1a"]
 [ext_resource type="Script" uid="uid://djhxso7g1uc3q" path="res://Script/telegraph.gd" id="3_vpy1a"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iii0"]
+atlas = ExtResource("2_2dxke")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwt8t"]
+atlas = ExtResource("2_2dxke")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yefuh"]
+atlas = ExtResource("2_2dxke")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frkps"]
+atlas = ExtResource("2_2dxke")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4felt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iii0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwt8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yefuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frkps")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
 
@@ -15,12 +50,9 @@ radius = 19.0
 
 [node name="LeleZero" type="CharacterBody2D" unique_id=1217196406]
 script = ExtResource("1_f05sr")
-max_health = null
-trigger_range = null
-knockback_taken = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=961786206]
-sprite_frames = SubResource("SpriteFrames_uj04i")
+sprite_frames = SubResource("SpriteFrames_4felt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=449377104]
 shape = SubResource("CircleShape2D_uj04i")

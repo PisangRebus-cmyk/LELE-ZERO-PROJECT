@@ -49,7 +49,7 @@ max_health = 300
 trigger_range = 220.0
 knockback_taken = 0.5
 
-[node name="GhosstEnergyZones" type="Node" parent="." unique_id=636782206]
+[node name="GhosstEnergyZones" type="Node2D" parent="." unique_id=973467619]
 
 [node name="GhostEnergyZone6" parent="GhosstEnergyZones" unique_id=1792279258 instance=ExtResource("2_vxl3j")]
 position = Vector2(-579, 0)
@@ -106,7 +106,7 @@ position = Vector2(1, 1)
 targets = [NodePath("..")]
 
 [node name="GhostEnergyZone3" parent="GhosstEnergyZones" unique_id=734475060 instance=ExtResource("2_vxl3j")]
-position = Vector2(418, -412)
+position = Vector2(409.855, -412)
 lifetime = 50.0
 free_on_expire = true
 
