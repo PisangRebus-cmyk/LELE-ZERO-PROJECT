@@ -1,24 +1,41 @@
 [gd_scene format=3 uid="uid://1jv6ff0knx16"]
 
 [ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="1_mcf7f"]
+[ext_resource type="Script" uid="uid://tsj0k3124uvn" path="res://Script/switch.gd" id="1_phlv2"]
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_wxoss"]
 [ext_resource type="Script" uid="uid://c7q627456w4y8" path="res://Script/camera.gd" id="3_r4drh"]
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="4_dl7mr"]
 [ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="5_ive0s"]
+[ext_resource type="PackedScene" uid="uid://d0lvftpn51dbi" path="res://Scene/IllustrationUI.tscn" id="6_gl1pa"]
+[ext_resource type="Script" uid="uid://cgsojcrb7j0f2" path="res://Script/Illustrasi_trigger.gd" id="7_oid84"]
+[ext_resource type="Texture2D" uid="uid://c14wvd4tup0gt" path="res://Assets/Sprites/Scene_2.png" id="8_oid84"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 
 [node name="Node2D" type="Node2D" unique_id=1006963760]
+script = ExtResource("1_phlv2")
 
 [node name="Control" parent="." unique_id=2144059541 instance=ExtResource("1_mcf7f")]
 
 [node name="Player" parent="." unique_id=1157810840 instance=ExtResource("1_wxoss")]
+position = Vector2(33, -210)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1683471568]
 script = ExtResource("3_r4drh")
 
 [node name="Player2" parent="." unique_id=1063273838 instance=ExtResource("4_dl7mr")]
-position = Vector2(-214, -36)
+position = Vector2(-104, -165)
 light_radius = 8.0
 
 [node name="Magician" parent="." unique_id=427896389 instance=ExtResource("5_ive0s")]
 position = Vector2(187, -83)
+
+[node name="IllustrationUI" parent="." unique_id=874266096 instance=ExtResource("6_gl1pa")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=735027498]
+position = Vector2(37, -156)
+script = ExtResource("7_oid84")
+illustrations = Array[Texture2D]([ExtResource("8_oid84")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=796882117]
+shape = SubResource("RectangleShape2D_uj04i")

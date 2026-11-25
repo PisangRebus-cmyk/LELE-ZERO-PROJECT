@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://hwxen7ou0pyp"]
+
+[ext_resource type="Script" uid="uid://chewor4fwv2hp" path="res://Script/illustrasion_trigger.gd" id="1_k45d8"]
+[ext_resource type="Texture2D" uid="uid://d0jlkr3hav55v" path="res://Assets/Sprites/UI_UX/RTB_v1.0/background.png" id="2_k5duo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+
+[node name="IllusTrigger" type="Area2D" unique_id=1585568641]
+script = ExtResource("1_k45d8")
+illustrations = Array[Texture2D]([ExtResource("2_k5duo")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=778986703]
+shape = SubResource("RectangleShape2D_uj04i")
