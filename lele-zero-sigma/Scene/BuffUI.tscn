@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://ofu4yu717l5f"]
+
+[ext_resource type="Script" uid="uid://bpecm3aeubb01" path="res://Scene/buff_ui.gd" id="1_8vb6a"]
+
+[node name="BuffUI" type="CanvasLayer" unique_id=179494632]
+process_mode = 3
+layer = 10
+script = ExtResource("1_8vb6a")
+
+[node name="Root" type="Control" parent="." unique_id=1748629161]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Root" unique_id=389268016]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Title" type="Label" parent="Root" unique_id=798072291]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 80.0
+offset_right = 200.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "BUFF"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="Root" unique_id=528026467]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -150.0
+offset_right = 330.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="CardSpeed" type="Button" parent="Root/Cards" unique_id=724486895]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "SPEED
++10"
+
+[node name="CardAttack" type="Button" parent="Root/Cards" unique_id=1990899408]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "ATTACK
++10"
+
+[node name="CardDefense" type="Button" parent="Root/Cards" unique_id=965370590]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "DEFENSE
++10"
