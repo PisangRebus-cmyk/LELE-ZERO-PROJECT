@@ -36,6 +36,7 @@ const PHASE3_HP := 0.25
 const PHASE_INTRO := 0.8
 const PHASE_CHANGE_DASHES := 8
 
+const ANTICIPATION_SPEED := 25.0 
 const GAP_TIME := 0.8          
 const COOLDOWN_TIME := 10.0    
 const RECOVER_TIME := 1.0
@@ -43,7 +44,11 @@ const STUN_TIME := 10.0
 const STUN_DAMAGE_BONUS := 1.5
 const PARRY_KNOCKBACK := 250
 
-@export var max_health := 300
+@export var move_speed := 40.0
+@export var keep_range := 70.0       # he walks toward you until this close
+
+
+@export var max_health := 400
 @export var trigger_range := 220.0
 @export var knockback_taken := 0.5
 
@@ -135,11 +140,13 @@ func _state_idle() -> void:
 		change_state(State.GAP)
 
 func _state_gap() -> void:
+	_approach()
 	if state_time >= GAP_TIME:
 		var key: String = SEQUENCES[phase][seq_index]
 		start_attack(key)
 
 func _state_cooldown(delta: float) -> void:
+	_approach()
 	cooldown_left -= delta           
 	if cooldown_left <= 0.0:
 		seq_index = 0
@@ -179,6 +186,7 @@ func _state_attack() -> void:
 
 	if state_time < d.windup:
 		telegraph.set_progress(state_time / d.windup)
+		drive = -aim_direction * ANTICIPATION_SPEED
 	elif state_time < active_end:
 		telegraph.set_progress(1.0)
 	else:
@@ -287,6 +295,11 @@ func on_parried(parrier: Node2D, stun_power: float) -> void:
 	knockback = (global_position - parrier.global_position).normalized() * PARRY_KNOCKBACK
 	change_state(State.RECOVER)         
 	stun_gauge.add(stun_power)          
+
+func _approach() -> void:
+	var to_player := player.global_position - global_position
+	if to_player.length() > keep_range:
+		drive = to_player.normalized() * move_speed
 
 func _flash(color: Color) -> void:
 	sprite.modulate = color
