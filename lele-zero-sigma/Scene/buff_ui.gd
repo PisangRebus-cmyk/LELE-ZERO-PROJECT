@@ -2,10 +2,6 @@ extends CanvasLayer
 
 signal buff_chosen(stat: String, amount: int)
 
-const HIDDEN_Y := 2000.0
-const BUFF_VALUE := 10
-
-# Sesuaikan nilai kanan dengan nama variabel di script player1 kamu
 const STAT_PROPS := {
 	"speed": "speed",
 	"attack": "attack_damage",
@@ -15,20 +11,34 @@ const STAT_PROPS := {
 @export var pause_game := true
 
 @onready var root: Control = $Root
-@onready var card_speed: Button = $Root/Cards/CardSpeed
+@onready var card_health: Button = $Root/Cards/CardHealth
 @onready var card_attack: Button = $Root/Cards/CardAttack
-@onready var card_defense: Button = $Root/Cards/CardDefense
+@onready var card_speed: Button = $Root/Cards/CardSpeed
+
+@export var Up_Health := 35.0
+@export var Up_Atk := 1.2
+@export var Up_Spd := 25.0
 
 var player: Node = null
 var is_open := false
+var Buff_Value: Array[float]
 
 
 func _ready() -> void:
+	
+	# Wajib agar BuffUI tetap bisa diklik saat game di-pause
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	Buff_Value.append(Up_Health)
+	Buff_Value.append(Up_Atk)
+	Buff_Value.append(Up_Spd)
+	
 	add_to_group("buff_ui")
-	root.position.y = HIDDEN_Y
-	card_speed.pressed.connect(_on_card_pressed.bind("speed"))
-	card_attack.pressed.connect(_on_card_pressed.bind("attack"))
-	card_defense.pressed.connect(_on_card_pressed.bind("defense"))
+	visible = false
+	
+	card_health.pressed.connect(_on_card_pressed.bind(0))
+	card_attack.pressed.connect(_on_card_pressed.bind(1))
+	card_speed.pressed.connect(_on_card_pressed.bind(2))
 
 
 func open(target_player: Node) -> void:
@@ -36,7 +46,7 @@ func open(target_player: Node) -> void:
 		return
 	player = target_player
 	is_open = true
-	root.position.y = 0.0
+	visible = true
 	if pause_game:
 		get_tree().paused = true
 	card_speed.grab_focus()
@@ -44,26 +54,19 @@ func open(target_player: Node) -> void:
 
 func close() -> void:
 	is_open = false
-	root.position.y = HIDDEN_Y
+	visible = false
 	if pause_game:
 		get_tree().paused = false
 
 
-func _on_card_pressed(stat: String) -> void:
-	_apply_buff(stat)
-	buff_chosen.emit(stat, BUFF_VALUE)
+func _on_card_pressed(type: int) -> void:
+	_apply_buff(type)
 	close()
 
 
-func _apply_buff(stat: String) -> void:
+func _apply_buff(type: int) -> void:
 	if player == null:
 		return
-	# Kalau player1 punya fungsi apply_buff sendiri, pakai itu
-	if player.has_method("apply_buff"):
-		player.apply_buff(stat, BUFF_VALUE)
+	if player.has_method("ascend"):
+		player.ascend(type, Buff_Value[type])
 		return
-	var prop: String = STAT_PROPS[stat]
-	if prop in player:
-		player.set(prop, player.get(prop) + BUFF_VALUE)
-	else:
-		push_warning("Player tidak punya variabel '%s'. Cek STAT_PROPS di buff_ui.gd" % prop)
