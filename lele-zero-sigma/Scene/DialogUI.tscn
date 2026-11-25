@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://2gt7ao1770lm"]
 
 [ext_resource type="Script" uid="uid://b7tecnmxvpeg5" path="res://Script/dialog_ui.gd" id="1_nsdah"]
+[ext_resource type="Texture2D" uid="uid://b288bd05q4ox5" path="res://Assets/Sprites/character/sprint/sprite 1-69.png.png" id="2_8vfbh"]
+[ext_resource type="Texture2D" uid="uid://dlgn8j0nk8lva" path="res://Assets/Sprites/UI_UX/ghost potrait.png" id="3_8vfbh"]
+[ext_resource type="AudioStream" uid="uid://cx5g5vtmhgarh" path="res://Assets/Audio/creatorshome-video-game-speak-358238.mp3" id="4_8vfbh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb1jv"]
 content_margin_left = 15.0
@@ -47,12 +50,14 @@ layout_mode = 2
 [node name="PotraitPlayer" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1298387914]
 custom_minimum_size = Vector2(200, 260)
 layout_mode = 2
+texture = ExtResource("2_8vfbh")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="PotraitGhost" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1480499546]
 custom_minimum_size = Vector2(200, 260)
 layout_mode = 2
+texture = ExtResource("3_8vfbh")
 expand_mode = 1
 stretch_mode = 5
 
@@ -80,3 +85,7 @@ scroll_active = false
 [node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1767914894]
 layout_mode = 2
 text = "     >"
+
+[node name="TalkSound" type="AudioStreamPlayer2D" parent="." unique_id=951341251]
+stream = ExtResource("4_8vfbh")
+bus = &"SFX"

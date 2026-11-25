@@ -37,10 +37,9 @@ const STUN_DURATION := 1.0
 @onready var combo_timer: Timer = $ComboTimer
 @onready var dodge_cooldown: Timer = $DodgeCooldown
 @onready var guard_cooldown: Timer = $GuardCooldown
-
+@onready var walk_sound: AudioStreamPlayer2D = $WalkSound
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var interact_area: Area2D = $InteractArea
-
 @export var max_health := 200.0
 
 
@@ -92,6 +91,8 @@ func _play_attack_animation() -> void:
 	animated_sprite_2d.play(ANIM_ATTACK[animation_direction])
 
 func _physics_process(delta: float) -> void:
+	_update_darkness(delta)
+	_update_walk_sound()
 	_update_darkness(delta)
 	if is_kidnapped:
 		return
@@ -485,3 +486,11 @@ func _play_move_anim() -> void:
 		animated_sprite_2d.animation = anim
 		animated_sprite_2d.frame = 0
 		animated_sprite_2d.stop()
+		
+func _update_walk_sound() -> void:
+	var walking := state == State.FREE and is_active and not is_dead and not is_kidnapped and velocity.length() > 5.0
+	if walking:
+		if not walk_sound.playing:
+			walk_sound.play()
+	elif walk_sound.playing:
+		walk_sound.stop()

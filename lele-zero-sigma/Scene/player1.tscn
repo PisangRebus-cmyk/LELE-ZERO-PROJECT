@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://cob8rffah0wlo" path="res://Assets/Sprites/character/idle and walk/sprite 1-6.png.png" id="67_mb4ki"]
 [ext_resource type="Texture2D" uid="uid://cm3c6xfjdngw2" path="res://Assets/Sprites/character/idle and walk/sprite 1-7.png.png" id="68_dpuyy"]
 [ext_resource type="Texture2D" uid="uid://qwb7jok1ujhy" path="res://Assets/Sprites/character/idle and walk/sprite 1-8.png.png" id="69_henkx"]
+[ext_resource type="AudioStream" uid="uid://cvvb1xgkxvheb" path="res://Assets/Audio/creatorshome-running-video-game-330951.mp3" id="70_hqux3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 2.647191
@@ -395,6 +396,9 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1049866093]
 shape = SubResource("CircleShape2D_uj04i")
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=2136465343]
+stream = ExtResource("70_hqux3")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

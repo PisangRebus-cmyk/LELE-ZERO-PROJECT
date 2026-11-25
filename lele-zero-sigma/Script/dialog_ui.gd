@@ -4,15 +4,16 @@ signal dialog_started
 signal dialog_finished
 
 @export_group("Karakter")
-@export var name_a := "Lele"
-@export var portrait_a: Texture2D
-@export var name_b := "Zero"
-@export var portrait_b: Texture2D
+@export var name_a := "Zeke"
+@export var portrait_a: Texture2D = preload("res://Assets/Sprites/UI_UX/character potrait.png")
+@export var name_b := "Ghost"
+@export var portrait_b: Texture2D = preload("res://Assets/Sprites/UI_UX/ghost potrait.png")
 
 @export_group("Perilaku")
-@export var text_speed := 45.0        
-@export var allow_skip_with_esc := true 
-@export var skip_if_seen := true        
+@export var text_speed := 45.0
+@export var allow_skip_with_esc := true
+@export var skip_if_seen := true
+
 @export_group("Tampilan")
 @export var box_color := Color(0.05, 0.05, 0.08, 0.92)
 @export var accent_color := Color(0.9, 0.1, 0.2)
@@ -20,9 +21,17 @@ signal dialog_finished
 @export var portrait_size := Vector2(200, 260)
 @export var font_size := 20
 @export var name_font_size := 22
+@export var tutorial_width := 720.0
+@export var tutorial_height := 110.0
+@export var talk_interval := 2
+@export var talk_pitch_variation := 0.1
+@export var hidden_offset_y := 2000.0
+@export var slide_time := 0.25
 
 var _root: Control
 var _box: PanelContainer
+var _box_style: StyleBoxFlat
+var _portrait_row: HBoxContainer
 var _name_label: Label
 var _text_label: RichTextLabel
 var _next_icon: Label
@@ -33,21 +42,31 @@ var _lines: Array = []
 var _index := -1
 var _active := false
 var _typing := false
+var _tutorial := false
 var _was_paused := false
 var _tween: Tween
+var _slide_tween: Tween
+var _talk_sound: AudioStreamPlayer2D
+var _last_count := 0
 var _seen: Dictionary = {}
 
 
 func _ready() -> void:
 	layer = 20
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	add_to_group("dialog_ui")
+	_talk_sound = get_node_or_null("TalkSound")
+	for child in get_children():
+		if child != _talk_sound:
+			child.queue_free()
+	if _talk_sound:
+		_talk_sound.attenuation = 0.0
+		_talk_sound.max_distance = 1000000.0
 	_build_ui()
-	_root.hide()
+	offset = Vector2(0, hidden_offset_y)
 
 
-# ---------------------------------------------------------------- API publik
-
-func start(lines: Array, id: String = "") -> void:
+func start(lines: Array, id: String = "", tutorial: bool = false) -> void:
 	if _active:
 		return
 	if id != "":
@@ -62,13 +81,19 @@ func start(lines: Array, id: String = "") -> void:
 	_lines = lines
 	_index = -1
 	_active = true
+	_tutorial = tutorial
+	_apply_mode()
 	_refresh_portraits()
 
 	_was_paused = get_tree().paused
 	get_tree().paused = true
-	_root.show()
+	_slide_to(Vector2.ZERO)
 	dialog_started.emit()
 	_next_line()
+
+
+func start_tutorial(lines: Array, id: String = "") -> void:
+	start(lines, id, true)
 
 
 func skip_all() -> void:
@@ -83,19 +108,26 @@ func is_active() -> bool:
 	return _active
 
 
-# ---------------------------------------------------------------- input
-
 func _input(event: InputEvent) -> void:
 	if not _active:
 		return
 	if event.is_action_pressed("ui_cancel"):
-		# selalu diambil supaya pause menu tidak terbuka saat dialog
 		get_viewport().set_input_as_handled()
 		if allow_skip_with_esc:
 			skip_all()
-	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("attack"):
+	elif _is_advance_event(event):
 		get_viewport().set_input_as_handled()
 		_advance()
+
+
+func _is_advance_event(event: InputEvent) -> bool:
+	if event.is_action_pressed("ui_accept"):
+		return true
+	if InputMap.has_action("attack") and event.is_action_pressed("attack"):
+		return true
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		return true
+	return false
 
 
 func _advance() -> void:
@@ -107,8 +139,6 @@ func _advance() -> void:
 		_next_line()
 
 
-# ---------------------------------------------------------------- alur dialog
-
 func _next_line() -> void:
 	_index += 1
 	if _index >= _lines.size():
@@ -116,7 +146,7 @@ func _next_line() -> void:
 		return
 
 	var line: Dictionary = _lines[_index]
-	var speaker: String = str(line.get("name", ""))
+	var speaker: String = "" if _tutorial else str(line.get("name", ""))
 
 	_name_label.text = speaker
 	_name_label.visible = speaker != ""
@@ -132,29 +162,78 @@ func _next_line() -> void:
 		_finish_typing()
 		return
 
+	_last_count = 0
+	_text_label.visible_characters = 0
 	_typing = true
 	_tween = create_tween()
-	_tween.tween_property(_text_label, "visible_ratio", 1.0, total / text_speed)
+	_tween.tween_method(_on_typing, 0, total, total / text_speed)
 	_tween.finished.connect(_finish_typing)
 
 
 func _finish_typing() -> void:
 	_typing = false
+	_text_label.visible_characters = -1
 	_text_label.visible_ratio = 1.0
 	_next_icon.show()
+	if _talk_sound:
+		_talk_sound.stop()
+
+
+func _on_typing(count: int) -> void:
+	_text_label.visible_characters = count
+	if count == _last_count:
+		return
+	_last_count = count
+	if count % maxi(talk_interval, 1) != 0:
+		return
+	var parsed := _text_label.get_parsed_text()
+	if count <= parsed.length() and parsed[count - 1] == " ":
+		return
+	_play_talk()
+
+
+func _play_talk() -> void:
+	if _talk_sound == null or _talk_sound.stream == null:
+		return
+	_talk_sound.pitch_scale = 1.0 + randf_range(-talk_pitch_variation, talk_pitch_variation)
+	_talk_sound.play()
+
+
+func _slide_to(target: Vector2) -> void:
+	if _slide_tween:
+		_slide_tween.kill()
+	if slide_time <= 0.0:
+		offset = target
+		return
+	_slide_tween = create_tween()
+	_slide_tween.tween_property(self, "offset", target, slide_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
 func _finish() -> void:
 	_active = false
 	_typing = false
-	_root.hide()
-	# jeda singkat supaya klik terakhir tidak ikut jadi serangan player
-	await get_tree().create_timer(0.15, true, false, true).timeout
+	if _talk_sound:
+		_talk_sound.stop()
+	_slide_to(Vector2(0, hidden_offset_y))
+	await get_tree().create_timer(slide_time, true, false, true).timeout
 	get_tree().paused = _was_paused
 	dialog_finished.emit()
 
 
-# ---------------------------------------------------------------- potret
+func _apply_mode() -> void:
+	_portrait_row.visible = not _tutorial
+	if _tutorial:
+		_box.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		_box.custom_minimum_size = Vector2(tutorial_width, tutorial_height)
+		_box_style.set_border_width_all(3)
+		_box_style.set_corner_radius_all(18)
+	else:
+		_box.size_flags_horizontal = Control.SIZE_FILL
+		_box.custom_minimum_size = Vector2(0, 130)
+		_box_style.set_border_width_all(0)
+		_box_style.border_width_top = 4
+		_box_style.set_corner_radius_all(0)
+
 
 func _refresh_portraits() -> void:
 	_portrait_a.texture = portrait_a
@@ -184,8 +263,6 @@ func _make_portrait() -> TextureRect:
 	return r
 
 
-# ---------------------------------------------------------------- bangun UI
-
 func _build_ui() -> void:
 	_root = Control.new()
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -206,32 +283,29 @@ func _build_ui() -> void:
 	vbox.add_theme_constant_override("separation", 0)
 	margin.add_child(vbox)
 
-	# ruang kosong di atas (mendorong potret dan kotak teks ke bawah)
 	var spacer := Control.new()
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.add_child(spacer)
 
-	# baris potret: kiri bawah, tepat di atas kotak teks
-	var portrait_row := HBoxContainer.new()
-	portrait_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	portrait_row.add_theme_constant_override("separation", 8)
-	vbox.add_child(portrait_row)
+	_portrait_row = HBoxContainer.new()
+	_portrait_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_portrait_row.add_theme_constant_override("separation", 8)
+	vbox.add_child(_portrait_row)
 	_portrait_a = _make_portrait()
 	_portrait_b = _make_portrait()
-	portrait_row.add_child(_portrait_a)
-	portrait_row.add_child(_portrait_b)
+	_portrait_row.add_child(_portrait_a)
+	_portrait_row.add_child(_portrait_b)
 
-	# kotak teks
 	_box = PanelContainer.new()
 	_box.custom_minimum_size = Vector2(0, 130)
 	_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var style := StyleBoxFlat.new()
-	style.bg_color = box_color
-	style.border_color = accent_color
-	style.border_width_top = 4
-	style.set_content_margin_all(16)
-	_box.add_theme_stylebox_override("panel", style)
+	_box_style = StyleBoxFlat.new()
+	_box_style.bg_color = box_color
+	_box_style.border_color = accent_color
+	_box_style.border_width_top = 4
+	_box_style.set_content_margin_all(16)
+	_box.add_theme_stylebox_override("panel", _box_style)
 	vbox.add_child(_box)
 
 	var inner := VBoxContainer.new()
