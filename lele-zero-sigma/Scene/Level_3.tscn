@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cbg1imagfl01q" path="res://Scene/BossFightArena.tscn" id="6_j24hx"]
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="9_4felt"]
 [ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="10_7ddyr"]
+[ext_resource type="Script" uid="uid://bw3tw2k2n6655" path="res://Script/heal.gd" id="11_wr53b"]
 [ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="90_dlgui"]
 [ext_resource type="Script" uid="uid://cafq3bbphpy7n" path="res://Script/Dialog_level3_1.gd" id="91_dlg31"]
 
@@ -138,6 +139,9 @@ sources/0 = SubResource("TileSetAtlasSource_dk5bn")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlg"]
 size = Vector2(200, 200)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+radius = 55.03635
+
 [node name="Node2D" type="Node2D" unique_id=843865067]
 script = ExtResource("1_dk5bn")
 
@@ -189,3 +193,13 @@ SPEED = 444
 
 [node name="Lever" parent="." unique_id=2086188507 instance=ExtResource("10_7ddyr")]
 position = Vector2(311, -322)
+
+[node name="heal" type="Area2D" parent="." unique_id=1886616975 node_paths=PackedStringArray("player")]
+script = ExtResource("11_wr53b")
+player = NodePath("../Player1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="heal" unique_id=1431804060]
+position = Vector2(-1, -181)
+shape = SubResource("CircleShape2D_uj04i")
+
+[connection signal="body_entered" from="heal" to="heal" method="_on_body_entered"]

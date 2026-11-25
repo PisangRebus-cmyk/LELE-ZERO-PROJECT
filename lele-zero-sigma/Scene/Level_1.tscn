@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://tsj0k3124uvn" path="res://Script/switch.gd" id="1_rvdac"]
 [ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="2_i237r"]
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="3_rvdac"]
+[ext_resource type="PackedScene" uid="uid://ofu4yu717l5f" path="res://Scene/BuffUI.tscn" id="4_fhtmt"]
 [ext_resource type="PackedScene" uid="uid://bhnrmyljmvs4g" path="res://Scene/combat_area.tscn" id="4_i237r"]
 [ext_resource type="Texture2D" uid="uid://cydq62uslj2fj" path="res://Assets/Sprites/level environment/1/bottom.png" id="6_segys"]
 [ext_resource type="Texture2D" uid="uid://dobn1kyj6mstp" path="res://Assets/Sprites/level environment/1/corner bottom left.png" id="7_gkm55"]
@@ -25,13 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://6oe4uc55xi61" path="res://Scene/PuzzleBall.tscn" id="21_k5pi6"]
 [ext_resource type="PackedScene" uid="uid://c0iahjn2mmxgr" path="res://Scene/PuzzleBallReceiver.tscn" id="22_vomhs"]
 [ext_resource type="PackedScene" uid="uid://d3afxa14uy6lc" path="res://Scene/PuzzleBallRelayTower.tscn" id="23_fpy7w"]
-[ext_resource type="PackedScene" uid="uid://bogmrxvja1g8r" path="res://Scene/PlayerBuffAltar.tscn" id="24_i27wa"]
 [ext_resource type="PackedScene" uid="uid://bb33uavioa33e" path="res://Scene/GhostPressurePlate.tscn" id="25_kvnbw"]
 [ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="26_fhtmt"]
 [ext_resource type="PackedScene" uid="uid://dlqrgah0tq0sm" path="res://Scene/OpenDoor.tscn" id="28_k5pi6"]
 [ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="30_i27wa"]
 [ext_resource type="Script" uid="uid://d04vkuvyea16x" path="res://Script/Dialog_level1_1.gd" id="32_dlg11"]
 [ext_resource type="AudioStream" uid="uid://bswwks7xib8oo" path="res://Assets/Audio/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="32_kvnbw"]
+[ext_resource type="PackedScene" uid="uid://dx21n7y556nik" path="res://Scene/buff_area.tscn" id="33_ipl58"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vykx8"]
 texture = ExtResource("6_segys")
@@ -456,7 +457,7 @@ player1 = NodePath("Player1")
 ghost = NodePath("ghost2")
 
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_aw1ak")]
-position = Vector2(-500, 172)
+position = Vector2(-535, 136)
 SPEED = 500
 health = 9999.0
 max_health = 9999.0
@@ -467,7 +468,7 @@ zoom = Vector2(2, 2)
 [node name="UI" parent="." unique_id=1944569366 instance=ExtResource("2_i237r")]
 
 [node name="ghost2" parent="." unique_id=1063273838 instance=ExtResource("3_rvdac")]
-position = Vector2(-484, 138)
+position = Vector2(-469, 121)
 SPEED = 300
 light_radius = 999.0
 energy = 99999.0
@@ -531,6 +532,7 @@ tile_set = SubResource("TileSet_gkm55")
 unique_name_in_owner = true
 scale = Vector2(1.5, 1.5)
 tile_map_data = PackedByteArray("AADn/8D/AAABAAMAAADo/8D/AAABAAMAAADp/8D/AAABAAMAAADq/8D/AAABAAMAAADr/8D/AAABAAMAAADs/8D/AAABAAMAAADt/8D/AAABAAMAAADu/8D/AAABAAMAAADv/8D/AAABAAMAAADw/8D/AAABAAMAAADn/9//AAABAAMAAADo/9//AAABAAMAAADp/9//AAABAAMAAADq/9//AAABAAMAAADr/9//AAABAAMAAADs/9//AAABAAMAAADt/9//AAABAAMAAADu/9//AAABAAMAAADn/7P/AAABAAMAAADo/7P/AAABAAMAAADp/7P/AAABAAMAAADq/7P/AAABAAMAAADr/7P/AAABAAMAAADs/7P/AAABAAMAAADt/7P/AAABAAMAAADu/7P/AAABAAMAAADv/7P/AAABAAMAAADw/7P/AAABAAMAAADx/7P/AAACAAUAAADm/7P/AAAAAAUAAADC/6j/AAAAAAQAAADC/6f/AAAAAAQAAADC/6b/AAAAAAQAAADC/6X/AAAAAAQAAADC/6T/AAAAAAQAAADC/6P/AAAAAAQAAACH/6z/AAABAAUAAACI/6z/AAABAAUAAACJ/6z/AAABAAUAAACK/6z/AAABAAUAAACL/6z/AAABAAUAAACM/6z/AAABAAUAAACH/8j/AAABAAMAAACI/8j/AAABAAMAAACJ/8j/AAABAAMAAACK/8j/AAABAAMAAACL/8j/AAABAAMAAACM/8j/AAABAAMAAABr/9n/AAAAAAQAAABr/9r/AAAAAAQAAABr/9v/AAAAAAQAAABr/9z/AAAAAAQAAABr/93/AAAAAAQAAABr/97/AAAAAAQAAABr/9//AAAAAAQAAABr/+D/AAAAAAQAAABr/+H/AAAAAAQAAAAZ/63/AAABAAMAAAAa/63/AAABAAMAAAAb/63/AAABAAMAAAAc/63/AAABAAMAAAAd/63/AAABAAMAAAAe/63/AAABAAMAAAAf/63/AAABAAMAAAAg/63/AAABAAMAAAAf/8r/AAABAAUAAAAg/8r/AAABAAUAAAAh/8r/AAABAAUAAAAi/8r/AAABAAUAAAAj/8r/AAABAAUAAAAk/8r/AAABAAUAAAAl/8r/AAABAAUAAAAm/8r/AAABAAUAAADm/9//AAABAAMAAAA=")
+enabled = false
 tile_set = ExtResource("18_kpwvu")
 script = ExtResource("17_kxr4g")
 metadata/_custom_type_script = "uid://bdmwcbtvlgufw"
@@ -546,6 +548,14 @@ metadata/_custom_type_script = "uid://bdmwcbtvlgufw"
 [node name="KeyWall" type="TileMapLayer" parent="Walls" unique_id=915193044]
 scale = Vector2(1.5, 1.5)
 tile_map_data = PackedByteArray("AAAi/9H/AAAFAAAAAAAi/9L/AAAFAAEAAAAi/9P/AAAFAAIAAAAj/9H/AAAGAAAAAAAj/9L/AAAGAAEAAAAj/9P/AAAGAAIAAAA=")
+tile_set = ExtResource("18_kpwvu")
+script = ExtResource("17_kxr4g")
+solid_when_powered = false
+metadata/_custom_type_script = "uid://bdmwcbtvlgufw"
+
+[node name="OpPuzzle1Wall" type="TileMapLayer" parent="Walls" unique_id=1384894025]
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray("AABu/4j/AAABAAUAAABv/4j/AAABAAUAAABw/4j/AAABAAUAAABx/4j/AAACAAUAAABx/4f/AAACAAQAAABx/4b/AAACAAQAAAA=")
 tile_set = ExtResource("18_kpwvu")
 script = ExtResource("17_kxr4g")
 solid_when_powered = false
@@ -583,7 +593,7 @@ required = 3
 [node name="PuzzleBallReceiver" parent="Puzzles/OpPuzzle1" unique_id=77664532 node_paths=PackedStringArray("targets") instance=ExtResource("22_vomhs")]
 position = Vector2(-3444, -2773)
 hold_time = 1.0
-targets = [NodePath("../PlayerBuffAltar")]
+targets = [NodePath("../../../Walls/OpPuzzle1Wall")]
 
 [node name="GhostPressurePlate" parent="Puzzles/OpPuzzle1" unique_id=1598448461 node_paths=PackedStringArray("targets") instance=ExtResource("25_kvnbw")]
 position = Vector2(-3469, -2726)
@@ -597,9 +607,6 @@ targets = [NodePath("../Op1Emitter")]
 position = Vector2(-3348, -2521)
 one_shot = false
 targets = [NodePath("../Op1Emitter")]
-
-[node name="PlayerBuffAltar" parent="Puzzles/OpPuzzle1" unique_id=917244200 instance=ExtResource("24_i27wa")]
-position = Vector2(-3339, -2891)
 
 [node name="MainPuzzle1" type="Node2D" parent="Puzzles" unique_id=788704905]
 
@@ -726,17 +733,6 @@ position = Vector2(-4383, -1696)
 position = Vector2(-5308, -1053)
 wall = NodePath("../../Walls/KeyWall")
 
-[node name="PlayerBuffAltar" parent="." unique_id=2082512018 instance=ExtResource("24_i27wa")]
-position = Vector2(-5503, -3764)
-
-[node name="PlayerBuffAltar2" parent="." unique_id=1516224545 instance=ExtResource("24_i27wa")]
-position = Vector2(-5442, -3796)
-up_type = 1
-
-[node name="PlayerBuffAltar3" parent="." unique_id=1123550820 instance=ExtResource("24_i27wa")]
-position = Vector2(-5389, -3764)
-up_type = 2
-
 [node name="Dialog" type="Node2D" parent="." unique_id=1511458570]
 position = Vector2(-176, 115)
 
@@ -750,3 +746,23 @@ dialog_ui = NodePath("../DialogUI")
 [node name="Lagu" type="AudioStreamPlayer2D" parent="." unique_id=1605696313]
 stream = ExtResource("32_kvnbw")
 bus = &"Musik"
+
+[node name="Buffs" type="Node2D" parent="." unique_id=1218147613]
+
+[node name="BuffUI" parent="Buffs" unique_id=179494632 instance=ExtResource("4_fhtmt")]
+
+[node name="BuffArea" parent="Buffs/BuffUI" unique_id=290755707 node_paths=PackedStringArray("ui") instance=ExtResource("33_ipl58")]
+position = Vector2(-3467, -2892)
+ui = NodePath("..")
+
+[node name="BuffUI2" parent="Buffs" unique_id=1834853029 instance=ExtResource("4_fhtmt")]
+
+[node name="BuffArea" parent="Buffs/BuffUI2" unique_id=1197418989 node_paths=PackedStringArray("ui") instance=ExtResource("33_ipl58")]
+position = Vector2(-5430, -3570)
+ui = NodePath("..")
+
+[node name="BuffUI3" parent="Buffs" unique_id=1975486422 instance=ExtResource("4_fhtmt")]
+
+[node name="BuffArea" parent="Buffs/BuffUI3" unique_id=1135066508 node_paths=PackedStringArray("ui") instance=ExtResource("33_ipl58")]
+position = Vector2(-4371, -1475)
+ui = NodePath("..")
