@@ -1,28 +1,90 @@
 [gd_scene format=3 uid="uid://c6n0c6niuuyk4"]
 
 [ext_resource type="Script" uid="uid://bgbf6balm5kfv" path="res://Script/ui.gd" id="1_we040"]
+[ext_resource type="Texture2D" uid="uid://drq3d0bbp0do1" path="res://Assets/Sprites/character/idle and walk/sprite 1-3.png.png" id="2_hskja"]
+[ext_resource type="Script" uid="uid://vdfd5y538562" path="res://Script/Enemy_phase.gd" id="2_ycrtq"]
+[ext_resource type="Texture2D" uid="uid://dlgn8j0nk8lva" path="res://Assets/Sprites/UI_UX/ghost potrait.png" id="3_fau5c"]
+[ext_resource type="AudioStream" uid="uid://cg358pjsmhloj" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/013_Confirm_03.wav" id="5_nq5m3"]
+[ext_resource type="AudioStream" uid="uid://rq8layyegm8c" path="res://Assets/Audio/RPG_Essentials_Free/10_UI_Menu_SFX/001_Hover_01.wav" id="6_hskja"]
+[ext_resource type="AudioStream" uid="uid://l3o4bkmdav6p" path="res://Assets/Audio/audley_fergine-game-over-classic-206486.mp3" id="7_hskja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc63w"]
+border_width_left = 5
+border_color = Color(0.64845544, 0.81857574, 0.994834, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+corner_detail = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5viw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj04i"]
 bg_color = Color(0.09803922, 0.98039216, 0.078431375, 1)
 
-[node name="Control" type="CanvasLayer" unique_id=1944569366]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_we040"]
+
+[node name="UI" type="CanvasLayer" unique_id=1944569366]
 script = ExtResource("1_we040")
+portrait_player1 = ExtResource("2_hskja")
+portrait_player2 = ExtResource("3_fau5c")
 
 [node name="Bar Atas" type="MarginContainer" parent="." unique_id=864767141]
-offset_right = 270.0
-offset_bottom = 70.0
+offset_right = 350.0
+offset_bottom = 128.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
+script = ExtResource("2_ycrtq")
 
-[node name="HealthBar" type="ProgressBar" parent="Bar Atas" unique_id=940627238]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bar Atas" unique_id=435764828]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Potrait frame" type="Control" parent="Bar Atas/HBoxContainer" unique_id=2001865548]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="gambar" type="Panel" parent="Bar Atas/HBoxContainer/Potrait frame" unique_id=1879398024]
+clip_children = 2
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jc63w")
+
+[node name="potrait" type="TextureRect" parent="Bar Atas/HBoxContainer/Potrait frame/gambar" unique_id=146674783]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="Bar Atas/HBoxContainer" unique_id=1357924680]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HealthBar" type="ProgressBar" parent="Bar Atas/HBoxContainer/VBox" unique_id=940627238]
 custom_minimum_size = Vector2(250, 30)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_p5viw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_uj04i")
 value = 100.0
 show_percentage = false
+
+[node name="EnemyLabel" type="Label" parent="Bar Atas/HBoxContainer/VBox" unique_id=1472583690]
+layout_mode = 2
+text = "Enemy left: 0"
+
+[node name="PhaseLabel" type="Label" parent="Bar Atas/HBoxContainer/VBox" unique_id=1593574862]
+layout_mode = 2
+text = "Phase 1"
 
 [node name="Pause Menu" type="Control" parent="." unique_id=945360234]
 layout_mode = 3
@@ -47,7 +109,7 @@ color = Color(1, 1, 1, 0.22352941)
 layout_mode = 0
 offset_left = 428.0
 offset_top = 132.0
-offset_right = 547.0
+offset_right = 547.225
 offset_bottom = 308.0
 scale = Vector2(2, 2)
 theme_override_constants/separation = 20
@@ -59,8 +121,7 @@ horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=1759001470]
 layout_mode = 2
-text = "CONTINUE
-"
+text = "CONTINUE"
 
 [node name="ReturnTitleButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=797784597]
 layout_mode = 2
@@ -68,5 +129,61 @@ text = "Return to Title"
 
 [node name="QuitButton" type="Button" parent="Pause Menu/VBoxContainer" unique_id=437102274]
 layout_mode = 2
-text = "Quit Game
-"
+text = "Quit Game"
+
+[node name="GameOver" type="Control" parent="." unique_id=1965465515]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=1984281057]
+modulate = Color(0, 0, 0, 0.68235296)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver" unique_id=1269593821]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -194.0
+offset_right = -24.999939
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="GameOver/VBoxContainer" unique_id=1003376880]
+layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOver/VBoxContainer" unique_id=1974598486]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_we040")
+text = "Retry"
+
+[node name="ReturnTitleButton" type="Button" parent="GameOver/VBoxContainer" unique_id=1739907069]
+layout_mode = 2
+text = "Return to Title"
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="." unique_id=805498670]
+stream = ExtResource("5_nq5m3")
+
+[node name="HoverSound" type="AudioStreamPlayer2D" parent="." unique_id=403958026]
+stream = ExtResource("6_hskja")
+
+[node name="GameOver2" type="AudioStreamPlayer2D" parent="." unique_id=1310341630]
+stream = ExtResource("7_hskja")

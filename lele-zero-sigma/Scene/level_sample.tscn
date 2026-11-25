@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ca5833p4jvyc2"]
+
+[node name="LevelSample" type="Node2D" unique_id=96367360]
+
+[node name="FloorLayer" type="TileMapLayer" parent="." unique_id=1497402278]
+
+[node name="WallLayer" type="TileMapLayer" parent="." unique_id=3323114]
+
+[node name="RedBlockLayer" type="TileMapLayer" parent="." unique_id=822935317]
+
+[node name="BlueBlockLayer" type="TileMapLayer" parent="." unique_id=1284716732]
+
+[node name="DecorationLayer" type="TileMapLayer" parent="." unique_id=1673457260]
+
+[node name="PuzzleLayer" type="TileMapLayer" parent="." unique_id=69942209]

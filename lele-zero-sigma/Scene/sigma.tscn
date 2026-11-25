@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cmecofixmj0cq"]
+
+[ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_ysfec"]
+[ext_resource type="PackedScene" uid="uid://bogmrxvja1g8r" path="res://Scene/PlayerBuffAltar.tscn" id="2_dci6l"]
+[ext_resource type="PackedScene" uid="uid://kjrb76bk3t6a" path="res://Scene/Laser.tscn" id="3_8yr5q"]
+[ext_resource type="PackedScene" uid="uid://b8jppxr38o0im" path="res://Scene/SpeedBoostPlate.tscn" id="4_7aca8"]
+
+[node name="Node2D" type="Node2D" unique_id=482251422]
+
+[node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_ysfec")]
+position = Vector2(5, 13)
+
+[node name="Camera2D" type="Camera2D" parent="Player1" unique_id=607545498]
+zoom = Vector2(4, 4)
+
+[node name="PlayerBuffAltar" parent="." unique_id=917244200 instance=ExtResource("2_dci6l")]
+position = Vector2(60, 5)
+upgrade_HP = 20.0
+
+[node name="Laser" parent="." unique_id=861517069 instance=ExtResource("3_8yr5q")]
+position = Vector2(-18, -43)
+
+[node name="SpeedUpPlate" parent="." unique_id=1868619474 instance=ExtResource("4_7aca8")]
+position = Vector2(-59, 5)

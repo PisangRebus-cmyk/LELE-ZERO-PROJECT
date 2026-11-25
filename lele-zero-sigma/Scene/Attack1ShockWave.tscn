@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c2celbkt1d52x"]
+
+[ext_resource type="Script" uid="uid://bbxl0pr7yqakc" path="res://Script/attack_1_shock_wave.gd" id="1_pk6km"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mt6um"]
+radius = 40.0
+
+[node name="Hitbox" type="Area2D" unique_id=596816313]
+script = ExtResource("1_pk6km")
+
+[node name="Wave1" type="CollisionShape2D" parent="." unique_id=1129100597]
+shape = SubResource("CircleShape2D_mt6um")
+
+[node name="Wave2" type="CollisionPolygon2D" parent="." unique_id=1500654319]
+polygon = PackedVector2Array(80, 0, 70, -41, 41, -70, 0, -80, -41, -70, -70, -41, -80, 0, -70, 41, -41, 70, 0, 80, 41, 70, 70, 41, 80, 0, 106, 0, 93, 53, 55, 93, 0, 105, -54, 94, -94, 54, -105, 0, -94, -54, -54, -93, 0, -105, 54, -93, 93, -54, 106, 0)
+
+[node name="Wave3" type="CollisionPolygon2D" parent="." unique_id=293882329]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(80, 0, 70, -41, 41, -70, 0, -80, -41, -70, -70, -41, -80, 0, -70, 41, -41, 70, 0, 80, 41, 70, 70, 41, 80, 0, 92.5, 0, 80, 46.5, 46.5, 80, 0, 92.5, -47, 80, -80, 46.5, -92.5, 0, -80, -46.5, -46.5, -80, 0, -92.5, 46.5, -80, 80, -46.5, 92.5, 0)
+
+[node name="Wave4" type="CollisionPolygon2D" parent="." unique_id=585546291]
+scale = Vector2(3.045, 3.045)
+polygon = PackedVector2Array(80, 0, 70, -41, 41, -70, 0, -80, -41, -70, -70, -41, -80, 0, -70, 41, -41, 70, 0, 80, 41, 70, 70, 41, 80, 0, 92.5, 0, 80, 46.5, 46.5, 80, 0, 92.5, -47, 80, -80, 46.5, -92.5, 0, -80, -46.5, -46.5, -80, 0, -92.5, 46.5, -80, 80, -46.5, 92.5, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

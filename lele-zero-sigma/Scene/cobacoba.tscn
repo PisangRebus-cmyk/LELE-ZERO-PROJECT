@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="1_wxoss"]
 [ext_resource type="Script" uid="uid://c7q627456w4y8" path="res://Script/camera.gd" id="3_r4drh"]
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="4_dl7mr"]
+[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="5_ive0s"]
+
 
 [node name="Node2D" type="Node2D" unique_id=1006963760]
 
@@ -15,4 +17,8 @@
 script = ExtResource("3_r4drh")
 
 [node name="Player2" parent="." unique_id=1063273838 instance=ExtResource("4_dl7mr")]
-position = Vector2(-51, -34)
+position = Vector2(-214, -36)
+light_radius = 8.0
+
+[node name="Magician" parent="." unique_id=427896389 instance=ExtResource("5_ive0s")]
+position = Vector2(187, -83)

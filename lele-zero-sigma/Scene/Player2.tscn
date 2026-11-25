@@ -1,15 +1,79 @@
 [gd_scene format=3 uid="uid://c0kwevkjs3ew8"]
 
 [ext_resource type="Script" uid="uid://dkbetgv8qv8rw" path="res://Script/player2.gd" id="1_mjxxk"]
-[ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="2_eyttc"]
+[ext_resource type="Texture2D" uid="uid://c4vbor04g4c4w" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-2.png.png" id="2_rvvjp"]
+[ext_resource type="Texture2D" uid="uid://cppbnwefc1s07" path="res://Assets/Sprites/character/chara 2/New folder (3)/optional/sprite 2-9.png.png" id="3_ac71f"]
+[ext_resource type="Texture2D" uid="uid://n8uws4fdqiyw" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-8.png.png" id="4_d113c"]
+[ext_resource type="Texture2D" uid="uid://c6gxuajgfiubm" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-9.png (2).png" id="5_vuqhl"]
+[ext_resource type="Texture2D" uid="uid://d101cdf8xgq8k" path="res://Assets/Sprites/character/chara 2/New folder (3)/optional/sprite 2-10.png.png" id="6_sqdvs"]
+[ext_resource type="Texture2D" uid="uid://jxkgv3p46110" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-6.png.png" id="7_3xs5h"]
+[ext_resource type="Texture2D" uid="uid://bgktk3c5x4q8q" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-7.png.png" id="8_v5415"]
+[ext_resource type="Texture2D" uid="uid://y2fwu8he7bhq" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-3.png.png" id="9_pdd7n"]
+[ext_resource type="Texture2D" uid="uid://bilrjqxvxw0r3" path="res://Assets/Sprites/character/chara 2/New folder (3)/sprite 2-5.png.png" id="10_mp6b3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3ar4"]
 radius = 1.6957312
 
-[sub_resource type="Gradient" id="Gradient_uqtlx"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p5viw"]
 [sub_resource type="SpriteFrames" id="SpriteFrames_fwuf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rvvjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ac71f")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_d113c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vuqhl")
+}],
+"loop": 1,
+"name": &"player_up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rvvjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ac71f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sqdvs")
+}],
+"loop": 1,
+"name": &"player_walkdown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3xs5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v5415")
+}],
+"loop": 1,
+"name": &"player_walkleft",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_pdd7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mp6b3")
+}],
+"loop": 1,
+"name": &"player_walkright",
+"speed": 10.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_uqtlx"]
 
@@ -17,6 +81,7 @@ radius = 1.6957312
 gradient = SubResource("Gradient_uqtlx")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
+radius = 16.0
 
 [node name="ghost" type="CharacterBody2D" unique_id=1063273838]
 script = ExtResource("1_mjxxk")
@@ -27,19 +92,20 @@ scale = Vector2(-6.179325, 0.8061403)
 shape = SubResource("CapsuleShape2D_g3ar4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1798320079]
+position = Vector2(1, 12)
+scale = Vector2(2.2800002, 2.56)
 sprite_frames = SubResource("SpriteFrames_fwuf6")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2141952106]
-texture = ExtResource("2_eyttc")
+animation = &"player_walkleft"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=806515290]
 position = Vector2(0, 9.999999)
-scale = Vector2(0.44387415, 0.5867846)
+scale = Vector2(8.923876, 8.826785)
 texture = SubResource("GradientTexture2D_uj04i")
 
 [node name="LightArea" type="Area2D" parent="." unique_id=1786488550]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea" unique_id=1703128383]
-position = Vector2(1, 11)
-scale = Vector2(27.776005, 24.561274)
+position = Vector2(0, 9)
+scale = Vector2(20, 20)
 shape = SubResource("CircleShape2D_p5viw")
+debug_color = Color(0, 0.6, 0.69803923, 0.0627451)

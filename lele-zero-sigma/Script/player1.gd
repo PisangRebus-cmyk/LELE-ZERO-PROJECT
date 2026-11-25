@@ -1,11 +1,12 @@
 extends CharacterBody2D
 signal kidnapped
+signal died
 const DARK_LIMIT := 4.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
 const COMBO_RESET_TIME := 0.6
-const ATTACKS := [
-	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
+var ATTACKS := [
+	{"damage": 999, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 10, "stun": 4, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
 	{"damage": 12, "stun": 5, "knockback": 150, "lunge": 60,   "shape": "arc",   "windup": 0.08, "active": 0.10, "recover": 0.14},
@@ -24,11 +25,9 @@ const PARRY_STUN := 12.0
 const BLOCK_STUN_FACTOR := 0.3
 const STUN_DURATION := 1.0
 
-const  DIZZY_DURATION := 2.5
-
 @export var SPEED := 100
 @export var acceleration := 2000
-@export var health := 200
+@export var health := 200.0
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_hitbox : Area2D = $Hitbox
@@ -38,8 +37,11 @@ const  DIZZY_DURATION := 2.5
 @onready var combo_timer: Timer = $ComboTimer
 @onready var dodge_cooldown: Timer = $DodgeCooldown
 @onready var guard_cooldown: Timer = $GuardCooldown
-
+@onready var walk_sound: AudioStreamPlayer2D = $WalkSound
 @onready var stun_gauge: StunGauge = $StunGauge
+@onready var interact_area: Area2D = $InteractArea
+@export var max_health := 200.0
+
 
 var state := State.FREE
 var state_time := 0.0
@@ -48,16 +50,16 @@ var attack_buffered := false
 var aim_direction := Vector2.DOWN
 var is_dead = false
 var animation_direction: String = "down"
-var animation_state : String = ""
 var dodge_direction := Vector2.DOWN
 var is_active := true
 var is_kidnapped := false
-var is_dizzy := false
 var light_sources := 0
 var dark_time := 0.0
+var key := 0
 
 
 func _ready():
+	health = clampf(health, -1.0, max_health)
 	add_to_group("Player")
 	attack_hitbox.monitoring = false
 	combo_timer.timeout.connect(_on_combo_timer_timeout)
@@ -77,24 +79,20 @@ func update_sprite_direction(input:Vector2) -> void:
 			animation_direction = "left"
 		Vector2.RIGHT:
 			animation_direction = "right"
-func update_sprite() -> void:
-	if velocity.length() > 0:
-		animation_state = "walk_"
-	else:	
-		animation_state = "idle_"
+
 func _play_attack_animation() -> void:
 	if abs(aim_direction.x) > abs(aim_direction.y):
 		animation_direction = "right" if aim_direction.x > 0 else "left"
-		animated_sprite_2d.flip_h = aim_direction.x < 0
-		animated_sprite_2d.play("attack_side")
 	elif aim_direction.y < 0:
 		animation_direction = "up"
-		animated_sprite_2d.play("attack_up")
 	else:
 		animation_direction = "down"
-		animated_sprite_2d.play("attack_down")
+	animated_sprite_2d.flip_h = false
+	animated_sprite_2d.play(ANIM_ATTACK[animation_direction])
 
 func _physics_process(delta: float) -> void:
+	_update_darkness(delta)
+	_update_walk_sound()
 	_update_darkness(delta)
 	if is_kidnapped:
 		return
@@ -102,15 +100,21 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 		move_and_slide()
 		return
+	
+	if is_dead:
+		return
 
-	#_update_darkness(delta) ini ntar dlu ya
-	#if is_kidnapped:
-	#	return
-	#if not is_dead:
-	#	velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
-	#	move_and_slide()
-	#	return
+
+	_update_darkness(delta)
+	if is_kidnapped:
+		return
+	if is_dead:
+		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
+		move_and_slide()
+		return
+	
 		
+
 	state_time += delta
 	match state:
 		State.FREE:
@@ -123,8 +127,9 @@ func _physics_process(delta: float) -> void:
 			_state_guard(delta)
 		State.STUN:
 			_state_stun(delta)
+			
 	move_and_slide()
-
+	
 #States
 func change_state(new_state: State) -> void:
 	if state == State.GUARD and new_state != State.GUARD:
@@ -144,32 +149,32 @@ func _state_free(delta: float) -> void:
 	if Input.is_action_just_pressed("guard") and guard_cooldown.is_stopped():
 		start_guard()
 		return
+	if Input.is_action_just_pressed("interact"):
+		_try_interact()
+		return
 	if Input.is_action_just_pressed("attack"):
 		start_attack()
 		return
-	var direction : Vector2
-	if is_dizzy == false:
-		direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	if is_dizzy == true:
-		direction = Input.get_vector("walk_right", "walk_left", "walk_down", "walk_up")
+		
+	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	update_sprite_direction(direction)
-	update_sprite()
-	animated_sprite_2d.play(animation_state + animation_direction)
+	_play_move_anim()
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
 	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
 
+	
 #State Attack
 func start_attack() -> void:
 	combo_timer.stop()
 	attack_buffered = false
-
+	
 	aim_direction = (get_global_mouse_position() - global_position).normalized()
 	attack_hitbox.rotation = aim_direction.angle()
-
+	
 	var data: Dictionary = ATTACKS[combo_index]
 	arc_shape.disabled = data.shape != "arc"
 	slash_shape.disabled = data.shape != "slash"
-
+	
 	_play_attack_animation()
 	$SwingSound.play()
 	change_state(State.ATTACK)
@@ -185,20 +190,20 @@ func _state_attack(delta: float) -> void:
 	var active_start: float = data.windup
 	var active_end: float = data.windup + data.active
 	var total: float = active_end + data.recover
-
+	
 	if Input.is_action_just_pressed("attack"):
 		attack_buffered = true
-
+		
 	attack_hitbox.monitoring = state_time >= active_start and state_time < active_end
-
+	
 	if state_time < active_end:
 		velocity = aim_direction * data.lunge
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
-
+		
 	if state_time >= total:
 		_finish_attack()
-	
+		
 func _finish_attack() -> void:
 	combo_index = (combo_index + 1) % ATTACKS.size()
 	if attack_buffered:
@@ -206,10 +211,10 @@ func _finish_attack() -> void:
 	else:
 		combo_timer.start(COMBO_RESET_TIME)
 		change_state(State.FREE)
-
+		
 func _on_combo_timer_timeout() -> void:
 	combo_index = 0
-
+	
 #State Dodge
 func start_dodge() -> void:
 	# Direction: where you're pushing, else a backstep away from the mouse
@@ -219,27 +224,26 @@ func start_dodge() -> void:
 	else:
 		var to_mouse := (get_global_mouse_position() - global_position).normalized()
 		dodge_direction = -to_mouse
-
+		
 	# A dodge cancels the combo and any buffered click
 	combo_timer.stop()
 	combo_index = 0
 	attack_buffered = false
-
+	
 	dodge_cooldown.start(DODGE_COOLDOWN)
-
-	# Placeholder visuals until you have a dodge sprite
+	
 	animation_direction = direction_to_name(dodge_direction)
 	animated_sprite_2d.flip_h = false
-	animated_sprite_2d.play("walk_" + animation_direction)
+	animated_sprite_2d.play(ANIM_DODGE)
 	animated_sprite_2d.self_modulate = Color(1, 1, 1, 0.5)
-
+	
 	change_state(State.DODGE)
-
+	
 func _state_dodge(_delta: float) -> void:
 	velocity = dodge_direction * DODGE_SPEED
 	if state_time >= DODGE_DURATION:
 		change_state(State.FREE)
-
+	
 func is_invulnerable() -> bool:
 	return state == State.DODGE or is_kidnapped
 
@@ -272,7 +276,7 @@ func _state_guard(delta: float) -> void:
 	# Placeholder visuals until you have guard sprites:
 	# cyan = parry window, blue = plain block
 	animated_sprite_2d.flip_h = false
-	animated_sprite_2d.play("idle_" + direction_to_name(aim_direction))
+	animated_sprite_2d.play(ANIM_GUARD)
 	if state_time <= PARRY_WINDOW:
 		animated_sprite_2d.self_modulate = Color(0.5, 1.0, 1.0)
 	else:
@@ -289,7 +293,7 @@ func _on_stunned() -> void:
 func _state_stun(delta: float) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 	animated_sprite_2d.flip_h = false
-	animated_sprite_2d.play("idle_" + animation_direction)
+	animated_sprite_2d.play(ANIM_STUN)
 	if state_time >= STUN_DURATION:
 		stun_gauge.release()
 		change_state(State.FREE)
@@ -332,11 +336,19 @@ func _block(damage: int, stun_power: float, knockback_force: Vector2) -> void:
 
 func _apply_damage(amount: int) -> void:
 	health -= amount
-	#Savemanager.player_health = health
 	print("player hp: ", health)
 	if health <= 0:
-		is_dead = true
-		queue_free()
+		_die()
+
+func _die() -> void:
+	if is_dead:
+		return
+	health = 0
+	is_dead = true
+	died.emit()
+	change_state(State.FREE)
+	velocity = Vector2.ZERO
+	hide()
 
 func _flash(color: Color) -> void:
 	animated_sprite_2d.modulate = color
@@ -355,7 +367,7 @@ func set_active(value: bool) -> void:
 	if not value:
 		change_state(State.FREE)
 		velocity = Vector2.ZERO
-		animated_sprite_2d.play("idle_" + animation_direction)
+		_play_move_anim()
 
 # Dipanggil oleh cahaya player2
 func enter_light() -> void:
@@ -390,31 +402,17 @@ func _get_kidnapped() -> void:
 			child.set_deferred("disabled", true)
 	kidnapped.emit()
 
-# PUSING GARA GARA UTS
-func dizzy() -> void:
-	if is_dizzy == true:
-		return
-	is_dizzy = true
-	await get_tree().create_timer(DIZZY_DURATION).timeout
-	is_dizzy = false
-	return
-
 
 #Hitbox / Hurtbox
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if is_invulnerable():
+	if is_dead or is_invulnerable():
 		return
 	if body.is_in_group("NoContactDamage"):
-		return   # musuh jarak jauh tidak melukai lewat sentuhan
+		return
 	if body.is_in_group("Enemy"):
-		health -= 10
-		#Savemanager.player_health = health
-		animated_sprite_2d.modulate = Color.RED
-		await get_tree().create_timer(0.1).timeout
-		animated_sprite_2d.modulate = Color.WHITE
-	
-		if health <= 0:
-			queue_free()
+		_apply_damage(10)
+		if not is_dead:
+			_flash(Color.RED)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name != "Hurtbox":
@@ -430,3 +428,69 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	elif target.has_method("take_damage"):
 		target.take_damage(data.damage, push)
 		
+func take_damage(amount: int) -> void:
+	_apply_damage(amount)
+
+#========= talk with girl, touch the grass, nigga
+func _try_interact() -> void:
+	for area in interact_area.get_overlapping_areas():
+		if area.has_method("interact"):
+			area.interact(self)
+			return	
+			
+#================================================
+#Buffer (ts shi is the only one which isn't 100% vibe coded, i'm cooked ~lead prog)
+func ascend(buff, value) -> void:
+	if buff == 0:
+		max_health += value
+		health += value
+		print(health)
+	elif buff == 1:
+		for i in ATTACKS.size():
+			ATTACKS[i].damage *= value
+			print(ATTACKS[i].damage)
+	elif buff == 2:
+		SPEED += value
+		print(SPEED)
+	
+func boost(mult) -> void:
+	SPEED = mult * SPEED
+	await get_tree().create_timer(3.0).timeout
+	SPEED = SPEED / mult
+
+
+# ================= ANIMASI =================
+# Nama animasi di SpriteFrames. Kalau nama di editor berubah, ubah di sini saja.
+const ANIM_WALK := {
+	"up": "player_up",
+	"down": "player_walkdown",
+	"left": "player_walkleft",
+	"right": "player_walkright",
+}
+const ANIM_ATTACK := {
+	"up": "attack_up",
+	"down": "attack_down",
+	"left": "attack_left",
+	"right": "attack_right",
+}
+const ANIM_DODGE := "player_sprint"
+const ANIM_GUARD := "player_defend"
+const ANIM_STUN := "player_stun"
+
+# Jalan kalau bergerak, berhenti di frame pertama kalau diam
+func _play_move_anim() -> void:
+	var anim: String = ANIM_WALK[animation_direction]
+	if velocity.length() > 5.0:
+		animated_sprite_2d.play(anim)
+	else:
+		animated_sprite_2d.animation = anim
+		animated_sprite_2d.frame = 0
+		animated_sprite_2d.stop()
+		
+func _update_walk_sound() -> void:
+	var walking := state == State.FREE and is_active and not is_dead and not is_kidnapped and velocity.length() > 5.0
+	if walking:
+		if not walk_sound.playing:
+			walk_sound.play()
+	elif walk_sound.playing:
+		walk_sound.stop()

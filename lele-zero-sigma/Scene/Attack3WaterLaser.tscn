@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b1d63leuqxhxu"]
+
+[ext_resource type="Script" uid="uid://22v18o5bm43" path="res://Script/attack_3_water_laser.gd" id="1_fdci2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(698, 20)
+
+[node name="Hitbox" type="Area2D" unique_id=1525052373]
+script = ExtResource("1_fdci2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787023781]
+position = Vector2(339, 0)
+shape = SubResource("RectangleShape2D_uj04i")

@@ -5,11 +5,15 @@ extends Node
 
 var current: CharacterBody2D
 
+@onready var lagu: AudioStreamPlayer2D = $Lagu
 
 func _ready() -> void:
-	# Tunggu 1 frame supaya semua karakter sudah masuk group-nya
-	await get_tree().process_frame
+	if lagu:
+		lagu.play()
+		# Menghubungkan signal finished agar lagu otomatis mengulang (loop) lewat kode
+		lagu.finished.connect(_on_lagu_finished)
 
+	await get_tree().process_frame
 	if player1 == null:
 		player1 = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	if ghost == null:
@@ -40,3 +44,8 @@ func _set_current(target: CharacterBody2D) -> void:
 	var cam := target.get_node_or_null("Camera2D") as Camera2D
 	if cam:
 		cam.make_current()
+	get_tree().call_group("UI", "set_portrait", 1 if target == player1 else 2)
+
+func _on_lagu_finished() -> void:
+	if lagu:
+		lagu.play() 

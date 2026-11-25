@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dcxjwy1sd4lk4"
+path="res://.godot/imported/rpg_bs004.ogg-48a3483674f345dd525321acf13bfe4d.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/JRPG Battle BGM Pack 1 ogg&m4a/ogg&m4a/Boss Battle/rpg_bs004/rpg_bs004.ogg"
+dest_files=["res://.godot/imported/rpg_bs004.ogg-48a3483674f345dd525321acf13bfe4d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

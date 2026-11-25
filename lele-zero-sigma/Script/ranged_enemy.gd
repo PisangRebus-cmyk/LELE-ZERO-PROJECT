@@ -160,7 +160,7 @@ func _state_recover() -> void:
 func on_parried(parrier: Node2D, stun_power: float) -> void:
 	knockback = (global_position - parrier.global_position).normalized() * 250.0
 	change_state(State.RECOVER)    
-	stun_gauge.add(stun_power)  
+	stun_gauge.add(stun_power)
 
 
 
@@ -188,18 +188,14 @@ func _shoot_arrow() -> void:
 	arrow_shooted = 0
 	while arrow_shooted < arrow_shoot:	
 		var arrow = arrow_scene.instantiate()
-		
-		
 		arrow.target_player = player
 		arrow.global_position = global_position
 		arrow.direction = (player.global_position-global_position).normalized()
 		arrow.rotation = (player.global_position-global_position).normalized().angle()
-		
 		get_tree().current_scene.add_child(arrow)
 		
 		await get_tree().create_timer(shooting_timer).timeout		
 		arrow_shooted += 1
-	
 	
 
 func _teleport() -> void:
