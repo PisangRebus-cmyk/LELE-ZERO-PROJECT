@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bdmwcbtvlgufw" path="res://Script/toggleable_layer.gd" id="4_4felt"]
 [ext_resource type="PackedScene" uid="uid://cbg1imagfl01q" path="res://Scene/BossFightArena.tscn" id="6_j24hx"]
 [ext_resource type="PackedScene" uid="uid://coki0owkgoh26" path="res://Scene/player1.tscn" id="9_4felt"]
+[ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="10_7ddyr"]
 [ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="90_dlgui"]
 [ext_resource type="Script" uid="uid://cafq3bbphpy7n" path="res://Script/Dialog_level3_1.gd" id="91_dlg31"]
 
@@ -185,3 +186,6 @@ position = Vector2(-19, -15)
 SPEED = 444
 
 [node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1595978980]
+
+[node name="Lever" parent="." unique_id=2086188507 instance=ExtResource("10_7ddyr")]
+position = Vector2(311, -322)
