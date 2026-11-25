@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ofu4yu717l5f"]
 
-[ext_resource type="Script" uid="uid://bpecm3aeubb01" path="res://Scene/buff_ui.gd" id="1_8vb6a"]
+[ext_resource type="Script" uid="uid://bpecm3aeubb01" path="res://Script/buff_ui.gd" id="1_8vb6a"]
 
 [node name="BuffUI" type="CanvasLayer" unique_id=179494632]
 process_mode = 3

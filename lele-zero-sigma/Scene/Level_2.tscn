@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c6n0c6niuuyk4" path="res://Scene/UI.tscn" id="4_0thlt"]
 [ext_resource type="Texture2D" uid="uid://bhpdfa314hsh3" path="res://Assets/Sprites/level environment/2/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="5_hdjm8"]
 [ext_resource type="AudioStream" uid="uid://cxu6hj3c7b7kx" path="res://Assets/Audio/JRPG Battle BGM Pack 1 ogg&m4a/ogg&m4a/Normal Battle/rpg_bt005/rpg_bt005.ogg" id="6_0vrfu"]
+[ext_resource type="PackedScene" uid="uid://d0lvftpn51dbi" path="res://Scene/IllustrationUI.tscn" id="7_qnund"]
+[ext_resource type="Script" uid="uid://cgsojcrb7j0f2" path="res://Script/Illustrasi_trigger.gd" id="11_4fg4n"]
+[ext_resource type="Texture2D" uid="uid://c14wvd4tup0gt" path="res://Assets/Sprites/Scene_2.png" id="12_aw2fi"]
 [ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="90_dlgui"]
 [ext_resource type="Script" uid="uid://ctam2xtfvip83" path="res://Script/Dialog_level2_1.gd" id="91_dlg21"]
 [ext_resource type="Script" uid="uid://b1cotmotko5vp" path="res://Script/Dialog_level2_2.gd" id="92_dlg22"]
@@ -186,6 +189,8 @@ sources/1 = SubResource("TileSetAtlasSource_0vrfu")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlg"]
 size = Vector2(200, 200)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+
 [node name="Node2D" type="Node2D" unique_id=664405337]
 script = ExtResource("1_qkqlu")
 
@@ -220,6 +225,8 @@ stream = ExtResource("6_0vrfu")
 
 [node name="Dialog" type="Node2D" parent="." unique_id=943135093]
 
+[node name="IllustrationUI" parent="Dialog" unique_id=874266096 instance=ExtResource("7_qnund")]
+
 [node name="DialogUI" parent="Dialog" unique_id=1746788196 instance=ExtResource("90_dlgui")]
 
 [node name="Dialog_level2_1" type="Area2D" parent="Dialog" unique_id=729868659 node_paths=PackedStringArray("dialog_ui")]
@@ -233,3 +240,12 @@ dialog_ui = NodePath("../DialogUI")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Dialog_level2_2" unique_id=289997758]
 shape = SubResource("RectangleShape2D_dlg")
+
+[node name="Illustrasi" type="Area2D" parent="Dialog" unique_id=379843388]
+position = Vector2(-30, -1486)
+scale = Vector2(0.71999943, 10.36)
+script = ExtResource("11_4fg4n")
+illustrations = Array[Texture2D]([ExtResource("12_aw2fi")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Illustrasi" unique_id=2102924681]
+shape = SubResource("RectangleShape2D_uj04i")

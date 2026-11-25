@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d0lvftpn51dbi"]
+
+[ext_resource type="Script" uid="uid://t3hu677gptoa" path="res://Script/illustration_ui.gd" id="1_y1rbo"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.42, 0.27, 0.14, 1)
+
+[node name="IllustrationUI" type="CanvasLayer" unique_id=874266096]
+process_mode = 3
+layer = 11
+script = ExtResource("1_y1rbo")
+
+[node name="Root" type="Control" parent="." unique_id=1529529535]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="Root" unique_id=1594188827]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Frame" type="PanelContainer" parent="Root" unique_id=725765253]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = -304.0
+offset_right = 404.0
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="Picture" type="TextureRect" parent="Root/Frame" unique_id=2010989693]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5

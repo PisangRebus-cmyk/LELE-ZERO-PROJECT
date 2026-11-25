@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://tsj0k3124uvn" path="res://Script/switch.gd" id="1_dk5bn"]
 [ext_resource type="Texture2D" uid="uid://blst1l67ao7ry" path="res://Assets/Sprites/level environment/3/sinnersRiseTilemap.png" id="1_lhhnt"]
 [ext_resource type="AudioStream" uid="uid://di2w3el17qpe" path="res://Assets/Audio/JRPG Battle BGM Pack 1 ogg&m4a/ogg&m4a/Boss Battle/rpg_bs007/rpg_bs007.ogg" id="2_gidpr"]
+[ext_resource type="PackedScene" uid="uid://d0lvftpn51dbi" path="res://Scene/IllustrationUI.tscn" id="4_j24hx"]
+[ext_resource type="Script" uid="uid://cgsojcrb7j0f2" path="res://Script/Illustrasi_trigger.gd" id="7_4felt"]
+[ext_resource type="Texture2D" uid="uid://d2g8vt8mh7vrw" path="res://Assets/Sprites/Scene_3.png" id="8_7ddyr"]
+[ext_resource type="Texture2D" uid="uid://bdbakbxhgnp60" path="res://Assets/Sprites/Scene_4.png" id="9_wr53b"]
 [ext_resource type="PackedScene" uid="uid://2gt7ao1770lm" path="res://Scene/DialogUI.tscn" id="90_dlgui"]
-[ext_resource type="Script" path="res://Script/Dialog_level3_1.gd" id="91_dlg31"]
+[ext_resource type="Script" uid="uid://cafq3bbphpy7n" path="res://Script/Dialog_level3_1.gd" id="91_dlg31"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gidpr"]
 texture = ExtResource("1_lhhnt")
@@ -244,6 +248,10 @@ sources/0 = SubResource("TileSetAtlasSource_dk5bn")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlg"]
 size = Vector2(200, 200)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5viw"]
+
 [node name="Node2D" type="Node2D" unique_id=843865067]
 script = ExtResource("1_dk5bn")
 
@@ -262,14 +270,30 @@ tile_set = SubResource("TileSet_p5viw")
 [node name="Lagu" type="AudioStreamPlayer2D" parent="." unique_id=22970189]
 stream = ExtResource("2_gidpr")
 
-[node name="Dialog" type="Node2D" parent="."]
+[node name="Dialog" type="Node2D" parent="." unique_id=721145443]
 
-[node name="DialogUI" parent="Dialog" instance=ExtResource("90_dlgui")]
+[node name="IllustrationUI" parent="Dialog" unique_id=874266096 instance=ExtResource("4_j24hx")]
 
-[node name="Dialog_level3_1" type="Area2D" parent="Dialog" node_paths=PackedStringArray("dialog_ui")]
+[node name="DialogUI" parent="Dialog" unique_id=861088206 instance=ExtResource("90_dlgui")]
+
+[node name="Dialog_level3_1" type="Area2D" parent="Dialog" unique_id=182093802 node_paths=PackedStringArray("dialog_ui")]
 monitoring = false
 script = ExtResource("91_dlg31")
 dialog_ui = NodePath("../DialogUI")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Dialog_level3_1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Dialog_level3_1" unique_id=340720712]
 shape = SubResource("RectangleShape2D_dlg")
+
+[node name="Illuustrasi_1" type="Area2D" parent="Dialog" unique_id=41259602]
+script = ExtResource("7_4felt")
+illustrations = Array[Texture2D]([ExtResource("8_7ddyr")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Illuustrasi_1" unique_id=1403758047]
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="Illustrasi_2" type="Area2D" parent="Dialog" unique_id=429595524]
+script = ExtResource("7_4felt")
+illustrations = Array[Texture2D]([ExtResource("9_wr53b")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Illustrasi_2" unique_id=876214836]
+shape = SubResource("RectangleShape2D_p5viw")
