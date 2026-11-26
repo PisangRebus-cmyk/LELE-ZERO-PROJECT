@@ -15,7 +15,7 @@ var ATTACKS := [
 const DODGE_SPEED := 200.0
 const DODGE_DURATION := 0.25
 const DODGE_COOLDOWN := 0.7
-
+const SPRINT := 0.6
 const PARRY_WINDOW := 0.3
 const BLOCK_DAMAGE_FACTOR := 0.2
 const GUARD_MOVE_FACTOR := 0.3
@@ -43,6 +43,7 @@ const STUN_DURATION := 1.0
 @export var max_health := 200.0
 @onready var dash_sound : AudioStreamPlayer2D = $DashSound
 
+var is_sprint := 0
 var attack_mult := 1.0
 var state := State.FREE
 var state_time := 0.0
@@ -156,12 +157,16 @@ func _state_free(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		start_attack()
 		return
-		
+	if Input.is_action_pressed("sprint"):
+		is_sprint = 1
+	elif Input.is_action_just_released("sprint"):
+		is_sprint = 0
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	update_sprite_direction(direction)
 	_play_move_anim()
-	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
-	velocity.y = move_toward(velocity.y, direction.y * SPEED, acceleration * delta)
+	velocity.x = move_toward(velocity.x, direction.x * SPEED * (1 + SPRINT * is_sprint), acceleration * delta)
+	velocity.y = move_toward(velocity.y, direction.y * SPEED * (1 + SPRINT * is_sprint), acceleration * delta)
+	
 
 	
 #State Attack
