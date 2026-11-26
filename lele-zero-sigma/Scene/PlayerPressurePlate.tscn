@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://cvbekpkeonefm"]
 
 [ext_resource type="Script" uid="uid://dvqo6b4qsp2tn" path="res://Script/player_pressure_plate.gd" id="1_opfai"]
-[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_ybht5"]
+[ext_resource type="Texture2D" uid="uid://bnrxnfhyp710y" path="res://Assets/Sprites/Interactable/PlayerPressurePlate.png" id="2_opfai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3pud"]
+size = Vector2(16, 15)
 
 [node name="PlayerPressurePlate" type="Area2D" unique_id=101309013]
 script = ExtResource("1_opfai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474868315]
+position = Vector2(0, 0.5)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_a3pud")
 
 [node name="HoldTimer" type="Timer" parent="." unique_id=1894490239]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1011981897]
-texture = ExtResource("2_ybht5")
+scale = Vector2(2, 2)
+texture = ExtResource("2_opfai")
 hframes = 2

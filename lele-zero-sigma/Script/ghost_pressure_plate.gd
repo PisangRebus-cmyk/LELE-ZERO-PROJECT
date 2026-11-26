@@ -11,6 +11,7 @@ extends PuzzleTrigger
 var pressing := 0   # a counter, like light_sources
 
 func _ready() -> void:
+	sprite.frame = 0
 	timer.timeout.connect(_on_timer_timeout)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
@@ -18,6 +19,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group(accepted_group):
 		return
+	_refresh()
 	pressing += 1
 	print(pressing)
 	timer.stop()
@@ -27,6 +29,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if not body.is_in_group(accepted_group):
 		return
+	_refresh()
 	pressing -= 1
 	if pressing > 0:
 		return
@@ -40,3 +43,5 @@ func _on_timer_timeout() -> void:
 
 func _refresh() -> void:
 	sprite.frame = 1 if is_on else 0
+	
+	

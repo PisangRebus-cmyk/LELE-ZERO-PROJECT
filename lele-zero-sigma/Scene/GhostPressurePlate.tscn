@@ -1,20 +1,24 @@
 [gd_scene format=3 uid="uid://bb33uavioa33e"]
 
 [ext_resource type="Script" uid="uid://b5bkc2vg8r6vo" path="res://Script/ghost_pressure_plate.gd" id="1_lg1bk"]
-[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_ohahx"]
+[ext_resource type="Texture2D" uid="uid://b5cd1opaegt6g" path="res://Assets/Sprites/Interactable/GhostPressurePlate.png" id="2_lg1bk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3pud"]
+size = Vector2(16, 15)
 
 [node name="GhostPressurePlate" type="Area2D" unique_id=101309013]
 script = ExtResource("1_lg1bk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474868315]
+position = Vector2(0, 0.5)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_a3pud")
 
 [node name="HoldTimer" type="Timer" parent="." unique_id=1894490239]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1011981897]
-texture = ExtResource("2_ohahx")
+scale = Vector2(2, 2)
+texture = ExtResource("2_lg1bk")
 hframes = 2
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

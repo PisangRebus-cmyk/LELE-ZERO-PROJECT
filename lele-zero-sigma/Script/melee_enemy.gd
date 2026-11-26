@@ -38,7 +38,7 @@ const PARRY_KNOCKBACK := 250
 	"sweep": $SweepHitbox,
 	"dash": $DashHitbox,
 }
-
+var action_id := 0
 var health := 0
 var state := State.IDLE
 var state_time := 0.0
@@ -88,6 +88,21 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = drive + knockback
 	move_and_slide()
+	if state != State.ATTACK and state != State.STUN:
+		face_player()
+
+func play_and_wait(anim: String) -> bool:
+	var id := action_id
+	sprite.play(anim)
+	await sprite.animation_finished
+	return id == action_id
+	
+func face_player() -> void:
+	if is_instance_valid(player):
+		sprite.flip_h = player.global_position.x > global_position.x
+
+
+
 
 # STATE CHANGE 
 func change_state(new_state: State) -> void:
@@ -156,7 +171,7 @@ func _state_attack() -> void:
 	hb.monitoring = active
 	if active:
 		drive = aim_direction * data.lunge
-	
+	sprite.play(current_attack)
 	if state_time >= total:
 		_finish_attack()
 

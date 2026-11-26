@@ -11,12 +11,32 @@ region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"Stunned",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 2,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ue5rh")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"slam",
 "speed": 5.0
 }]
 
@@ -44,7 +64,8 @@ script = ExtResource("2_t2fta")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1561640675]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_uj04i")
-autoplay = "default"
+animation = &"slam"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1636469258]
 shape = SubResource("RectangleShape2D_uj04i")

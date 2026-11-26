@@ -104,7 +104,12 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = move_dir * move_speed + knockback
 	move_and_slide()
+	if state != State.SHOOT and state != State.STUN:
+		face_player()
 
+func face_player() -> void:
+	if is_instance_valid(player):
+		sprite.flip_h = player.global_position.x > global_position.x
 
 func _state_idle() -> void:
 	if global_position.distance_to(player.global_position) <= trigger_range:
@@ -187,6 +192,8 @@ func _shoot_arrow() -> void:
 		return
 	arrow_shooted = 0
 	while arrow_shooted < arrow_shoot:	
+		sprite.play("shoot")
+		await sprite.animation_finished
 		var arrow = arrow_scene.instantiate()
 		arrow.target_player = player
 		arrow.global_position = global_position
@@ -206,7 +213,8 @@ func _teleport() -> void:
 	
 	if not is_instance_valid(player):
 		return
-
+	sprite.play("teleport1")
+	await sprite.animation_finished
 	for i in 20:
 		var angle := randf() * TAU
 		var dist := randf_range(teleport_min_distance, teleport_max_distance)
@@ -220,7 +228,7 @@ func _teleport() -> void:
 
 		global_position = target
 		break
-
+	sprite.play("teleport2")
 	attack_timer = maxf(attack_timer, 1.0)
 	change_state(State.COMBAT)  
 

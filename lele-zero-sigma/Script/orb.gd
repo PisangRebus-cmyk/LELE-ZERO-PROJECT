@@ -5,7 +5,7 @@ extends Area2D
 @export var stun_power := 10.0
 @export var knockback_strength := 200.0
 @export var lifetime := 4.0
-@export var radius := 8.0
+@export var radius := 6.0
 
 var direction := Vector2.RIGHT
 @onready var Orb_animation: AnimatedSprite2D = $AnimatedSprite2D

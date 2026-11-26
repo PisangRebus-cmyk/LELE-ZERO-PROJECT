@@ -1,56 +1,248 @@
 [gd_scene format=3 uid="uid://kjrb76bk3t6a"]
 
-[ext_resource type="Texture2D" uid="uid://bn7uqrvbrdueo" path="res://Assets/Sprites/Screenshot 2026-11-15 230720.png" id="1_3nbuw"]
 [ext_resource type="Script" uid="uid://d4a5gxjpuywsc" path="res://Script/laser.gd" id="1_p0igm"]
+[ext_resource type="Texture2D" uid="uid://vs31vrnfg7c" path="res://Assets/Sprites/Magician/Laser.PNG" id="2_yda2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
-size = Vector2(200, 10)
+size = Vector2(200, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vakch"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b02fw"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hne10"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpupq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vakch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b02fw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hne10")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mh2o"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnp87"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca3pn"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7h7mn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mh2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnp87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca3pn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yda2v"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bueyu"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygpar"]
+atlas = ExtResource("2_yda2v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5viw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yda2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bueyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygpar")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpupq"]
-bg_color = Color(0.69411767, 0.5568628, 0.0627451, 0.5294118)
+bg_color = Color(0.69411767, 0.5568628, 0.05882353, 0.3372549)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5viw"]
-bg_color = Color(0.6392157, 0.1764706, 0.039215688, 0.44705883)
+bg_color = Color(0.6392157, 0.1764706, 0.039215688, 0.22745098)
 
 [node name="Laser" type="Area2D" unique_id=861517069]
+scale = Vector2(3.4, 3.4)
 script = ExtResource("1_p0igm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=231789820]
 position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_uj04i")
 
-[node name="Sprites" type="Node2D" parent="." unique_id=839280155]
+[node name="Sprites" type="Node2D" parent="." unique_id=702204674]
 visible = false
+z_index = 1
+position = Vector2(0, -0.29411763)
+scale = Vector2(0.3, 0.3)
 
-[node name="1" type="Sprite2D" parent="Sprites" unique_id=2081493685]
-position = Vector2(25, 0)
-scale = Vector2(0.027218292, 0.052083336)
-texture = ExtResource("1_3nbuw")
+[node name="AnimatedSprite2D1" type="AnimatedSprite2D" parent="Sprites" unique_id=1432465488]
+position = Vector2(16, 2.0666676)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.47701973
 
-[node name="2" type="Sprite2D" parent="Sprites" unique_id=735974951]
-position = Vector2(75, 0)
-scale = Vector2(0.027218292, 0.052083336)
-texture = ExtResource("1_3nbuw")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Sprites" unique_id=1712495094]
+position = Vector2(46.000008, 2.0666676)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.5973618
 
-[node name="3" type="Sprite2D" parent="Sprites" unique_id=171833160]
-position = Vector2(124.99999, 0)
-scale = Vector2(0.027218292, 0.052083336)
-texture = ExtResource("1_3nbuw")
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Sprites" unique_id=1775928918]
+position = Vector2(76.00001, 2.0666676)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.78489786
 
-[node name="4" type="Sprite2D" parent="Sprites" unique_id=818544719]
-position = Vector2(175, 0)
-scale = Vector2(0.027218292, 0.052083336)
-texture = ExtResource("1_3nbuw")
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Sprites" unique_id=811464610]
+position = Vector2(106, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.13012
 
-[node name="5" type="Sprite2D" parent="Sprites" unique_id=2111484804]
-position = Vector2(175, 0)
-scale = Vector2(0.027218292, 0.052083336)
-texture = ExtResource("1_3nbuw")
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Sprites" unique_id=1114041554]
+position = Vector2(136.00002, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.250465
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Sprites" unique_id=99202935]
+position = Vector2(166.00002, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.4380001
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Sprites" unique_id=702128962]
+position = Vector2(196, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.13012
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Sprites" unique_id=844495063]
+position = Vector2(226.00002, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.250465
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Sprites" unique_id=490269233]
+position = Vector2(256, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.4380001
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Sprites" unique_id=1272687660]
+position = Vector2(285.99997, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.13012
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Sprites" unique_id=1824329934]
+position = Vector2(315.99997, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.250465
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="Sprites" unique_id=1196644585]
+position = Vector2(345.99997, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.4380001
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="Sprites" unique_id=1365505441]
+position = Vector2(376, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.13012
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="Sprites" unique_id=1224402722]
+position = Vector2(406, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.250465
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="Sprites" unique_id=720319163]
+position = Vector2(436, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.4380001
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="Sprites" unique_id=616776623]
+position = Vector2(465.99997, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.13012
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="Sprites" unique_id=833322035]
+position = Vector2(495.99997, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.250465
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="Sprites" unique_id=1578144181]
+position = Vector2(526, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.4380001
+
+[node name="AnimatedSprite2D19" type="AnimatedSprite2D" parent="Sprites" unique_id=676755811]
+position = Vector2(556, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_vpupq")
+autoplay = "default"
+frame_progress = 0.13012
+
+[node name="AnimatedSprite2D20" type="AnimatedSprite2D" parent="Sprites" unique_id=1895495351]
+position = Vector2(586, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_7h7mn")
+autoplay = "default"
+frame_progress = 0.250465
+
+[node name="AnimatedSprite2D21" type="AnimatedSprite2D" parent="Sprites" unique_id=1586263428]
+position = Vector2(616, 2.0666714)
+sprite_frames = SubResource("SpriteFrames_p5viw")
+autoplay = "default"
+frame_progress = 0.4380001
 
 [node name="Warning" type="ProgressBar" parent="." unique_id=1198029133]
-offset_top = -5.0
+offset_top = -2.0
 offset_right = 200.0
-offset_bottom = 5.0
+offset_bottom = 2.0
 theme_override_styles/background = SubResource("StyleBoxFlat_vpupq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_p5viw")
 show_percentage = false

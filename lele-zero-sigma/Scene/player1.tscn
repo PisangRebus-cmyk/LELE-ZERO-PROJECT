@@ -61,29 +61,17 @@
 [ext_resource type="Texture2D" uid="uid://dl4i5up6eplhv" path="res://Assets/Sprites/character/revisi/sprite 1-6.png.png" id="60_vfw4l"]
 [ext_resource type="Texture2D" uid="uid://bk4foslkpw54s" path="res://Assets/Sprites/character/revisi/sprite 1-7.png.png" id="61_80atd"]
 [ext_resource type="Texture2D" uid="uid://byq6c23ncp3bp" path="res://Assets/Sprites/character/idle and walk/sprite 1-5.png.png" id="61_elpfv"]
-[ext_resource type="Texture2D" uid="uid://bpbk2nxsogyme" path="res://Assets/Sprites/character/idle and walk/sprite 1-2.png.png" id="62_icvp3"]
-[ext_resource type="Texture2D" uid="uid://drq3d0bbp0do1" path="res://Assets/Sprites/character/idle and walk/sprite 1-3.png.png" id="63_wn0yd"]
-[ext_resource type="Texture2D" uid="uid://dfwtqw3c8x730" path="res://Assets/Sprites/character/idle and walk/sprite 1-9.png.png" id="64_0baik"]
-[ext_resource type="Texture2D" uid="uid://q6ah3dycrmh7" path="res://Assets/Sprites/character/idle and walk/sprite 1-10.png.png" id="65_hadmt"]
-[ext_resource type="Texture2D" uid="uid://bmsn48m4acid8" path="res://Assets/Sprites/character/idle and walk/sprite 1-11.png.png" id="66_cixov"]
-[ext_resource type="Texture2D" uid="uid://cob8rffah0wlo" path="res://Assets/Sprites/character/idle and walk/sprite 1-6.png.png" id="67_mb4ki"]
-[ext_resource type="Texture2D" uid="uid://cm3c6xfjdngw2" path="res://Assets/Sprites/character/idle and walk/sprite 1-7.png.png" id="68_dpuyy"]
-[ext_resource type="Texture2D" uid="uid://qwb7jok1ujhy" path="res://Assets/Sprites/character/idle and walk/sprite 1-8.png.png" id="69_henkx"]
-[ext_resource type="AudioStream" uid="uid://cvvb1xgkxvheb" path="res://Assets/Audio/creatorshome-running-video-game-330951.mp3" id="70_hqux3"]
 [ext_resource type="Texture2D" uid="uid://dd7nlj3cghvd2" path="res://Assets/Sprites/character/revisi/sprite 1-8.png.png" id="62_jqsar"]
 [ext_resource type="AudioStream" uid="uid://cvn2pr2hl3neo" path="res://Assets/Audio/Toolbox_SFX_Free_v1/WAV/footsteps/footstep_stone_01.wav" id="70_s2hvj"]
-
-[ext_resource type="AudioStream" uid="uid://cvn2pr2hl3neo" path="res://Assets/Audio/Toolbox_SFX_Free_v1/WAV/footsteps/footstep_stone_01.wav" id="70_s2hvj"]
 [ext_resource type="AudioStream" uid="uid://dkns53bbijqao" path="res://Assets/Audio/dash-whoosh.wav" id="71_s2hvj"]
-
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 2.647191
 height = 38.17
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 3.0
-height = 10.0
+radius = 9.139999
+height = 28.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s45db"]
 animations = [{
@@ -342,7 +330,9 @@ shape = SubResource("CapsuleShape2D_i3pqv")
 position = Vector2(0, -15.515)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=463754777]
-position = Vector2(-1, 0)
+position = Vector2(0, 15.515)
+rotation = 1.5707964
+scale = Vector2(1, 0.85)
 shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2100669769]

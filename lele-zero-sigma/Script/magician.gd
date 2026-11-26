@@ -12,13 +12,15 @@ const CAST_TIME := 0.35
 const STUN_TIME := 3.0
 const STUN_DAMAGE_BONUS := 1.5
 
+var action_id := 0
 var state := State.IDLE
 var state_time := 0.0
 var move_dir := Vector2.ZERO
 var pending_fire := false
 
 @onready var stun_gauge: StunGauge = $StunGauge
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprites: AnimatedSprite2D = $AnimatedSprite2D
+
 
 @export_group("Stat")
 @export var max_health := 300
@@ -81,7 +83,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(player):
 		return
-
+	
 	state_time += delta
 	knockback = knockback.move_toward(Vector2.ZERO, 800.0 * delta)
 	move_dir = Vector2.ZERO
@@ -103,6 +105,10 @@ func _physics_process(delta: float) -> void:
 			_state_recover()
 
 	velocity = move_dir * move_speed + knockback
+	
+	if state != State.CAST and state != State.LASER:
+		face_player()
+	
 	move_and_slide()
 
 
@@ -127,21 +133,45 @@ func _state_combat(delta: float) -> void:
 		_start_cast()
 
 func _start_cast() -> void:
-	queue_redraw()
 	attack_timer = attack_cooldown
 	change_state(State.CAST)
+	face_player()
 
-func _state_cast() -> void:
-	if state_time < CAST_TIME:
-		return
 	if orb_count < orbs_casted:
+		if not await play_and_wait("OrbShoot"):
+			return                      # cancelled by a stun or a parry: do nothing
 		_cast_orbs()
 		orb_count += 1
 		change_state(State.COMBAT)
 	else:
+		
+		print("fd")
 		_shoot_laser()
+		if not await play_and_wait("LaserShootPrepare"):
+			return
+		if not await play_and_wait("LaserShoot"):
+			return
 		orb_count = 0
 		change_state(State.LASER)
+
+func play_and_wait(anim: String) -> bool:
+	var id := action_id
+	sprites.play(anim)
+	if anim == "LaserShootPrepare":
+		await get_tree().create_timer(3.0).timeout
+		sprites.stop()
+	elif anim == "LaserShoot":
+		await get_tree().create_timer(1.5).timeout
+		sprites.stop()
+	else:
+		await sprites.animation_finished
+	return id == action_id
+
+
+func _state_cast() -> void:
+	pass
+		
+		
 func _state_laser() -> void:
 	if not is_instance_valid(active_laser):
 		attack_timer = attack_cooldown
@@ -192,18 +222,20 @@ func on_parried(parrier: Node2D, stun_power: float) -> void:
 
 
 func change_state(new_state: State) -> void:
+	action_id += 1
 	state = new_state
 	state_time = 0.0
+	sprites.play("idle")	
 	if new_state != State.LASER and is_instance_valid(active_laser):
 		active_laser.queue_free()
 	match new_state:
 		State.CAST:
-			sprite.self_modulate = Color(0.8, 0.5, 1.0)
+			sprites.self_modulate = Color(0.8, 0.5, 1.0)
 		State.STUN:
 			hit_count = 0
-			sprite.self_modulate = Color(0.5, 0.8, 1.0)
+			sprites.self_modulate = Color(0.5, 0.8, 1.0)
 		_:
-			sprite.self_modulate = Color.WHITE
+			sprites.self_modulate = Color.WHITE
 
 func _on_stunned() -> void:
 	change_state(State.STUN)
@@ -233,6 +265,12 @@ func _teleport() -> void:
 
 	attack_timer = maxf(attack_timer, 1.0)
 	change_state(State.COMBAT)  
+
+func face_player() -> void:
+	if is_instance_valid(player):
+		sprites.flip_h = player.global_position.x > global_position.x
+
+
 
 func take_hit(damage: int, stun_power: float, knockback_force: Vector2, _attacker: Node2D) -> void:
 	if state == State.STUN:

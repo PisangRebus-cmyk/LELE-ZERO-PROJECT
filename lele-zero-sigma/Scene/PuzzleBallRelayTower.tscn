@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3afxa14uy6lc"]
 
 [ext_resource type="Script" uid="uid://b1m7agcbea5gl" path="res://Script/puzzle_ball_relay_tower.gd" id="1_sowaa"]
-[ext_resource type="Texture2D" uid="uid://bxlr4axpm3yvu" path="res://Assets/Sprites/arrow.png" id="2_itv42"]
+[ext_resource type="Texture2D" uid="uid://c71d02c6v5nyi" path="res://Assets/Sprites/Interactable/RelayTower.png" id="2_itv42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
 radius = 16.0
@@ -9,12 +9,12 @@ radius = 16.0
 [node name="PuzzleBallRelayTower" type="Area2D" unique_id=1982652605]
 script = ExtResource("1_sowaa")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1661834865]
-scale = Vector2(0.18, 0.18)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926689622]
+position = Vector2(0, 3)
+scale = Vector2(2, 2)
 texture = ExtResource("2_itv42")
 hframes = 4
-vframes = 4
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2013888700]
+position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_uj04i")

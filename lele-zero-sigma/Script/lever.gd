@@ -23,4 +23,4 @@ func sync_state(on: bool, source: Node) -> void:
 	_refresh()
 	
 func _refresh() -> void:
-	sprite.frame = 1 if is_on else 0
+	sprite.frame = 4 if is_on else 0
