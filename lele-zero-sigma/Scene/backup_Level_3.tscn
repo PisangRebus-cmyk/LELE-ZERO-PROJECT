@@ -192,7 +192,7 @@ SPEED = 444
 [node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1595978980]
 
 [node name="Lever" parent="." unique_id=2086188507 instance=ExtResource("10_c5s3x")]
-position = Vector2(311, -322)
+position = Vector2(-209, -288)
 
 [node name="heal" type="Area2D" parent="." unique_id=1886616975 node_paths=PackedStringArray("player")]
 script = ExtResource("11_5smix")
