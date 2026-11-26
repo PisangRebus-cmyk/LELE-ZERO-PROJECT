@@ -38,6 +38,11 @@ const PARRY_KNOCKBACK := 250
 	"sweep": $SweepHitbox,
 	"dash": $DashHitbox,
 }
+
+# Node suara (tanpa tipe supaya cocok untuk AudioStreamPlayer maupun AudioStreamPlayer2D)
+@onready var sfx_slam = $Earth_02
+@onready var sfx_enrage = $Fire_Explosion_04
+
 var action_id := 0
 var health := 0
 var state := State.IDLE
@@ -50,6 +55,7 @@ var current_attack := "sweep"
 var aim_direction := Vector2.RIGHT
 var phase2 := false
 var enrage_dashes_left := 0
+var attack_sfx_played := false   # supaya suara serangan hanya main sekali per serangan
 
 # INITATION
 
@@ -148,6 +154,7 @@ func _choose_attack(dist: float) -> String:
 	
 func start_attack(key: String) -> void:
 	current_attack = key
+	attack_sfx_played = false
 	aim_direction = (player.global_position - global_position).normalized()
 	var hb: Area2D = hitboxes[key]
 	hb.rotation = aim_direction.angle()
@@ -171,6 +178,11 @@ func _state_attack() -> void:
 	hb.monitoring = active
 	if active:
 		drive = aim_direction * data.lunge
+		# suara main sekali, tepat saat serangan mulai mengenai
+		if not attack_sfx_played:
+			attack_sfx_played = true
+			if current_attack == "slam":
+				sfx_slam.play()
 	sprite.play(current_attack)
 	if state_time >= total:
 		_finish_attack()
@@ -211,6 +223,7 @@ func _start_enrage() -> void:
 	enrage_dashes_left = 0
 	stun_gauge.release()
 	change_state(State.ENRAGE)
+	sfx_enrage.play()
 
 func _state_enrage() -> void:
 	if state_time >= ENRAGE_INTRO:
