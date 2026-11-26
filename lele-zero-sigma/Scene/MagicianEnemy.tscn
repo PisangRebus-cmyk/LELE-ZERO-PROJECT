@@ -160,7 +160,7 @@ size = Vector2(20, 11.666666)
 size = Vector2(20, 13.333332)
 
 [node name="Magician" type="CharacterBody2D" unique_id=427896389]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(2, 2)
 script = ExtResource("1_2ytmb")
 move_speed = 10.0
 orb_scene = ExtResource("2_g4mf6")

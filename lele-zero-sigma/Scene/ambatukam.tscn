@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cvbekpkeonefm" path="res://Scene/PlayerPressurePlate.tscn" id="8_x80x1"]
 [ext_resource type="PackedScene" uid="uid://c0kwevkjs3ew8" path="res://Scene/Player2.tscn" id="9_guhn4"]
 [ext_resource type="PackedScene" uid="uid://doi3hfj7wrxjv" path="res://Scene/lever.tscn" id="11_njsqx"]
-[ext_resource type="PackedScene" uid="uid://d0iqwqgxauwjm" path="res://Scene/MagicianEnemy.tscn" id="12_5tjbk"]
+[ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="12_5tjbk"]
 
 [node name="Node2D" type="Node2D" unique_id=1187130209]
 script = ExtResource("1_gspkx")
@@ -57,7 +57,5 @@ targets = [NodePath("../Emitter")]
 position = Vector2(-1, 58)
 targets = [NodePath("../GravityBallArea")]
 
-[node name="Magician" parent="." unique_id=427896389 instance=ExtResource("12_5tjbk")]
-position = Vector2(-170, 71)
-scale = Vector2(2.365, 2.365)
-orbs_casted = 0
+[node name="RangedEnemy" parent="." unique_id=1369281368 instance=ExtResource("12_5tjbk")]
+position = Vector2(-138, 71)

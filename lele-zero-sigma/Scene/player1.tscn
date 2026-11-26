@@ -317,7 +317,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
-radius = 24.0
+radius = 26.019224
 
 [node name="Player1" type="CharacterBody2D" unique_id=1157810840]
 script = ExtResource("1_db1un")
@@ -330,18 +330,21 @@ shape = SubResource("CapsuleShape2D_i3pqv")
 position = Vector2(0, -15.515)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=463754777]
-position = Vector2(0, 15.515)
+position = Vector2(0, 13.23)
 rotation = 1.5707964
-scale = Vector2(1, 0.85)
+scale = Vector2(0.57, 0.628)
 shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2100669769]
 monitorable = false
 
 [node name="ArcShape" type="CollisionPolygon2D" parent="Hitbox" unique_id=761918026]
+scale = Vector2(1.265, 1.265)
 polygon = PackedVector2Array(4, -18, -9, -8, 2, 0, -9, 8, 4, 18, 18, 14, 25, 0, 18, -14)
 
 [node name="SlashShape" type="CollisionPolygon2D" parent="Hitbox" unique_id=614580785]
+position = Vector2(3.5932388, 0)
+scale = Vector2(1.1823978, 1)
 polygon = PackedVector2Array(-5, -8, -5, 8, 44, 8, 44, -8)
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1180243020]

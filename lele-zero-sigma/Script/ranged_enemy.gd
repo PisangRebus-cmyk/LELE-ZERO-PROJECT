@@ -17,6 +17,7 @@ var state := State.IDLE
 var state_time := 0.0
 var move_dir := Vector2.ZERO
 var pending_fire := false
+var action_id := 0   
 
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -24,7 +25,7 @@ var pending_fire := false
 
 @export_group("Stat")
 @export var health := 300
-@export var move_speed := 60.0
+@export var move_speed := 30.0
 
 @export_group("Jarak")
 @export var trigger_range := 200
@@ -35,7 +36,7 @@ var pending_fire := false
 
 @export_group("Ranged Attack")
 @export var arrow_scene: PackedScene
-@export var attack_cooldown := 8   
+@export var attack_cooldown := 5.5   
 @export var arrow_shoot := 3
 
 
@@ -109,17 +110,19 @@ func _physics_process(delta: float) -> void:
 
 func face_player() -> void:
 	if is_instance_valid(player):
-		sprite.flip_h = player.global_position.x > global_position.x
+		sprite.flip_h = player.global_position.x < global_position.x
 
 func _state_idle() -> void:
 	if global_position.distance_to(player.global_position) <= trigger_range:
 		change_state(State.COMBAT)
 
 func _state_combat(delta: float) -> void:
+	sprite.play("combat")
 	var to_player := player.global_position - global_position
 	var dist := to_player.length()
 	if dist > trigger_range:
 		change_state(State.IDLE)
+		sprite.play("idle")
 		return
 
 	if dist < min_distance:
@@ -132,18 +135,27 @@ func _state_combat(delta: float) -> void:
 		_start_shoot()
 
 func _start_shoot() -> void:
-	#is_punching = false
-	queue_redraw()
-	#pending_fire = fire_scene != null and randf() < fire_chance
 	attack_timer = attack_cooldown
 	change_state(State.SHOOT)
+	_run_volley()
 
 func _state_shoot() -> void:
-	if state_time < SHOOT_TIME:
-		return
-	_shoot_arrow()
+	pass   
+	
+func _run_volley() -> void:
+	var id := action_id
+	for i in arrow_shoot:
+		sprite.play("shoot")
+		await sprite.animation_finished
+		if id != action_id or not is_instance_valid(player):
+			return                       # stunned, parried or teleported: stop
+		_fire_arrow()
+		if i < arrow_shoot - 1:
+			await get_tree().create_timer(shooting_timer).timeout
+			if id != action_id:
+				return
 	change_state(State.COMBAT)
-
+	
 func _state_stun() -> void:
 	if state_time >= STUN_TIME:
 		stun_gauge.release()
@@ -170,6 +182,7 @@ func on_parried(parrier: Node2D, stun_power: float) -> void:
 
 
 func change_state(new_state: State) -> void:
+	action_id += 1
 	state = new_state
 	state_time = 0.0
 	match new_state:
@@ -187,22 +200,18 @@ func _on_stunned() -> void:
 	is_punching = false
 	queue_redraw()
 
-func _shoot_arrow() -> void:
+func _fire_arrow() -> void:
 	if arrow_scene == null:
+		push_error("Archer: Arrow Scene is empty in the Inspector")
 		return
-	arrow_shooted = 0
-	while arrow_shooted < arrow_shoot:	
-		sprite.play("shoot")
-		await sprite.animation_finished
-		var arrow = arrow_scene.instantiate()
+	var dir := (player.global_position - global_position).normalized()
+	var arrow = arrow_scene.instantiate()
+	arrow.direction = dir                          # set these BEFORE add_child
+	arrow.rotation = dir.angle()
+	if "target_player" in arrow:
 		arrow.target_player = player
-		arrow.global_position = global_position
-		arrow.direction = (player.global_position-global_position).normalized()
-		arrow.rotation = (player.global_position-global_position).normalized().angle()
-		get_tree().current_scene.add_child(arrow)
-		
-		await get_tree().create_timer(shooting_timer).timeout		
-		arrow_shooted += 1
+	get_tree().current_scene.add_child(arrow)
+	arrow.global_position = global_position  
 	
 
 func _teleport() -> void:
@@ -213,8 +222,6 @@ func _teleport() -> void:
 	
 	if not is_instance_valid(player):
 		return
-	sprite.play("teleport1")
-	await sprite.animation_finished
 	for i in 20:
 		var angle := randf() * TAU
 		var dist := randf_range(teleport_min_distance, teleport_max_distance)
@@ -228,7 +235,7 @@ func _teleport() -> void:
 
 		global_position = target
 		break
-	sprite.play("teleport2")
+	
 	attack_timer = maxf(attack_timer, 1.0)
 	change_state(State.COMBAT)  
 

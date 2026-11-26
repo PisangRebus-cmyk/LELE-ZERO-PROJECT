@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
-size = Vector2(23, 6)
+size = Vector2(29, 10)
 
 [node name="MagicOrb" type="Area2D" unique_id=1542151536]
 script = ExtResource("1_xjl78")
@@ -30,5 +30,4 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_uj04i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=556016276]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_uj04i")

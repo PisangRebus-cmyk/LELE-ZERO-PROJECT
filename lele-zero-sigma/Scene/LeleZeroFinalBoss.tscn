@@ -23,6 +23,11 @@ region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4felt"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8iii0")
@@ -37,7 +42,32 @@ animations = [{
 "texture": SubResource("AtlasTexture_frkps")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"shockwave",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"stunned",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"warzone",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"waterlaser",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"watersonic",
 "speed": 5.0
 }]
 
@@ -53,6 +83,7 @@ script = ExtResource("1_f05sr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=961786206]
 sprite_frames = SubResource("SpriteFrames_4felt")
+animation = &"watersonic"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=449377104]
 shape = SubResource("CircleShape2D_uj04i")
