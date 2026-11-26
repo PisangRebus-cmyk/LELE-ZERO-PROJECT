@@ -247,5 +247,370 @@ scale = Vector2(0.71999943, 10.36)
 script = ExtResource("11_4fg4n")
 illustrations = Array[Texture2D]([ExtResource("12_aw2fi")])
 
+
+[node name="Puzzles" type="Node2D" parent="." unique_id=1717618190]
+
+[node name="MainPuzzle2" type="Node2D" parent="Puzzles" unique_id=2049621680]
+
+[node name="EmitterLever" parent="Puzzles/MainPuzzle2" unique_id=2086188507 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(894, -563)
+one_shot = false
+targets = [NodePath("../Emitter")]
+
+[node name="EmitterLever2" parent="Puzzles/MainPuzzle2" unique_id=914134299 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(1273, -1001)
+one_shot = false
+targets = [NodePath("../Emitter")]
+
+[node name="Emitter" parent="Puzzles/MainPuzzle2" unique_id=1235527297 instance=ExtResource("9_3w2ni")]
+position = Vector2(1175, -401)
+rotation = -1.5707964
+ball_scene = ExtResource("10_qnund")
+direction = Vector2(0, -1)
+required = 0
+
+[node name="PuzzleBallReceiver" parent="Puzzles/MainPuzzle2" unique_id=77664532 node_paths=PackedStringArray("targets") instance=ExtResource("8_q4umt")]
+position = Vector2(982.00006, -979.99994)
+scale = Vector2(2.78, 2.614)
+targets = [NodePath("../../../Walls/MainPuzzle2Wall")]
+
+[node name="GravityToggle" parent="Puzzles/MainPuzzle2" unique_id=1196121895 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(987, -719)
+one_shot = false
+targets = [NodePath("../GravityBallArea")]
+
+[node name="GravityBallArea" parent="Puzzles/MainPuzzle2" unique_id=1083164558 instance=ExtResource("11_3w2ni")]
+position = Vector2(1121, -872)
+scale = Vector2(2.08, 2.915)
+facing = 3
+
+[node name="RedBlueWallLever" parent="Puzzles/MainPuzzle2" unique_id=771928726 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(763, -584)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="RedBlueWallLever3" parent="Puzzles/MainPuzzle2" unique_id=1793037356 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(1152, -1136)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="OpPuzzle2" type="Node2D" parent="Puzzles" unique_id=1856520479]
+
+[node name="OpEmitterLever" parent="Puzzles/OpPuzzle2" unique_id=1710926223 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(898, -1903)
+one_shot = false
+targets = [NodePath("../Emitter")]
+
+[node name="OpEmitterLever2" parent="Puzzles/OpPuzzle2" unique_id=344038632 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(2313, -1794)
+one_shot = false
+targets = [NodePath("../Emitter")]
+
+[node name="PuzzleBallReceiver" parent="Puzzles/OpPuzzle2" unique_id=593601785 node_paths=PackedStringArray("targets") instance=ExtResource("8_q4umt")]
+position = Vector2(2041.0001, -495)
+scale = Vector2(1.585, 1.524)
+targets = [NodePath("../../../Walls/OpPuzzle2Wall")]
+
+[node name="Emitter" parent="Puzzles/OpPuzzle2" unique_id=807375411 instance=ExtResource("9_3w2ni")]
+position = Vector2(1874, -539)
+ball_scene = ExtResource("10_qnund")
+required = 0
+
+[node name="PuzzleBallRelayTower" parent="Puzzles/OpPuzzle2" unique_id=1982652605 instance=ExtResource("16_osnva")]
+position = Vector2(2241, -536)
+
+[node name="PuzzleBallRelayTower2" parent="Puzzles/OpPuzzle2" unique_id=326872082 instance=ExtResource("16_osnva")]
+position = Vector2(2241, -389)
+
+[node name="PuzzleBallRelayTower3" parent="Puzzles/OpPuzzle2" unique_id=719809594 instance=ExtResource("16_osnva")]
+position = Vector2(2241, -238)
+
+[node name="PuzzleBallRelayTower4" parent="Puzzles/OpPuzzle2" unique_id=1339887675 instance=ExtResource("16_osnva")]
+position = Vector2(2041, -238)
+
+[node name="PuzzleBallRelayTower5" parent="Puzzles/OpPuzzle2" unique_id=187773268 instance=ExtResource("16_osnva")]
+position = Vector2(1841, -238)
+
+[node name="PuzzleBallRelayTower6" parent="Puzzles/OpPuzzle2" unique_id=1422990427 instance=ExtResource("16_osnva")]
+position = Vector2(1841, -389)
+
+[node name="PuzzleBallRelayTower7" parent="Puzzles/OpPuzzle2" unique_id=1826353162 instance=ExtResource("16_osnva")]
+position = Vector2(2041, -389)
+
+[node name="RedBlueWallLever" parent="Puzzles/OpPuzzle2" unique_id=2092358151 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(1854, -469)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="MainPuzzle3" type="Node2D" parent="Puzzles" unique_id=1477020509]
+
+[node name="Emitter" parent="Puzzles/MainPuzzle3" unique_id=1395108123 instance=ExtResource("9_3w2ni")]
+position = Vector2(-852, -375)
+rotation = 1.5707964
+ball_scene = ExtResource("10_qnund")
+direction = Vector2(1, 1)
+
+[node name="EmitterLever" parent="Puzzles/MainPuzzle3/Emitter" unique_id=1712645885 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(375, -117)
+rotation = -1.5707964
+scale = Vector2(0.78, 0.78)
+one_shot = false
+targets = [NodePath("..")]
+
+[node name="EmitterLever2" parent="Puzzles/MainPuzzle3/Emitter" unique_id=1122201041 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-254, -274.99997)
+rotation = -1.5707964
+scale = Vector2(0.78, 0.78)
+one_shot = false
+targets = [NodePath("..")]
+
+[node name="PuzzleBallRelayTower" parent="Puzzles/MainPuzzle3" unique_id=892332659 instance=ExtResource("16_osnva")]
+position = Vector2(-865, 0)
+
+[node name="PuzzleBallRelayTower2" parent="Puzzles/MainPuzzle3" unique_id=1555268570 instance=ExtResource("16_osnva")]
+position = Vector2(-577, 0)
+
+[node name="PuzzleBallRelayTower3" parent="Puzzles/MainPuzzle3" unique_id=946049521 instance=ExtResource("16_osnva")]
+position = Vector2(-577, -251)
+
+[node name="PuzzleBallRelayTower4" parent="Puzzles/MainPuzzle3" unique_id=869396748 instance=ExtResource("16_osnva")]
+position = Vector2(-722, -251)
+
+[node name="PuzzleBallRelayTower5" parent="Puzzles/MainPuzzle3" unique_id=152645231 instance=ExtResource("16_osnva")]
+position = Vector2(-722, -543)
+
+[node name="PuzzleBallRelayTower6" parent="Puzzles/MainPuzzle3" unique_id=1849788651 instance=ExtResource("16_osnva")]
+position = Vector2(-577, -543)
+
+[node name="PuzzleBallRelayTower7" parent="Puzzles/MainPuzzle3" unique_id=30876657 instance=ExtResource("16_osnva")]
+position = Vector2(-577, -687)
+
+[node name="PuzzleBallRelayTower8" parent="Puzzles/MainPuzzle3" unique_id=226807319 instance=ExtResource("16_osnva")]
+position = Vector2(-865, -700)
+
+[node name="PuzzleBallRelayTower9" parent="Puzzles/MainPuzzle3" unique_id=1983219211 instance=ExtResource("16_osnva")]
+position = Vector2(-865, -543)
+
+[node name="PuzzleBallRelayTower10" parent="Puzzles/MainPuzzle3" unique_id=1371607072 instance=ExtResource("16_osnva")]
+position = Vector2(-577, -410)
+
+[node name="RedWallLever" parent="Puzzles/MainPuzzle3" unique_id=1257523062 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-722, -479)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="RedWallLever2" parent="Puzzles/MainPuzzle3" unique_id=295625232 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-684, -125)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="RedWallLever3" parent="Puzzles/MainPuzzle3" unique_id=1870683192 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-789, -674)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="GravityBallArea" parent="Puzzles/MainPuzzle3" unique_id=827685320 instance=ExtResource("11_3w2ni")]
+position = Vector2(-1211, -543.00006)
+scale = Vector2(1.35, 2.595)
+
+[node name="GravityBallLever" parent="Puzzles/MainPuzzle3/GravityBallArea" unique_id=23268137 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(65.9259, 60.11563)
+scale = Vector2(0.7407407, 0.38535643)
+one_shot = false
+targets = [NodePath("..")]
+
+[node name="1stWallToggle" parent="Puzzles/MainPuzzle3" unique_id=995609792 node_paths=PackedStringArray("targets") instance=ExtResource("8_q4umt")]
+position = Vector2(-1597.0001, -642.00006)
+scale = Vector2(1.83, 1.83)
+targets = [NodePath("../../../Walls/MainPuzzle3Wall1")]
+
+[node name="3to4" type="Node2D" parent="Puzzles" unique_id=979957947]
+
+[node name="Lever" parent="Puzzles/3to4" unique_id=1293132123 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-1597, -77)
+one_shot = false
+targets = [NodePath("../../../Walls/Wall3to4")]
+
+[node name="Lever2" parent="Puzzles/3to4" unique_id=754295109 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-1529, -77)
+one_shot = false
+targets = [NodePath("../../../Walls/Wall3to4")]
+
+[node name="Lever3" parent="Puzzles/3to4" unique_id=449608476 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-1468, -77)
+one_shot = false
+targets = [NodePath("../canceler1")]
+
+[node name="Lever4" parent="Puzzles/3to4" unique_id=1402971089 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-1400, -77)
+one_shot = false
+targets = [NodePath("../../../Walls/Wall3to4")]
+
+[node name="Lever5" parent="Puzzles/3to4" unique_id=2047854122 instance=ExtResource("11_vutmm")]
+position = Vector2(-1332, -77)
+one_shot = false
+
+[node name="canceler1" type="Node2D" parent="Puzzles/3to4" unique_id=1883963694 node_paths=PackedStringArray("target")]
+script = ExtResource("18_31kt7")
+required = 1
+target = NodePath("../../../Walls/Wall3to4")
+
+[node name="canceler2" type="Node2D" parent="Puzzles/3to4" unique_id=695274490 node_paths=PackedStringArray("target")]
+script = ExtResource("18_31kt7")
+required = 1
+target = NodePath("../../../Walls/Wall3to4")
+
+[node name="Part1" type="Sprite2D" parent="Puzzles/3to4" unique_id=1100338211]
+position = Vector2(-1553.9999, -157)
+scale = Vector2(0.215, 0.215)
+texture = ExtResource("19_pihkn")
+
+[node name="Part2" type="Sprite2D" parent="Puzzles/3to4" unique_id=2099370413]
+position = Vector2(-1389, -148)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("20_l0v5f")
+
+[node name="MainPuzzle4" type="Node2D" parent="Puzzles" unique_id=1409537023]
+
+[node name="PuzzleBallReceiver" parent="Puzzles/MainPuzzle4" unique_id=73066725 node_paths=PackedStringArray("targets") instance=ExtResource("8_q4umt")]
+position = Vector2(-1082, 4)
+scale = Vector2(1.89, 1.89)
+targets = [NodePath("../Emitter3")]
+
+[node name="GravityBallArea" parent="Puzzles/MainPuzzle4" unique_id=1960447604 instance=ExtResource("11_3w2ni")]
+position = Vector2(-1274, 308)
+scale = Vector2(3.01, 3.04)
+facing = 3
+
+[node name="GravityAreaLever" parent="Puzzles/MainPuzzle4/GravityBallArea" unique_id=1662898824 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-101.99333, -44.40789)
+scale = Vector2(0.33222592, 0.32894737)
+one_shot = false
+targets = [NodePath("..")]
+
+[node name="Emitter" parent="Puzzles/MainPuzzle4" unique_id=1175394780 instance=ExtResource("9_3w2ni")]
+position = Vector2(-2335, 4)
+ball_scene = ExtResource("10_qnund")
+
+[node name="PuzzleBallRelayTower2" parent="Puzzles/MainPuzzle4" unique_id=167547692 instance=ExtResource("16_osnva")]
+position = Vector2(-2110, 4)
+
+[node name="PuzzleBallRelayTower3" parent="Puzzles/MainPuzzle4" unique_id=2039665689 instance=ExtResource("16_osnva")]
+position = Vector2(-1999, 128)
+
+[node name="PuzzleBallRelayTower14" parent="Puzzles/MainPuzzle4" unique_id=1805483649 instance=ExtResource("16_osnva")]
+position = Vector2(-1888, 252)
+
+[node name="PuzzleBallRelayTower4" parent="Puzzles/MainPuzzle4" unique_id=926426760 instance=ExtResource("16_osnva")]
+position = Vector2(-1885, 4)
+
+[node name="PuzzleBallRelayTower5" parent="Puzzles/MainPuzzle4" unique_id=772310141 instance=ExtResource("16_osnva")]
+position = Vector2(-2224, 128)
+
+[node name="PuzzleBallRelayTower6" parent="Puzzles/MainPuzzle4" unique_id=444923980 instance=ExtResource("16_osnva")]
+position = Vector2(-1660, 4)
+
+[node name="PuzzleBallRelayTower10" parent="Puzzles/MainPuzzle4" unique_id=1994586314 instance=ExtResource("16_osnva")]
+position = Vector2(-2113, 252)
+
+[node name="PuzzleBallRelayTower15" parent="Puzzles/MainPuzzle4" unique_id=216982513 instance=ExtResource("16_osnva")]
+position = Vector2(-1777, 376)
+
+[node name="PuzzleBallRelayTower13" parent="Puzzles/MainPuzzle4" unique_id=1822942339 instance=ExtResource("16_osnva")]
+position = Vector2(-2002, 376)
+
+[node name="PuzzleBallRelayTower16" parent="Puzzles/MainPuzzle4" unique_id=1982493215 instance=ExtResource("16_osnva")]
+position = Vector2(-1891, 500)
+
+[node name="PuzzleBallRelayTower12" parent="Puzzles/MainPuzzle4" unique_id=132137922 instance=ExtResource("16_osnva")]
+position = Vector2(-1663, 252)
+
+[node name="PuzzleBallRelayTower9" parent="Puzzles/MainPuzzle4" unique_id=460568014 instance=ExtResource("16_osnva")]
+position = Vector2(-1549, 128)
+
+[node name="PuzzleBallRelayTower7" parent="Puzzles/MainPuzzle4" unique_id=404923279 instance=ExtResource("16_osnva")]
+position = Vector2(-1774, 128)
+
+[node name="PuzzleBallRelayTower8" parent="Puzzles/MainPuzzle4" unique_id=1945732438 instance=ExtResource("16_osnva")]
+position = Vector2(-1435, 4)
+
+[node name="RedBlueWallLever" parent="Puzzles/MainPuzzle4" unique_id=855940981 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-1622, 500)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="RedBlueWallLever3" parent="Puzzles/MainPuzzle4" unique_id=1106366158 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-1488, 25)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="RedBlueWallLever2" parent="Puzzles/MainPuzzle4" unique_id=1510836050 node_paths=PackedStringArray("targets") instance=ExtResource("11_vutmm")]
+position = Vector2(-2100, 389)
+one_shot = false
+link_id = "rb"
+targets = [NodePath("../../../Walls/Red_Wall"), NodePath("../../../Walls/Blue_Wall")]
+
+[node name="EmitterGhost" parent="Puzzles/MainPuzzle4" unique_id=1873570664 node_paths=PackedStringArray("targets") instance=ExtResource("6_hr6pc")]
+position = Vector2(-2221, 205)
+targets = [NodePath("../Emitter")]
+
+[node name="PuzzleBallReceiver4" parent="Puzzles/MainPuzzle4" unique_id=1433602421 node_paths=PackedStringArray("targets") instance=ExtResource("8_q4umt")]
+position = Vector2(-2237, 389)
+scale = Vector2(2.27, 2.27)
+targets = [NodePath("../../../Walls/MainPuzzle4Wall1")]
+
+[node name="Emitter3" parent="Puzzles/MainPuzzle4" unique_id=377314351 instance=ExtResource("9_3w2ni")]
+position = Vector2(-1168, 4)
+ball_scene = ExtResource("10_qnund")
+direction = Vector2(-1, 0)
+
+[node name="Emitter4" parent="Puzzles/MainPuzzle4" unique_id=1532566814 instance=ExtResource("9_3w2ni")]
+position = Vector2(-1648, 372)
+ball_scene = ExtResource("10_qnund")
+direction = Vector2(-1, 0)
+
+[node name="PuzzleBallReceiver2" parent="Puzzles/MainPuzzle4" unique_id=1146694886 node_paths=PackedStringArray("targets") instance=ExtResource("8_q4umt")]
+position = Vector2(-1242, 490)
+scale = Vector2(1.89, 1.89)
+targets = [NodePath("../Emitter4")]
+
+[node name="COBACOBA" type="Node2D" parent="." unique_id=1176591486]
+position = Vector2(-1074, -447)
+
+[node name="GetKey" type="Node2D" parent="." unique_id=1566315925]
+
+[node name="ObtainKey" parent="GetKey" unique_id=964679401 instance=ExtResource("18_vutmm")]
+position = Vector2(1131, -2147)
+
+[node name="OpenDoor" parent="GetKey" unique_id=266241623 node_paths=PackedStringArray("wall") instance=ExtResource("19_dljop")]
+position = Vector2(-1154, -2091)
+wall = NodePath("../../Walls/KeyDoor")
+
+[node name="Buffs" type="Node2D" parent="." unique_id=1400300336]
+
+[node name="BuffUI" parent="Buffs" unique_id=179494632 instance=ExtResource("5_qjvvb")]
+
+[node name="BuffArea" parent="Buffs/BuffUI" unique_id=290755707 instance=ExtResource("11_l0v5f")]
+position = Vector2(2043, -126)
+
+[node name="BuffUI2" parent="Buffs" unique_id=430295271 instance=ExtResource("5_qjvvb")]
+
+[node name="BuffArea" parent="Buffs/BuffUI2" unique_id=1908832814 instance=ExtResource("11_l0v5f")]
+position = Vector2(20, -1529)
+
+[node name="BuffUI3" parent="Buffs" unique_id=1787592696 instance=ExtResource("5_qjvvb")]
+
+[node name="BuffArea" parent="Buffs/BuffUI3" unique_id=1215772091 instance=ExtResource("11_l0v5f")]
+position = Vector2(-767, -2277)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Illustrasi" unique_id=2102924681]
 shape = SubResource("RectangleShape2D_uj04i")
+

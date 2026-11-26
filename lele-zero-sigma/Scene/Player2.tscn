@@ -81,6 +81,7 @@ animations = [{
 gradient = SubResource("Gradient_uqtlx")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
+radius = 16.0
 
 [node name="ghost" type="CharacterBody2D" unique_id=1063273838]
 script = ExtResource("1_mjxxk")

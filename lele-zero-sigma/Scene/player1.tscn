@@ -79,7 +79,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 2.647191
-height = 84.71011
+height = 38.17
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 3.0
@@ -335,11 +335,11 @@ radius = 24.0
 script = ExtResource("1_db1un")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2036948996]
-position = Vector2(-1, 1)
-scale = Vector2(4.7214303, 0.3777589)
+scale = Vector2(3.191, 0.352)
 shape = SubResource("CapsuleShape2D_i3pqv")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1038921594]
+position = Vector2(0, -15.515)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=463754777]
 position = Vector2(-1, 0)
@@ -371,10 +371,11 @@ script = ExtResource("4_58ae2")
 metadata/_custom_type_script = "uid://561o533d5vjq"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=883817351]
+position = Vector2(0, -15.22)
 scale = Vector2(1.9247153, 1.9137496)
 sprite_frames = SubResource("SpriteFrames_s45db")
-animation = &"player_walkright"
-frame_progress = 0.23295774
+animation = &"attack_up"
+frame_progress = 0.8957948
 
 [node name="InteractArea" type="Area2D" parent="." unique_id=1874488845]
 monitorable = false

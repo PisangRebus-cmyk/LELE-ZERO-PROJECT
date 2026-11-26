@@ -40,7 +40,7 @@ var _portrait_b: TextureRect
 
 var _lines: Array = []
 var _index := -1
-var _active := false
+@export var _active := false
 var _typing := false
 var _tutorial := false
 var _was_paused := false

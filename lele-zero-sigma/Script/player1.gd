@@ -113,7 +113,7 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 		move_and_slide()
 		return
-	
+	print(dark_time)
 		
 
 	state_time += delta
