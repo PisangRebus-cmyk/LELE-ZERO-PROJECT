@@ -83,6 +83,7 @@ func _ready() -> void:
 	dash_hitbox.monitoring = false
 	if not dash_hitbox.area_entered.is_connected(_on_dash_hitbox_area_entered):
 		dash_hitbox.area_entered.connect(_on_dash_hitbox_area_entered)
+	_play_anim("idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -110,6 +111,8 @@ func _physics_process(delta: float) -> void:
 		State.PHASE_CHANGE:
 			_state_phase_change()
 
+	_update_animation()
+
 	velocity = drive + knockback * 0.2
 	move_and_slide()
 
@@ -133,6 +136,41 @@ func change_state(new_state: State) -> void:
 		_:
 			sprite.self_modulate = Color(1.0, 0.7, 0.7) if phase >= 2 else Color.WHITE
 			
+#===============================================================================================================================
+# ANIMATION
+# Animasi di SpriteFrames: idle, move_down, move_left, move_right, move_up,
+# shockwave, watersonic, waterlaser, warzone, stunned
+#===============================================================================================================================
+func _dir_anim(v: Vector2) -> String:
+	if abs(v.x) > abs(v.y):
+		return "move_right" if v.x > 0.0 else "move_left"
+	return "move_down" if v.y > 0.0 else "move_up"
+
+func _play_anim(anim: String) -> void:
+	if sprite.sprite_frames == null or not sprite.sprite_frames.has_animation(anim):
+		return
+	if sprite.animation != anim:
+		sprite.play(anim)
+
+func _update_animation() -> void:
+	match state:
+		State.STUN:
+			_play_anim("stunned")
+		State.ATTACK:
+			if current_attack == "dash":
+				# tidak ada animasi dash, pakai animasi jalan sesuai arah serangan
+				_play_anim(_dir_anim(aim_direction))
+			else:
+				# nama animasi sama dengan key di ATTACKS
+				_play_anim(current_attack)
+		State.PHASE_CHANGE:
+			_play_anim("idle")
+		_:
+			if drive.length() > 1.0:
+				_play_anim(_dir_anim(drive))
+			else:
+				_play_anim("idle")
+
 #===============================================================================================================================
 func _state_idle() -> void:
 	if global_position.distance_to(player.global_position) <= trigger_range:

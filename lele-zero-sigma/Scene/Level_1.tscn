@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://d04vkuvyea16x" path="res://Script/Dialog_level1_1.gd" id="32_dlg11"]
 [ext_resource type="AudioStream" uid="uid://bswwks7xib8oo" path="res://Assets/Audio/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="32_kvnbw"]
 [ext_resource type="PackedScene" uid="uid://dx21n7y556nik" path="res://Scene/buff_area.tscn" id="33_ipl58"]
+[ext_resource type="PackedScene" uid="uid://bpso000t6ppxc" path="res://Scene/Tele_area.tscn" id="33_l3cmx"]
 [ext_resource type="PackedScene" uid="uid://dq4n85jdo1b3w" path="res://Scene/GhostEnergyZone.tscn" id="34_ipl58"]
 [ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="36_4blpj"]
 
@@ -801,6 +802,10 @@ _active = true
 position = Vector2(-506, 27)
 script = ExtResource("32_dlg11")
 dialog_ui = NodePath("../DialogUI")
+
+[node name="Area2D" parent="Dialog" unique_id=176588102 instance=ExtResource("33_l3cmx")]
+position = Vector2(-5258, -3751)
+scale = Vector2(10, 10)
 
 [node name="Lagu" type="AudioStreamPlayer2D" parent="." unique_id=1605696313]
 stream = ExtResource("32_kvnbw")

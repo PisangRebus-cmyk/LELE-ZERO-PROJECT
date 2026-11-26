@@ -21,6 +21,11 @@ var pending_fire := false
 @onready var stun_gauge: StunGauge = $StunGauge
 @onready var sprites: AnimatedSprite2D = $AnimatedSprite2D
 
+# Node suara (tanpa tipe supaya cocok untuk AudioStreamPlayer maupun AudioStreamPlayer2D)
+@onready var sfx_charge = $Charge_05
+@onready var sfx_laser = $Laser
+@onready var sfx_teleport = $Teleport
+
 
 @export_group("Stat")
 @export var max_health := 300
@@ -71,12 +76,13 @@ func _ready() -> void:
 	#hitbox.monitoring = false
 	#hitbox.area_entered.connect(_on_hitbox_area_entered)
 	
+	# health diisi dulu sebelum dipakai HealthBar
+	health = max_health
 	if has_node("HealthBar"):
 		$HealthBar.max_value = health
 		$HealthBar.value = health
 	add_to_group("Enemy")
 	add_to_group("NoContactDamage")   # it hurts only through its hitboxes
-	health = max_health
 	#stun_gauge.stunned.connect(_on_stunned)
 
 
@@ -157,6 +163,14 @@ func _start_cast() -> void:
 func play_and_wait(anim: String) -> bool:
 	var id := action_id
 	sprites.play(anim)
+	
+	# SFX per animasi
+	if anim == "OrbShoot" or anim == "LaserShootPrepare":
+		sfx_charge.play()
+	elif anim == "LaserShoot":
+		sfx_charge.stop()
+		sfx_laser.play()
+	
 	if anim == "LaserShootPrepare":
 		await get_tree().create_timer(3.0).timeout
 		sprites.stop()
@@ -226,6 +240,12 @@ func change_state(new_state: State) -> void:
 	state = new_state
 	state_time = 0.0
 	sprites.play("idle")	
+	
+	# charge dihentikan setiap ganti state; laser dihentikan kalau keluar dari state LASER
+	sfx_charge.stop()
+	if new_state != State.LASER:
+		sfx_laser.stop()
+	
 	if new_state != State.LASER and is_instance_valid(active_laser):
 		active_laser.queue_free()
 	match new_state:
@@ -261,6 +281,7 @@ func _teleport() -> void:
 			continue
 
 		global_position = target
+		sfx_teleport.play()
 		break
 
 	attack_timer = maxf(attack_timer, 1.0)
