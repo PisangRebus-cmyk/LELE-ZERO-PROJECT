@@ -1,0 +1,25 @@
+TOOLBOX SFX — 137 Free Game Sound Effects
+Free Asset License (v1.0) — Arcade UI Forge
+
+This pack is FREE. You do not need to pay to use it.
+
+You MAY:
+  • Use these assets in any number of commercial or personal games, apps,
+    websites, videos, streams, and other original projects.
+  • Modify, recolor, resize, cut up, and remix the assets for those projects.
+  • Use the assets in client work, game jams and commissioned projects.
+  • Ship the assets (including modified versions) inside a compiled or
+    bundled game or app.
+
+You MAY NOT:
+  • Resell, relicense, or redistribute this pack (or a pack made mainly
+    from these files) as a standalone asset library, sprite pack or sound
+    library, even if modified, free or paid.
+  • Claim copyright on the original, unmodified assets.
+  • Mint the raw assets as NFTs or similar standalone collectibles.
+
+Credit is appreciated but not required.
+Example: "Sound effects by Arcade UI Forge (arcadeuiforge.itch.io)"
+
+This pack is provided as-is, without warranty of any kind. The licensor
+is not liable for any damages arising from use of the assets.

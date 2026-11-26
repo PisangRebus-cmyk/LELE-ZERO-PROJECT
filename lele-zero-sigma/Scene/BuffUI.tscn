@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ofu4yu717l5f"]
 
 [ext_resource type="Script" uid="uid://bpecm3aeubb01" path="res://Script/buff_ui.gd" id="1_8vb6a"]
+[ext_resource type="Texture2D" uid="uid://nudhgvfeckxw" path="res://Assets/Sprites/UI_UX/48-buff-debuff-icons/png_64_x4/icon02.png" id="2_1it6q"]
+[ext_resource type="Texture2D" uid="uid://yp3m5j7vaetj" path="res://Assets/Sprites/UI_UX/48-buff-debuff-icons/png_64_x4/icon28.png" id="3_3yu7c"]
+[ext_resource type="Texture2D" uid="uid://dgfh3dn4f0fjk" path="res://Assets/Sprites/UI_UX/48-buff-debuff-icons/png_64_x4/icon36.png" id="4_qd7m0"]
 
 [node name="BuffUI" type="CanvasLayer" unique_id=179494632]
 process_mode = 3
@@ -56,20 +59,119 @@ theme_override_constants/separation = 30
 [node name="CardHealth" type="Button" parent="Root/Cards" unique_id=724486895]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/Cards/CardHealth" unique_id=329680684]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Root/Cards/CardHealth/Content" unique_id=2004059647]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_1it6q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Root/Cards/CardHealth/Content" unique_id=692258209]
+layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "HEALTH
-+35"
+text = "HEALTH"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Root/Cards/CardHealth/Content" unique_id=1038237761]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "+35"
+horizontal_alignment = 1
 
 [node name="CardAttack" type="Button" parent="Root/Cards" unique_id=1990899408]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/Cards/CardAttack" unique_id=406648551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Root/Cards/CardAttack/Content" unique_id=822365462]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_3yu7c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Root/Cards/CardAttack/Content" unique_id=1087170887]
+layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "ATTACK
-x1.2"
+text = "ATTACK"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Root/Cards/CardAttack/Content" unique_id=317790999]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "x1.2"
+horizontal_alignment = 1
 
 [node name="CardSpeed" type="Button" parent="Root/Cards" unique_id=965370590]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/Cards/CardSpeed" unique_id=1018752820]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Root/Cards/CardSpeed/Content" unique_id=942142894]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_qd7m0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Root/Cards/CardSpeed/Content" unique_id=1714114219]
+layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "SPEED
-+25"
+text = "SPEED"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Root/Cards/CardSpeed/Content" unique_id=1309780143]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "+25"
+horizontal_alignment = 1
