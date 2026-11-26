@@ -15,8 +15,23 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y8md6")
 }],
+"loop": 2,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
 "loop": 1,
-"name": &"default",
+"name": &"shoot",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"teleport1",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"teleport2",
 "speed": 5.0
 }]
 
@@ -31,8 +46,9 @@ move_speed = 25.0
 arrow_scene = ExtResource("2_y8md6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1737001674]
-rotation = 3.1415927
 sprite_frames = SubResource("SpriteFrames_uj04i")
+animation = &"shoot"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1144433240]
 shape = SubResource("CircleShape2D_uj04i")

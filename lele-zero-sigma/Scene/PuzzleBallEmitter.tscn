@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://cb1yhaj5qtxc7"]
 
 [ext_resource type="Script" uid="uid://biqonqulntds3" path="res://Script/puzzle_ball_emitter.gd" id="1_rhudv"]
-[ext_resource type="Texture2D" uid="uid://bn7uqrvbrdueo" path="res://Assets/Sprites/Screenshot 2026-11-15 230720.png" id="2_4lc3p"]
+[ext_resource type="Texture2D" uid="uid://bpv3m6mwsmti4" path="res://Assets/Sprites/Interactable/Emitter.png" id="2_4lc3p"]
 
-[node name="Emitter" type="Node2D" unique_id=1235527297]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[node name="Emitter" type="Area2D" unique_id=1762609493]
 script = ExtResource("1_rhudv")
 
 [node name="Timer" type="Timer" parent="." unique_id=337992476]
 wait_time = 0.5
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=105243293]
-scale = Vector2(0.045, 0.045)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1169510300]
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=586199195]
+position = Vector2(0, 6)
+scale = Vector2(2, 2)
 texture = ExtResource("2_4lc3p")
+hframes = 2

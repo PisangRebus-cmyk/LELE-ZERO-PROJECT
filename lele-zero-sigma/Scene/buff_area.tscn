@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://dx21n7y556nik"]
 
-[ext_resource type="Script" uid="uid://c0n6oetxgtbwb" path="res://Script/BuffTrigger.gd" id="1_1cjos"]
+[ext_resource type="Script" uid="uid://c0n6oetxgtbwb" path="res://BuffTrigger.gd" id="1_1cjos"]
+[ext_resource type="Texture2D" uid="uid://bhr3agqqtovc8" path="res://Assets/Sprites/Interactable/magic-circles-for-wizards-07cc.png" id="2_rmjiy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_50ovg"]
 
 [node name="BuffArea" type="Area2D" unique_id=290755707]
 script = ExtResource("1_1cjos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=420123517]
-shape = SubResource("RectangleShape2D_uj04i")
+scale = Vector2(1.31, 1.31)
+shape = SubResource("CircleShape2D_50ovg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=77007499]
+texture = ExtResource("2_rmjiy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

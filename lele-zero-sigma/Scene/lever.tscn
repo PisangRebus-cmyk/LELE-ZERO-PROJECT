@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://doi3hfj7wrxjv"]
 
 [ext_resource type="Script" uid="uid://b5jhityi3o7j1" path="res://Script/lever.gd" id="1_o5sqf"]
-[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_dp7mf"]
+[ext_resource type="Texture2D" uid="uid://s8vxe7rtilne" path="res://Assets/Sprites/Interactable/pixilart-sprite - Kopi.png" id="2_dp7mf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
 radius = 24.0
 
 [node name="Lever" type="Area2D" unique_id=2086188507]
 script = ExtResource("1_o5sqf")
-one_shot = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215763402]
 shape = SubResource("CircleShape2D_uj04i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=717694978]
 texture = ExtResource("2_dp7mf")
-hframes = 3
+hframes = 5

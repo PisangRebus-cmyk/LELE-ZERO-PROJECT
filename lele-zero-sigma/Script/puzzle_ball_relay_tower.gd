@@ -19,7 +19,7 @@ func interact(_user: Node2D) -> void:
 
 
 func _refresh() -> void:
-	sprite.rotation = facing * PI / 2.0
+	sprite.frame = facing
 
 
 func _on_area_entered(area: Area2D) -> void:

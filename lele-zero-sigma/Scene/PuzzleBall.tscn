@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bavoj083s8rw2" path="res://Assets/Sprites/Magician/biji.png" id="2_el4af"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7aqks"]
-radius = 8.0
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cte75"]
 atlas = ExtResource("2_el4af")

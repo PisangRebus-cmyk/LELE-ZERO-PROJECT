@@ -59,3 +59,5 @@ targets = [NodePath("../GravityBallArea")]
 
 [node name="Magician" parent="." unique_id=427896389 instance=ExtResource("12_5tjbk")]
 position = Vector2(-170, 71)
+scale = Vector2(2.365, 2.365)
+orbs_casted = 0
