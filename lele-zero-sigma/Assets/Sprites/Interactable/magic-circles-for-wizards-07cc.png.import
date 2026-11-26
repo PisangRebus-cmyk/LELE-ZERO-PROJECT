@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmv5v8lcwlyr6"
-path="res://.godot/imported/IMG_1279.png-fa6f6a8851e211a5620dc97ae218cb87.ctex"
+uid="uid://bhr3agqqtovc8"
+path="res://.godot/imported/magic-circles-for-wizards-07cc.png-35b4c77e0f394bbb9816d4fb1bbd2e68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Magician/IMG_1279.png"
-dest_files=["res://.godot/imported/IMG_1279.png-fa6f6a8851e211a5620dc97ae218cb87.ctex"]
+source_file="res://Assets/Sprites/Interactable/magic-circles-for-wizards-07cc.png"
+dest_files=["res://.godot/imported/magic-circles-for-wizards-07cc.png-35b4c77e0f394bbb9816d4fb1bbd2e68.ctex"]
 
 [params]
 
