@@ -27,6 +27,16 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation_1",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
@@ -43,7 +53,7 @@ laser_scene = ExtResource("3_crrml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=64347802]
 sprite_frames = SubResource("SpriteFrames_uj04i")
-frame_progress = 0.61106956
+animation = &"new_animation_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132242809]
 shape = SubResource("RectangleShape2D_uj04i")

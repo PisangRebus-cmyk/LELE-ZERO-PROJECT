@@ -1,6 +1,6 @@
 extends Control
 
-const SceneNewGame := "res://Scene/Level_1.tscn"
+const SceneNewGame := "res://Scene/backup_Level_1.tscn"
 
 var _Settings := false
 

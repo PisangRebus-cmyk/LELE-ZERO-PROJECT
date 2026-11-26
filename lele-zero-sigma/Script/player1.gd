@@ -43,6 +43,7 @@ const STUN_DURATION := 1.0
 @export var max_health := 200.0
 @onready var dash_sound : AudioStreamPlayer2D = $DashSound
 
+var attack_mult := 1.0
 var state := State.FREE
 var state_time := 0.0
 var combo_index := 0
@@ -448,6 +449,7 @@ func ascend(buff, value) -> void:
 		print(health)
 	elif buff == 1:
 		for i in ATTACKS.size():
+			attack_mult *= value
 			ATTACKS[i].damage *= value
 			print(ATTACKS[i].damage)
 	elif buff == 2:

@@ -37,6 +37,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	pause_menu.hide()
 	game_over.hide()
+	set_phase(phase)
+	_update_enemy_count()
+	_find_player()
 
 	_setup_button_sounds([
 		continue_button,
@@ -86,6 +89,10 @@ func _process(_delta: float) -> void:
 	if is_game_over:
 		return
 	_update_enemy_count()
+	if not is_instance_valid(player):
+		_find_player()  
+		return
+	set_health(player.health, player.max_health)
 	if is_instance_valid(player):
 		set_health(player.health, max_hp)
 		if player.health <= 0:
@@ -129,7 +136,9 @@ func _show_game_over() -> void:
 	
 func _on_retry() -> void:
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	Engine.time_scale = 1.0
+	SaveManager.restart_game()
+	
 func _return_to_title() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file(TITLE_SCENE)
@@ -145,3 +154,20 @@ func _update_enemy_count() -> void:
 func set_phase(value: int) -> void:
 	phase = value
 	phase_label.text = "Phase %d" % phase
+func _find_player() -> void:
+	for n in get_tree().get_nodes_in_group("Player"):
+		if n.has_signal("died") and "health" in n and "max_health" in n:
+			player = n
+			if not player.died.is_connected(_on_player_died):
+				player.died.connect(_on_player_died)
+			if not player.kidnapped.is_connected(_on_player_kidnapped):
+				player.kidnapped.connect(_on_player_kidnapped)
+			set_health(player.health, player.max_health)
+			return
+			
+func _on_player_kidnapped() -> void:
+	_show_game_over()
+	
+func _on_player_died() -> void:
+	set_health(0, player.max_health)
+	_show_game_over()
