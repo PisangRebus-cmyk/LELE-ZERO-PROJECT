@@ -1,18 +1,61 @@
 [gd_scene format=3 uid="uid://doi3hfj7wrxjv"]
 
 [ext_resource type="Script" uid="uid://b5jhityi3o7j1" path="res://Script/lever.gd" id="1_o5sqf"]
-[ext_resource type="Texture2D" uid="uid://vrq7kat3b56" path="res://Assets/Sprites/Idle/idle_02.png" id="2_dp7mf"]
+[ext_resource type="Texture2D" uid="uid://cvguf2l7v6l7y" path="res://Assets/Sprites/level environment/pixilart-sprite - Kopi.png" id="2_dp7mf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
 radius = 24.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3eyd"]
+atlas = ExtResource("2_dp7mf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa8sh"]
+atlas = ExtResource("2_dp7mf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spmvu"]
+atlas = ExtResource("2_dp7mf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gevw"]
+atlas = ExtResource("2_dp7mf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3mm1"]
+atlas = ExtResource("2_dp7mf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3eyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa8sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spmvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gevw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3mm1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Lever" type="Area2D" unique_id=2086188507]
 script = ExtResource("1_o5sqf")
-one_shot = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215763402]
 shape = SubResource("CircleShape2D_uj04i")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=717694978]
-texture = ExtResource("2_dp7mf")
-hframes = 3
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=481254595]
+sprite_frames = SubResource("SpriteFrames_uj04i")
+frame = 2
+frame_progress = 0.93060017

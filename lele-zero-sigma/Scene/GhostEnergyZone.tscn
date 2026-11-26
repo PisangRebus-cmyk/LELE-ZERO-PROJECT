@@ -1,15 +1,36 @@
 [gd_scene format=3 uid="uid://dq4n85jdo1b3w"]
 
 [ext_resource type="Script" uid="uid://jjv10qvc2rd" path="res://Script/GhostEnergyZone.gd" id="1_c3whv"]
+[ext_resource type="Script" uid="uid://kn164khcj0if" path="res://Script/PlayerLightZone.gd" id="2_expb8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[sub_resource type="Gradient" id="Gradient_yy0n7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p5viw"]
+gradient = SubResource("Gradient_yy0n7")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5viw"]
 
 [node name="GhostEnergyZone" type="Area2D" unique_id=804294406]
 script = ExtResource("1_c3whv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588676038]
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_uj04i")
+[node name="LightZone" type="Area2D" parent="." unique_id=1801021919]
+scale = Vector2(6, 6)
+script = ExtResource("2_expb8")
+metadata/_custom_type_script = "uid://kn164khcj0if"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightZone" unique_id=588676038]
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="PointLight2D" type="PointLight2D" parent="LightZone" unique_id=608082250]
+scale = Vector2(0.5, 0.5)
+color = Color(0.07058824, 1, 1, 1)
+texture = SubResource("GradientTexture2D_p5viw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1824128629]
+scale = Vector2(6, 6)
+shape = SubResource("CircleShape2D_p5viw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

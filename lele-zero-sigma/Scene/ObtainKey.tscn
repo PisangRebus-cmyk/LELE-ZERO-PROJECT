@@ -1,9 +1,32 @@
 [gd_scene format=3 uid="uid://co071stibxh73"]
 
 [ext_resource type="Script" uid="uid://cc88bm1376wnd" path="res://Script/obtain_key.gd" id="1_digj8"]
-[ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="2_jhun1"]
+[ext_resource type="Texture2D" uid="uid://d4auaf601hfcp" path="res://Assets/Sprites/level environment/2/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png" id="2_6t8rb"]
+[ext_resource type="Texture2D" uid="uid://d1ii1pr8d43wx" path="res://Assets/Sprites/level environment/2/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_2.png" id="3_iu0pw"]
+[ext_resource type="Texture2D" uid="uid://8m20tdpu3ekt" path="res://Assets/Sprites/level environment/2/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_3.png" id="4_05f4p"]
+[ext_resource type="Texture2D" uid="uid://1r8a7xkqqvt" path="res://Assets/Sprites/level environment/2/2D Pixel Dungeon Asset Pack v2.0/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_4.png" id="5_vvbbe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6t8rb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iu0pw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_05f4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vvbbe")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ObtainKey" type="Area2D" unique_id=964679401]
 script = ExtResource("1_digj8")
@@ -11,6 +34,6 @@ script = ExtResource("1_digj8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1724287186]
 shape = SubResource("CircleShape2D_uj04i")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1613947181]
-texture = ExtResource("2_jhun1")
-hframes = 2
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1338008710]
+sprite_frames = SubResource("SpriteFrames_uj04i")
+frame_progress = 0.48860288
