@@ -2,11 +2,25 @@
 
 [ext_resource type="Script" uid="uid://c1yoed4v7dndq" path="res://Script/attack_2_wave_area.gd" id="1_pvfdy"]
 
+[sub_resource type="Gradient" id="Gradient_pvfdy"]
+colors = PackedColorArray(0.7294118, 0.46666667, 0.23529412, 0.54509807, 0.7294118, 0.46666667, 0.23529412, 0.54509807)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yefuh"]
+gradient = SubResource("Gradient_pvfdy")
+
 [node name="Hitbox" type="Area2D" unique_id=2054181581]
 script = ExtResource("1_pvfdy")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=447542069]
 rotation = -0.7853982
 polygon = PackedVector2Array(0, 0, 329, 0, 306, 124, 233, 233, 128, 305, 0, 329)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1602848347]
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 332.0
+offset_bottom = 331.0
+rotation = -0.7853982
+texture_progress = SubResource("GradientTexture2D_yefuh")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

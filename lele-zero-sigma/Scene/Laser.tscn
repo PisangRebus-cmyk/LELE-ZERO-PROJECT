@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kjrb76bk3t6a"]
 
 [ext_resource type="Script" uid="uid://d4a5gxjpuywsc" path="res://Script/laser.gd" id="1_p0igm"]
-[ext_resource type="Texture2D" uid="uid://vs31vrnfg7c" path="res://Assets/Sprites/Magician/Laser.PNG" id="2_yda2v"]
+[ext_resource type="Texture2D" uid="uid://dplswf6pdh75o" path="res://Assets/Sprites/Magician/Laser.PNG" id="2_yda2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 size = Vector2(200, 4)

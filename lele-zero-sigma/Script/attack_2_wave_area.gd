@@ -8,6 +8,7 @@ const TURN_SPEED := 0.65
 const DRIFT_FACTOR := 0.07   
 
 @export var waves := 4
+@onready var warning: TextureProgressBar = $TextureProgressBar
 
 @onready var wavearea: CollisionPolygon2D = $CollisionShape2D
 
@@ -15,13 +16,15 @@ var age := 0.0
 
 
 func _ready() -> void:
+	warning.tint_progress = Color.YELLOW
+	warning.value_changed.connect(_on_value_changed)
 	super()
 	wavearea.disabled = true
 
 
 func _physics_process(delta: float) -> void:
 	age += delta
-
+	warning.value = age / 4
 	var active := false
 	var tracking := false
 	for i in waves:
@@ -44,3 +47,9 @@ func _physics_process(delta: float) -> void:
 	var end_time: float = WINDUP + (waves - 1) * WINDUP + WAVE_ACTIVE
 	if age >= end_time:
 		finish()
+
+func _on_value_changed(new_value: float) -> void:
+	if new_value >= warning.max_value/4:
+		warning.tint_progress = Color.RED
+	else:
+		warning.tint_progress = Color.YELLOW

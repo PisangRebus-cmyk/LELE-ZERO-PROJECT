@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://bswwks7xib8oo" path="res://Assets/Audio/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="32_kvnbw"]
 [ext_resource type="PackedScene" uid="uid://dx21n7y556nik" path="res://Scene/buff_area.tscn" id="33_ipl58"]
 [ext_resource type="PackedScene" uid="uid://dq4n85jdo1b3w" path="res://Scene/GhostEnergyZone.tscn" id="34_ipl58"]
+[ext_resource type="PackedScene" uid="uid://dt55vbrpx0tq" path="res://Scene/RangedEnemy.tscn" id="36_4blpj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vykx8"]
 texture = ExtResource("6_segys")
@@ -480,7 +481,7 @@ position = Vector2(-5308, -1053)
 wall = NodePath("../../Walls/KeyWall")
 
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("1_aw1ak")]
-position = Vector2(-531, 19)
+position = Vector2(-464, -1219)
 SPEED = 120
 
 [node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1563872308]
@@ -794,6 +795,7 @@ targets = [NodePath("../EmitterMP1")]
 position = Vector2(-176, 115)
 
 [node name="DialogUI" parent="Dialog" unique_id=525950802 instance=ExtResource("30_i27wa")]
+_active = true
 
 [node name="Dialog_level1_1" type="Area2D" parent="Dialog" unique_id=81864498 node_paths=PackedStringArray("dialog_ui")]
 position = Vector2(-506, 27)
@@ -947,3 +949,6 @@ required = 0
 [node name="GhostEnergyZone20" parent="SafeZones/Ghost" unique_id=1639884090 instance=ExtResource("34_ipl58")]
 position = Vector2(-5323, -3024)
 required = 0
+
+[node name="RangedEnemy" parent="." unique_id=1369281368 instance=ExtResource("36_4blpj")]
+position = Vector2(-651, 33)

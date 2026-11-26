@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://yxtaudq75d0e"]
 
 [ext_resource type="Script" uid="uid://cck8ejotrhmio" path="res://Script/attack_4_war_zone.gd" id="1_0gnf8"]
+[ext_resource type="Texture2D" uid="uid://cyodwtouqy6bc" path="res://Assets/Sprites/Interactable/PlayerLightZone.png" id="2_2tv6t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
 radius = 45.0
@@ -12,17 +13,33 @@ script = ExtResource("1_0gnf8")
 position = Vector2(215, 200)
 shape = SubResource("CircleShape2D_uj04i")
 
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1996707847]
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_2tv6t")
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=637732801]
 position = Vector2(298, -79)
 shape = SubResource("CircleShape2D_uj04i")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2" unique_id=1946073333]
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_2tv6t")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1332740797]
 position = Vector2(-235, 167)
 shape = SubResource("CircleShape2D_uj04i")
 
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D3" unique_id=1371557594]
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_2tv6t")
+
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=2136838289]
 position = Vector2(-270, -223)
 shape = SubResource("CircleShape2D_uj04i")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D4" unique_id=1827314721]
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_2tv6t")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

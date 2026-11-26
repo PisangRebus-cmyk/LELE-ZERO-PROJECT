@@ -1,7 +1,7 @@
 extends CharacterBody2D
 signal kidnapped
 signal died
-const DARK_LIMIT := 4.0
+const DARK_LIMIT := 67.0
 enum State { FREE, ATTACK, DODGE, GUARD, STUN }
 
 const COMBO_RESET_TIME := 0.6
