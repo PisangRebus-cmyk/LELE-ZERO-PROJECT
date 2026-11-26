@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cytkinxu1h3ja" path="res://Assets/Sprites/Magician/Idle.PNG" id="4_rcxhy"]
 [ext_resource type="Texture2D" uid="uid://d1qaeobatt5x" path="res://Assets/Sprites/Magician/OrbShoot.PNG" id="5_q8keu"]
 [ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="6_y22fe"]
+[ext_resource type="AudioStream" uid="uid://byu8php2youo6" path="res://Assets/Audio/RPG_Essentials_Free/8_Atk_Magic_SFX/45_Charge_05.wav" id="8_q8keu"]
+[ext_resource type="AudioStream" uid="uid://hovelh3kyhmp" path="res://Assets/Audio/Toolbox_SFX_Free_v1/WAV/magic/Laser.wav" id="9_kcqa4"]
+[ext_resource type="AudioStream" uid="uid://dynlw67u61tul" path="res://Assets/Audio/Toolbox_SFX_Free_v1/WAV/magic/magic_lightning.wav" id="10_su8cn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p4o21"]
 atlas = ExtResource("4_p4o21")
@@ -182,3 +185,12 @@ metadata/_custom_type_script = "uid://561o533d5vjq"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1885059607]
 position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_p5viw")
+
+[node name="Charge_05" type="AudioStreamPlayer2D" parent="." unique_id=1070209290]
+stream = ExtResource("8_q8keu")
+
+[node name="Laser" type="AudioStreamPlayer2D" parent="." unique_id=1027581224]
+stream = ExtResource("9_kcqa4")
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="." unique_id=1257852393]
+stream = ExtResource("10_su8cn")

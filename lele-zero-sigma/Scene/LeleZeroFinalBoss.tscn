@@ -75,3 +75,5 @@ metadata/_custom_type_script = "uid://561o533d5vjq"
 [node name="Telegraph" type="Node2D" parent="." unique_id=1108544019]
 script = ExtResource("3_vpy1a")
 metadata/_custom_type_script = "uid://djhxso7g1uc3q"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1611367259]

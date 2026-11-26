@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dmhsvspo3dmyk" path="res://icon.svg" id="2_e41n6"]
 [ext_resource type="Script" uid="uid://djhxso7g1uc3q" path="res://Script/telegraph.gd" id="2_t2fta"]
 [ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="3_t2fta"]
+[ext_resource type="AudioStream" uid="uid://cgneepo13lshr" path="res://Assets/Audio/RPG_Essentials_Free/8_Atk_Magic_SFX/30_Earth_02.wav" id="5_t2fta"]
+[ext_resource type="AudioStream" uid="uid://byibg5c03pn7" path="res://Assets/Audio/RPG_Essentials_Free/8_Atk_Magic_SFX/04_Fire_explosion_04_medium.wav" id="6_m1hu0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ue5rh"]
 atlas = ExtResource("2_e41n6")
@@ -105,5 +107,11 @@ shape = SubResource("RectangleShape2D_7h7mn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox" unique_id=1706600658]
 position = Vector2(55, 0)
 shape = SubResource("RectangleShape2D_vpupq")
+
+[node name="Earth_02" type="AudioStreamPlayer2D" parent="." unique_id=72572450]
+stream = ExtResource("5_t2fta")
+
+[node name="Fire_Explosion_04" type="AudioStreamPlayer2D" parent="." unique_id=387639703]
+stream = ExtResource("6_m1hu0")
 
 [connection signal="stunned" from="StunGauge" to="." method="_on_stun_gauge_stunned"]

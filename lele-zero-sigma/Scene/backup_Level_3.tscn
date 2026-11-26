@@ -187,7 +187,6 @@ boundary = NodePath("../FloornWAll/BossWall")
 
 [node name="Player1" parent="." unique_id=1157810840 instance=ExtResource("9_8vpwh")]
 position = Vector2(-19, -15)
-SPEED = 444
 
 [node name="Camera2D" type="Camera2D" parent="Player1" unique_id=1595978980]
 

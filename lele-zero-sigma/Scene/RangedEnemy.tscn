@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://yrhbcpbhh0mv" path="res://Assets/Sprites/FuturePrincess_3.png" id="1_ikyry"]
 [ext_resource type="Script" uid="uid://561o533d5vjq" path="res://Script/stun_gauge.gd" id="2_ceddh"]
 [ext_resource type="PackedScene" uid="uid://p7lgi8yabugs" path="res://Scene/Arrow.tscn" id="2_y8md6"]
+[ext_resource type="AudioStream" uid="uid://rukes2lltxh" path="res://Assets/Audio/RPG_Essentials_Free/8_Atk_Magic_SFX/25_Wind_01.wav" id="5_bsovk"]
+[ext_resource type="AudioStream" uid="uid://dynlw67u61tul" path="res://Assets/Audio/Toolbox_SFX_Free_v1/WAV/magic/magic_lightning.wav" id="6_bdq2j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8md6"]
 atlas = ExtResource("1_ikyry")
@@ -64,3 +66,10 @@ metadata/_custom_type_script = "uid://561o533d5vjq"
 
 [node name="Shooting_Timer" type="Timer" parent="." unique_id=408436856]
 wait_time = 0.7
+
+[node name="Wind_01" type="AudioStreamPlayer2D" parent="." unique_id=1766221949]
+scale = Vector2(0.99999994, 0.99999994)
+stream = ExtResource("5_bsovk")
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="." unique_id=1153511643]
+stream = ExtResource("6_bdq2j")
