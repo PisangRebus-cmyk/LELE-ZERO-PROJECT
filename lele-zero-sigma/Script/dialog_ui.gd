@@ -5,7 +5,7 @@ signal dialog_finished
 
 @export_group("Karakter")
 @export var name_a := "Zeke"
-@export var portrait_a: Texture2D = preload("res://Assets/Sprites/UI_UX/character potrait.png")
+@export var portrait_a: Texture2D = preload("res://Assets/Sprites/UI_UX/concept 1-1.png.png")
 @export var name_b := "Ghost"
 @export var portrait_b: Texture2D = preload("res://Assets/Sprites/UI_UX/ghost potrait.png")
 
@@ -40,7 +40,7 @@ var _portrait_b: TextureRect
 
 var _lines: Array = []
 var _index := -1
-var _active := false
+@export var _active := false
 var _typing := false
 var _tutorial := false
 var _was_paused := false
